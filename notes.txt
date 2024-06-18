@@ -1,3 +1,9 @@
 python app.py to run (similar to all python files, python3 in ubuntu)
 pip install Flask 
     installs the flask module
+
+shows version of flask with other data
+pip show flask
+
+create a virtual environment
+python -m venv venv
