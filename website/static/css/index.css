@@ -1,0 +1,39 @@
+/* root {
+
+}*/
+body {
+    background-color: white;
+    position: relative;
+    font-family: "Arial", Helvetica, sans-serif;
+}
+
+/* .main_navbar {
+    background-color: orange;
+} */
+
+.main_navbar_header {
+    /* background-color: green; */
+    position: absolute;
+    margin: 10px;
+}
+
+.main_navbar_header_logo_container {
+    /* background-color: blue; */
+    position: relative;
+}
+
+.main_navbar_header_logo {
+    /* margin: 10px; */
+    position: relative;
+    transform: scale(0.4);
+}
+
+.main_navbar_header_text_container {
+    /* background-color: blue; */
+    position: relative;
+}
+
+.main_navbar_header_text {
+    position: relative;
+    font-size: 50px;
+}
