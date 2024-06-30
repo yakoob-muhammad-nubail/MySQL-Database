@@ -12,26 +12,36 @@
     <!-- <title>{% block title %}Home{% endblock %}</title> -->
 </head>
 
-<body>
+<!-- - Account should be change to google account circle - tbd - optional
+        - after login page is done
+    - responsive for smaller computer screen and phone screen (basic responsive design) - tbd - optional
+        - after app is done
+ -->
 
+<body>
     <nav id="main_navbar" class="main_navbar">
         <div id="main_navbar_header" class="main_navbar_header">
+            <div id="main_navbar_header_menu_container" class="main_navbar_header_menu_container">
+                <img id="main_navbar_header_menu" class="main_navbar_header_menu" src="../static/images/menuImage.png" alt="menu symbol image" />
+            </div>
             <div id="main_navbar_header_logo_container" class="main_navbar_header_logo_container">
-                <img id="main_navbar_header_logo" class="main_navbar_header_logo" src="../static/images/logo250.png"
-                    alt="logo image" />
+                <img id="main_navbar_header_logo" class="main_navbar_header_logo" src="../static/images/logo250.png" alt="site logo image" />
             </div>
             <div id="main_navbar_header_text_container" class="main_navbar_header_logo_container">
                 <p id="main_navbar_header_text" class="main_navbar_header_text">Notes App</p>
             </div>
-            <div id="main_navbar_header_menu" class="main_navbar_header_menu">
-                <p id="main_navbar_header_About" class="main_navbar_header_About">About</p>
-                <p id="main_navbar_header_About" class="main_navbar_header_About">Account</p>
+            <div id="main_navbar_header_nav_container" class="main_navbar_header_nav_container">
+                <div id="main_navbar_header_nav_search_logo_container" class="main_navbar_header_nav_search_logo_container">
+                    <img id="main_navbar_header_nav_search_logo" class="main_navbar_header_nav_search_logo" src="../static/images/searchLogo.png" alt="search logo image"/>
+                    <p id="main_navbar_header_nav_search_text" class="main_navbar_header_nav_search_text">Search</p>
+                </div>
+                <p id="main_navbar_header_nav_about_text" class="main_navbar_header_nav_about_text">About</p>
+                <p id="main_navbar_header_nav_account_text" class="main_navbar_header_nav_account_text">Account</p>
                 <!-- <p id="main_navbar_header_About" class="main_navbar_header_About">Draw</p> -->
-                <p id="main_navbar_header_About" class="main_navbar_header_About">Search</p>
             </div>
         </div>
-
     </nav>
+
 </body>
 
 <!-- <script> src = "{{ url_for('static', filename='js/index.js')}}"</script> -->
