@@ -1,5 +1,5 @@
 // alert("hello");
-
+var body = document.getElementById("body");
 var mainNavbarHeaderMenu = document.getElementById("main_navbar_header_menu");
 var mainNavbarHeaderMenuContainer = document.getElementById("main_navbar_header_menu_container");
 var mainNavbar = document.getElementById("main_navbar");
@@ -25,11 +25,12 @@ var mainNavbarHeaderNavTextWidth = 100;
 width = window.innerWidth - 15;
 mainNavbar.style.width = width + "px";
 
-width = window.innerWidth - 35;
+width = window.innerWidth + 10;
 mainNavbarHeader.style.width = width + "px";
 mainNavbarHeader.style.height = navContainerHeight + "px";
 
 mainNavbarHeader.style.top = -10 + "px";
+mainNavbarHeader.style.left = -10 + "px";
 
 width = 100;
 mainNavbarHeaderMenuContainer.style.width = width + "px";
@@ -72,11 +73,11 @@ mainNavbarHeaderNavSearchText.style.top = -112 + "px";
 
 mainNavbarHeaderNavAboutText.style.width = mainNavbarHeaderNavTextWidth + "px";
 mainNavbarHeaderNavAboutText.style.left = window.innerWidth - 825 + "px";
-mainNavbarHeaderNavAboutText.style.top = -40 + "px";
+mainNavbarHeaderNavAboutText.style.top = -35 + "px";
 
 mainNavbarHeaderNavAccountText.style.width = mainNavbarHeaderNavTextWidth + "px";
 mainNavbarHeaderNavAccountText.style.left = window.innerWidth - 700 + "px";
-mainNavbarHeaderNavAccountText.style.top = -78.5 + "px"; //35
+mainNavbarHeaderNavAccountText.style.top = -73 + "px"; //38
 
 mainNavbarHeaderLogo.addEventListener("mouseover", function hoverOverLogo() {
     //console.log("Mouse is over the element");
@@ -109,31 +110,91 @@ mainNavbarHeaderMenu.addEventListener("mouseout", function hoverOutLogo() {
     mainNavbarHeaderMenu.src = "../static/images/menuImage.png";
 });
 
-function hoverOutSearch(event) {
-    // Check if the event target is not the specific element or its children
-    if (!mainNavbarHeaderNavSearchLogoContainer.contains(event.target)) {
-        mainNavbarHeaderNavSearchLogo.src = "../static/images/searchLogo.png";
-        mainNavbarHeaderNavSearchLogoContainer.style.backgroundColor = "white";
-        mainNavbarHeaderNavSearchText.style.color = "grey";
-        
-        // Remove the mouseup event listener after it is triggered
-        document.removeEventListener("mouseup", hoverOutSearch);
-    }
-}
+//method one
+// function hoverOutSearch(event) {
+//     // Check if the event target is not the specific element or its children
+//     if (!mainNavbarHeaderNavSearchLogoContainer.contains(event.target)) {
+//         mainNavbarHeaderNavSearchLogo.src = "../static/images/searchLogo.png";
+//         mainNavbarHeaderNavSearchLogoContainer.style.backgroundColor = "white";
+//         mainNavbarHeaderNavSearchText.style.color = "grey";
 
-mainNavbarHeaderNavSearchLogoContainer.addEventListener("mousedown", function hoverOverLogo() {
-    //console.log("Mouse is over the element");
-    mainNavbarHeaderNavSearchLogo.src = "../static/images/searchLogo_highlight.png"
-    mainNavbarHeaderNavSearchLogoContainer.style.backgroundColor = "grey";
-    mainNavbarHeaderNavSearchText.style.color = "white";
+//         // Remove the mouseup event listener after it is triggered
+//         document.removeEventListener("mouseup", hoverOutSearch);
+//     }
+// }
 
-    document.addEventListener("mouseup", hoverOutSearch);
-});
-// mainNavbarHeaderNavSearchLogoContainer.addEventListener("mousedown", function hoverOutLogo() { 
+// mainNavbarHeaderNavSearchLogoContainer.addEventListener("mousedown", function hoverOverLogo() {
+//     //console.log("Mouse is over the element");
+//     mainNavbarHeaderNavSearchLogo.src = "../static/images/searchLogo_highlight.png"
+//     mainNavbarHeaderNavSearchLogoContainer.style.backgroundColor = "grey";
+//     mainNavbarHeaderNavSearchText.style.color = "white";
+
+//     mainNavbarHeaderNavSearchLogoContainer.addEventListener("mousedown", function hoverOutLogo(event) {
+//         //console.log("Mouse is out of the element");
+//         xPos = 566;
+//         yPos = 65;
+
+//         if (!(event.clientX >= xPos && event.clientX <= (xPos + 500) && event.clientY >= yPos && event.clientX <= (yPos - 25))) {
+//             mainNavbarHeaderNavSearchLogo.src = "../static/images/searchLogo.png"
+//             mainNavbarHeaderNavSearchLogoContainer.style.backgroundColor = "white";
+//             mainNavbarHeaderNavSearchText.style.color = "grey";
+//         }
+//     });
+// });
+//click over method
+// mainNavbarHeaderNavSearchLogoContainer.addEventListener("mousedown", function hoverOverLogo() {
+//     //console.log("Mouse is over the element");
+//     mainNavbarHeaderNavSearchLogo.src = "../static/images/searchLogo_highlight.png"
+//     mainNavbarHeaderNavSearchLogoContainer.style.backgroundColor = "grey";
+//     mainNavbarHeaderNavSearchText.style.color = "white";
+
+//     mainNavbar.addEventListener("mousedown", function hoverOverLogo() {
+//         //console.log("Mouse is over the element");
+//         mainNavbarHeaderNavSearchLogo.src = "../static/images/searchLogo.png"
+//         mainNavbarHeaderNavSearchLogoContainer.style.backgroundColor = "white";
+//         mainNavbarHeaderNavSearchText.style.color = "grey";
+//         this.removeEventListener("mousedown", hoverOverLogo)
+//     });
+// });
+
+// mainNavbar.addEventListener("mousedown", function hoverOverLogo() {
+//     //console.log("Mouse is over the element");
+//     mainNavbarHeaderNavSearchLogo.src = "../static/images/searchLogo_highlight.png"
+//     mainNavbarHeaderNavSearchLogoContainer.style.backgroundColor = "grey";
+//     mainNavbarHeaderNavSearchText.style.color = "white";
+// });
+
+// body.addEventListener("mousedown", function hoverOutLogo() {
 //     //console.log("Mouse is out of the element");
 //     mainNavbarHeaderNavSearchLogo.src = "../static/images/searchLogo.png"
 //     mainNavbarHeaderNavSearchLogoContainer.style.backgroundColor = "white";
 //     mainNavbarHeaderNavSearchText.style.color = "grey";
+// });
+
+// function hoverOverLogo() {
+//     mainNavbarHeaderNavSearchLogo.src = "../static/images/searchLogo_highlight.png";
+//     mainNavbarHeaderNavSearchLogoContainer.style.backgroundColor = "grey";
+//     mainNavbarHeaderNavSearchText.style.color = "white";
+// }
+
+// // Function to handle mouseup event outside the specific element
+// function hoverOutSearch(event) {
+//     // Check if the event target is not the specific element or its children
+//     if (!mainNavbarHeaderNavSearchLogoContainer.contains(event.target)) {
+//         mainNavbarHeaderNavSearchLogo.src = "../static/images/searchLogo.png";
+//         mainNavbarHeaderNavSearchLogoContainer.style.backgroundColor = "white";
+//         mainNavbarHeaderNavSearchText.style.color = "grey";
+
+//         // Remove the mouseup event listener after it is triggered
+//         document.removeEventListener("mouseup", hoverOutSearch);
+//     }
+// }
+
+// // Add event listener for mousedown on the specific element
+// mainNavbarHeaderNavSearchLogoContainer.addEventListener("mousedown", function () {
+//     hoverOverLogo();
+//     // Add event listener for mouseup on the document
+//     document.addEventListener("mouseup", hoverOutSearch);
 // });
 
 mainNavbarHeaderNavAboutText.addEventListener("mouseover", function hoverOverLogo() {
@@ -153,4 +214,8 @@ mainNavbarHeaderNavAccountText.addEventListener("mouseout", function hoverOutLog
     //console.log("Mouse is out of the element");
     mainNavbarHeaderNavAccountText.style.color = "black";
 });
+
+// window.addEventListener("click", function printMousePos(event) {
+//     document.body.textContent = "clientX " + event.clientX + " - clientY: " + event.clientY;
+// });
 

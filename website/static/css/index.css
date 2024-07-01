@@ -5,20 +5,23 @@ body {
     background-color: white;
     position: relative;
     font-family: "Arial", Helvetica, sans-serif;
-    user-select: none;  
+    user-select: none;
 
+}
+
+nav {
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .2);
 }
 
 .main_navbar {
     /* background-color: darkgrey; */
     position: block;
-    margin: 0px 10px;
 }
 
 .main_navbar_header {
-    background-color: green;
-    width: 100%;
+    /* background-color: green; */
     position: absolute;
+    box-shadow: 0 0 3px #000000;
 }
 
 .main_navbar_header_menu_container {
@@ -59,13 +62,13 @@ body {
     font-size: 18px;
 }
 
-.main_navbar_header_nav_search_logo_container{
+.main_navbar_header_nav_search_logo_container {
     /* background-color: orange; */
     box-shadow: 0 0 3px #000000;
     position: relative;
 }
 
-.main_navbar_header_nav_search_logo{
+.main_navbar_header_nav_search_logo {
     position: relative;
     transform: scale(0.15);
 }
