@@ -6,7 +6,7 @@ body {
     position: relative;
     font-family: "Arial", Helvetica, sans-serif;
     user-select: none;
-
+    z-index: 0;
 }
 
 nav {
@@ -88,4 +88,90 @@ nav {
 .main_navbar_header_nav_account_text {
     /* background-color: plum; */
     position: relative;
+}
+
+.sidemenu {
+    background-color: orange;
+    position: absolute;
+    width: 200px;
+    font-size: 16px;
+    /*box shadow on one side of the div*/
+    /* box-shadow: 10px 0 5px -2px #888; */
+}
+
+.sidemenu_notes_container {
+    /* background-color: aqua; */
+    position: relative;
+}
+
+.sidemenu_notes_logo {
+    background-color: aqua;
+    position: relative;
+    width: 100px;
+    transform: scale(0.25);
+}
+
+.sidemenu_reminders_container {
+    /* background-color: green; */
+    position: relative;
+}
+
+.sidemenu_reminders_logo {
+    position: relative;
+    transform: scale(0.15);
+}
+
+.sidemenu_edit_labels_container {
+    /* background-color: rgb(187, 255, 0); */
+    position: relative;
+}
+
+.sidemenu_edit_logo {
+    position: relative;
+    transform: scale(0.20);
+}
+
+.sidemenu_archive_container {
+    /* background-color: rgb(255, 51, 0); */
+    position: relative;
+}
+
+.sidemenu_archives_logo {
+    position: relative;
+    transform: scale(0.15);
+}
+
+.sidemenu_trash_container {
+    /* background-color: rgb(255, 0, 140); */
+    position: relative;
+}
+
+.sidemenu_trash_logo {
+    position: relative;
+    transform: scale(0.15);
+}
+
+.sidemenu_notes_text {
+    position: relative;
+    /* display: none; */
+}
+
+.sidemenu_reminders_text {
+    position: relative;
+    /* display: none; */
+}
+
+.sidemenu_edit_labels_text {
+    position: relative;
+    /* display: none; */
+}
+
+.sidemenu_trash_text {
+    position: relative;
+    /* display: none; */
+}
+
+.sidemenu_trash_text {
+    position: relative;
+    /* display: none; */
 }
