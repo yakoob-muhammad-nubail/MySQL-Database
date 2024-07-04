@@ -1,6 +1,4 @@
-/* root {
-
-}*/
+/* root {}*/
 body {
     background-color: white;
     position: relative;
@@ -9,19 +7,22 @@ body {
     z-index: 0;
 }
 
+/* navigation menu */
 nav {
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .2);
+    display: block;
+    /* position: absolute; */
+    /* box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .2); */
 }
 
 .main_navbar {
     /* background-color: darkgrey; */
-    position: block;
+    display: block;
 }
 
 .main_navbar_header {
     /* background-color: green; */
     position: absolute;
-    box-shadow: 0 0 3px #000000;
+    /* box-shadow: 0 0 3px #000000; */
 }
 
 .main_navbar_header_menu_container {
@@ -90,8 +91,9 @@ nav {
     position: relative;
 }
 
+/* side menu */
 .sidemenu {
-    background-color: orange;
+    /* background-color: orange; */
     position: absolute;
     width: 200px;
     font-size: 16px;
@@ -105,7 +107,7 @@ nav {
 }
 
 .sidemenu_notes_logo {
-    background-color: aqua;
+    /* background-color: aqua; */
     position: relative;
     width: 100px;
     transform: scale(0.25);
@@ -174,4 +176,43 @@ nav {
 .sidemenu_trash_text {
     position: relative;
     /* display: none; */
+}
+
+/* notepad */
+.notepad {
+    /* background-color: orange; */
+    position: absolute;
+    width: 200px;
+    font-size: 16px;
+    box-shadow: 0px 0px 5px #888;
+    border-radius: 10px;
+}
+
+.unclicked_entry_box {
+    /* background-color: aqua; */
+    position: relative;
+}
+
+.unclicked_entry_box_note {
+    /* background-color: blue; */
+    position: relative;
+}
+
+.unclicked_entry_box_note_text {
+    position: relative;
+}
+
+.unclicked_entry_box_note_new_list {
+    position: relative;
+    transform: scale(0.1);
+}
+
+.unclicked_entry_box_note_new_note_drawing {
+    position: relative;
+    transform: scale(0.1);
+}
+
+.unclicked_entry_box_note_new_note_image {
+    position: relative;
+    transform: scale(0.1);
 }

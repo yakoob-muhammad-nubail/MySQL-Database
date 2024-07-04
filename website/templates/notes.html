@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/index.css">
+    <title>Notes App</title>
+    <style>
+    </style>
+    <!-- <title>{% block title %}Home{% endblock %}</title> -->
+</head>
+
+<!-- - Account should be change to google account circle - tbd - optional
+        - after login page is done
+    - responsive for smaller computer screen and phone screen (basic responsive design) - tbd - optional
+        - after app is done
+    - the highlight for the search bar creates an issue
+        - when mousedown mouseup is used the hitbox is 100 px below the search bar as well
+        - when fixed using the fix in index.js 
+    - rename functions in eventlisteners
+    - eventlisteners to add in later
+        - highlight on click search
+        - hover over side menu show which does not remove side menu click action from header image
+    - setup localhost (1) - tbd - immediate
+        - login, logout, sign-up, scoreboard, game, home/notes, reminders, labels, archive, trash
+    - refactor js (2) - tbd - immediate
+    - reminders page
+    - labels page
+    - archive page
+    - trash page
+    - sign in page (4) - tbd - immediate
+    - sign out page (5) - tbd - immediate
+    - log in page (6) - tbd - immediate
+    - home page (7) - tbd - optional
+        - login/sign up
+    - responsive web design (3) - tbd - final
+        - large screen, min screen and mobile
+
+    - side note
+        - currently working on the notes page
+ -->
+
+<body>
+    <nav id="main_navbar" class="main_navbar">
+        <div id="main_navbar_header" class="main_navbar_header">
+            <div id="main_navbar_header_menu_container" class="main_navbar_header_menu_container">
+                <img id="main_navbar_header_menu" class="main_navbar_header_menu" src="../static/images/menuImage.png"
+                    alt="menu symbol image" />
+            </div>
+            <div id="main_navbar_header_logo_container" class="main_navbar_header_logo_container">
+                <img id="main_navbar_header_logo" class="main_navbar_header_logo" src="../static/images/logo250.png"
+                    alt="site logo image" />
+            </div>
+            <div id="main_navbar_header_text_container" class="main_navbar_header_logo_container">
+                <p id="main_navbar_header_text" class="main_navbar_header_text">Notes App</p>
+            </div>
+            <div id="main_navbar_header_nav_container" class="main_navbar_header_nav_container">
+                <div id="main_navbar_header_nav_search_logo_container"
+                    class="main_navbar_header_nav_search_logo_container">
+                    <img id="main_navbar_header_nav_search_logo" class="main_navbar_header_nav_search_logo"
+                        src="../static/images/searchLogo.png" alt="search logo image" />
+                    <p id="main_navbar_header_nav_search_text" class="main_navbar_header_nav_search_text">Search</p>
+                </div>
+                <p id="main_navbar_header_nav_about_text" class="main_navbar_header_nav_about_text">About</p>
+                <p id="main_navbar_header_nav_account_text" class="main_navbar_header_nav_account_text">Account</p>
+                <!-- <p id="main_navbar_header_About" class="main_navbar_header_About">Draw</p> -->
+            </div>
+        </div>
+    </nav>
+    <div id="sidemenu" class="sidemenu">
+        <div id="sidemenu_notes_container" class="sidemenu_notes_container">
+            <img id="sidemenu_notes_logo" class="sidemenu_notes_logo" src="../static/images/lightbulb.png"
+                alt="notes logo image" />
+            <p id="sidemenu_notes_text" class="sidemenu_notes_text">Notes</p>
+        </div>
+        <div id="sidemenu_reminders_container">
+            <img id="sidemenu_reminders_logo" class="sidemenu_reminders_logo" src="../static/images/bell.png"
+                alt="reminder logo image" />
+            <p id="sidemenu_reminders_text" class="sidemenu_notes_text">Reminders</p>
+        </div>
+        <div id="sidemenu_edit_labels_container">
+            <img id="sidemenu_edit_logo" class="sidemenu_edit_logo" src="../static/images/pencil.png"
+                alt="edit logo image" />
+            <p id="sidemenu_edit_labels_text" class="sidemenu_notes_text">Edit Labels</p>
+        </div>
+        <div id="sidemenu_archive_container">
+            <img id="sidemenu_archives_logo" class="sidemenu_archives_logo" src="../static/images/folder.png"
+                alt="archives logo image" />
+            <p id="sidemenu_archives_text" class="sidemenu_notes_text">Archive</p>
+        </div>
+        <div id="sidemenu_trash_container">
+            <img id="sidemenu_trash_logo" class="sidemenu_trash_logo" src="../static/images/trash.png"
+                alt="trash logo image" />
+            <p id="sidemenu_trash_text" class="sidemenu_notes_text">Trash</p>
+        </div>
+    </div>
+    <div id="notepad" class="notepad">
+        <div id="unclicked_entry_box" class="unclicked_entry_box">
+            <div id="unclicked_entry_box_note" class="unclicked_entry_box_note">
+                <p id="unclicked_entry_box_note_text" class="unclicked_entry_box_note_text">Write notes here ...</p>
+                <img id="unclicked_entry_box_note_new_list" class="unclicked_entry_box_note_new_list"
+                    src="../static/images/new_list.png" alt="check box image" />
+                <img id="unclicked_entry_box_note_new_note_drawing" class="unclicked_entry_box_note_new_note_drawing"
+                    src="../static/images/note_drawing.png" alt="paint brush image" />
+                <img id="unclicked_entry_box_note_new_note_image" class="unclicked_entry_box_note_new_note_image"
+                    src="../static/images/new_image.png" alt="painting image" />
+            </div>
+        </div>
+        <!-- <div id="clicked_entry_box_note" class="clicked_entry_box_note">
+            <p id="clicked_entry_box_note_title_text" class="clicked_entry_box_note_title_text"></p>
+            <img id="clicked_entry_box_note_pin" class="clicked_entry_box_note_pin" src="" alt="image" />
+            <p id="clicked_entry_box_note_entry_text" class="clicked_entry_box_note_entry_text"></p>
+            <img id="clicked_entry_box_note_bell" class="clicked_entry_box_note_bell_share" src="" alt="image" />
+            <img id="clicked_entry_box_note_share" class="clicked_entry_box_note_share" src="" alt="image" />
+            <img id="clicked_entry_box_note_background" class="clicked_entry_box_note_background" src="" alt="image" />
+            <img id="clicked_entry_box_note_image" class="clicked_entry_box_note_image" src="" alt="image" />
+            <img id="clicked_entry_box_note_archive" class="clicked_entry_box_note_archive" src="" alt="image" />
+            <img id="clicked_entry_box_note_more" class="clicked_entry_box_note_more" src="" alt="image" />
+            <div>
+                <p id="clicked_entry_box_note_more_add_label" class="clicked_entry_box_note_more_add_label"></p>
+                <p id="clicked_entry_box_note_more_add_drawing" class="clicked_entry_box_note_more_add_drawing"></p>
+                <p id="clicked_entry_box_note_more_show_checkboxes" class="clicked_entry_box_note_more_show_checkboxes">
+                </p>
+            </div>
+            <img id="clicked_entry_box_note_undo" class="clicked_entry_box_note_undo" src="" alt="image" />
+            <img id="clicked_entry_box_note_redo" class="clicked_entry_box_note_redo" src="" alt="image" />
+            <p id="clicked_entry_box_note_close" class="clicked_entry_box_note_close"></p>
+        </div> -->
+        <!-- <div id="clicked_entry_box_list" class="clicked_entry_box_list">
+            <p id="clicked_entry_box_list" class="clicked_entry_box_list"></p>
+            <img id="clicked_entry_box_list_pin" class="clicked_entry_box_list_pin" src="" alt="pin image" />
+            <img id="clicked_entry_box_list_plus_sign" class="clicked_entry_box_list_plus_sign" src=""
+                alt="check box image" />
+            <img id="clicked_entry_box_list" class="clicked_entry_box_list" />
+        </div> -->
+    </div>
+</body>
+
+<!-- <script> src = "{{ url_for('static', filename='js/index.js')}}"</script> -->
+<script src="../static/js/index.js"></script>
+
+</html>

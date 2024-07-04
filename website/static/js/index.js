@@ -1,3 +1,5 @@
+// could format for thinner header
+// all css setup and eventlisteners
 // nav menu
 var mainNavbarHeaderMenu = document.getElementById("main_navbar_header_menu");
 var mainNavbarHeaderMenuContainer = document.getElementById("main_navbar_header_menu_container");
@@ -14,15 +16,12 @@ var mainNavbarHeaderNavSearchText = document.getElementById("main_navbar_header_
 var mainNavbarHeaderNavAboutText = document.getElementById("main_navbar_header_nav_about_text");
 var mainNavbarHeaderNavAccountText = document.getElementById("main_navbar_header_nav_account_text");
 
-
-var width, height;
+var width, height; // throw in preset values and object
 var navContainerHeight = 100;
 var mainNavbarHeaderNavTextWidth = 100;
 var clickedMenuButtonState = false;
 // var menuClick = false;
 
-//navmenu
-//page before scroll
 width = window.innerWidth;
 mainNavbar.style.width = width + "px";
 
@@ -61,7 +60,7 @@ mainNavbarHeaderNavContainer.style.top = -315 + "px";
 
 mainNavbarHeaderNavSearchLogoContainer.style.width = 500 + "px";
 mainNavbarHeaderNavSearchLogoContainer.style.height = 25 + "px";
-mainNavbarHeaderNavSearchLogoContainer.style.left = 0 + "px"; //650
+mainNavbarHeaderNavSearchLogoContainer.style.left = 0 + "px";
 mainNavbarHeaderNavSearchLogoContainer.style.top = 0 + "px";
 
 mainNavbarHeaderNavSearchLogo.style.left = -40 + "px";
@@ -80,51 +79,41 @@ mainNavbarHeaderNavAccountText.style.left = window.innerWidth - 700 + "px";
 mainNavbarHeaderNavAccountText.style.top = -73 + "px"; //38
 
 mainNavbarHeaderLogo.addEventListener("mouseover", function hoverOverLogo() {
-    //console.log("Mouse is over the element");
     // mainNavbarHeaderLogo.src = "../static/images/logo250_highlight.png";
     mainNavbarHeaderText.style.color = "blue";
 });
 mainNavbarHeaderLogo.addEventListener("mouseout", function hoverOutLogo() {
-    //console.log("Mouse is out of the element");
     // mainNavbarHeaderLogo.src = "../static/images/logo250.png";
     mainNavbarHeaderText.style.color = "black";
 });
 
 mainNavbarHeaderText.addEventListener("mouseover", function hoverOverLogo() {
-    //console.log("Mouse is over the element");
     // mainNavbarHeaderLogo.src = "../static/images/logo250_highlight.png";
     mainNavbarHeaderText.style.color = "blue";
 });
 mainNavbarHeaderText.addEventListener("mouseout", function hoverOutLogo() {
-    //console.log("Mouse is out of the element");
     // mainNavbarHeaderLogo.src = "../static/images/logo250.png";
     mainNavbarHeaderText.style.color = "black";
 });
 
 mainNavbarHeaderMenu.addEventListener("mouseover", function hoverOverLogo() {
-    //console.log("Mouse is over the element");
     mainNavbarHeaderMenu.src = "../static/images/menuImage_highlight.png";
 });
 mainNavbarHeaderMenu.addEventListener("mouseout", function hoverOutLogo() {
-    //console.log("Mouse is out of the element");
     mainNavbarHeaderMenu.src = "../static/images/menuImage.png";
 });
 
 mainNavbarHeaderNavAboutText.addEventListener("mouseover", function hoverOverLogo() {
-    //console.log("Mouse is over the element");
     mainNavbarHeaderNavAboutText.style.color = "blue";
 });
 mainNavbarHeaderNavAboutText.addEventListener("mouseout", function hoverOutLogo() {
-    //console.log("Mouse is out of the element");
     mainNavbarHeaderNavAboutText.style.color = "black";
 });
 
 mainNavbarHeaderNavAccountText.addEventListener("mouseover", function hoverOverLogo() {
-    //console.log("Mouse is over the element");
     mainNavbarHeaderNavAccountText.style.color = "blue";
 });
 mainNavbarHeaderNavAccountText.addEventListener("mouseout", function hoverOutLogo() {
-    //console.log("Mouse is out of the element");
     mainNavbarHeaderNavAccountText.style.color = "black";
 });
 
@@ -158,25 +147,21 @@ const sideMenuOpen = {
     widthLogoSidemenu: 200, // image is loaded in first then css is applied (scaling down)
     heightSidemenu: window.innerHeight - navContainerHeight,
     topSidemenu: -70,
-    leftSidemenu: -75,
+    leftSidemenu: -60,
     widthTextSideMenu: 100,
     leftTextSideMenu: 75,
-    topTextSideMenu: -198,
-    boxShadowSideMenu: "10px 0 5px -2px #888"
+    topTextSideMenu: -198
+    // boxShadowSideMenu: "10px 0 5px -2px #888"
 };
 
 const sideMenuClosed = {
     widthSideMenu: 50
 };
 
-// var counter = 0;
-// var value = 0;
-// var offsetValue = 0;
-
 sidemenu.style.width = sideMenuClosed.widthSideMenu + "px";
 sidemenu.style.height = sideMenuOpen.heightSidemenu + "px";
 sidemenu.style.top = 90 + "px";
-sidemenu.style.boxShadow = "none";
+// sidemenu.style.boxShadow = "none";
 
 sidemenuNotesContainer.style.width = sideMenuOpen.widthSideMenu + "px";
 sidemenuNotesContainer.style.height = 50 + "px";
@@ -234,6 +219,34 @@ sidemenuRemindersText.style.display = "none";
 sidemenuEditLabelsText.style.display = "none";
 sidemenuArchivesText.style.display = "none";
 sidemenuTrashText.style.display = "none";
+
+function openCloseSideMenu() {
+    if (clickedMenuButtonState == false) {
+        //sidemenu.removeEventListener("mouseover", hoverOverSideMenu);
+        clickedMenuButtonState = true;
+        sidemenuNotesText.style.display = "block";
+        sidemenuRemindersText.style.display = "block";
+        sidemenuEditLabelsText.style.display = "block";
+        sidemenuArchivesText.style.display = "block";
+        sidemenuTrashText.style.display = "block";
+
+        // sidemenu.style.boxShadow = sideMenuOpen.boxShadowSideMenu;
+        sidemenu.style.width = sideMenuOpen.widthSideMenu + "px";
+    }
+    else {
+        //sidemenu.addEventListener("mouseover", hoverOverSideMenu);
+        clickedMenuButtonState = false;
+        sidemenuNotesText.style.display = "none";
+        sidemenuRemindersText.style.display = "none";
+        sidemenuEditLabelsText.style.display = "none";
+        sidemenuArchivesText.style.display = "none";
+        sidemenuTrashText.style.display = "none";
+
+        // sidemenu.style.boxShadow = "none";
+        sidemenu.style.width = sideMenuClosed.widthSideMenu + "px";
+    }
+    //console.log(clickedMenuButtonState);
+}
 
 sidemenuNotesText.addEventListener("mouseover", function hoverOverSideMenu() {
     sidemenuNotesText.style.color = "blue";
@@ -316,129 +329,77 @@ sidemenuTrashLogo.addEventListener("mouseout", function hoverOverSideMenu() {
     sidemenuTrashText.style.color = "black";
 });
 
-// function hoverOverSideMenu() {
-//     if (!clickedMenuButtonState) {
-//         console.log("Menu hover on")
-//         sidemenuNotesText.style.display = "block";
-//         sidemenuRemindersText.style.display = "block";
-//         sidemenuEditLabelsText.style.display = "block";
-//         sidemenuArchivesText.style.display = "block";
-//         sidemenuTrashText.style.display = "block";
+mainNavbarHeaderMenuContainer.addEventListener("mousedown", openCloseSideMenu);
 
-//         sidemenu.style.boxShadow = sideMenuOpen.boxShadowSideMenu;
-//         sidemenu.style.width = sideMenuOpen.widthSideMenu + "px";
+sidemenuNotesLogo.addEventListener("mousedown", openCloseSideMenu);
 
-//         sidemenu.addEventListener("mouseout", function hoverOverLogo() {
-//             console.log("Menu hover out")
-//             sidemenuNotesText.style.display = "none";
-//             sidemenuRemindersText.style.display = "none";
-//             sidemenuEditLabelsText.style.display = "none";
-//             sidemenuArchivesText.style.display = "none";
-//             sidemenuTrashText.style.display = "none";
+sidemenuRemindersLogo.addEventListener("mousedown", openCloseSideMenu);
 
-//             sidemenu.style.boxShadow = "none";
-//             sidemenu.style.width = sideMenuClosed.widthSideMenu + "px";
-//         });
-//     }
-//}
+sidemenuEditLabelsLogo.addEventListener("mousedown", openCloseSideMenu);
 
-// sidemenu.addEventListener("mouseover", function hoverOverSideMenu() { // works the first time but needs correction for after
-//     if (!clickedMenuButtonState) {
-//         console.log("Menu hover on")
-//         sidemenuNotesText.style.display = "block";
-//         sidemenuRemindersText.style.display = "block";
-//         sidemenuEditLabelsText.style.display = "block";
-//         sidemenuArchivesText.style.display = "block";
-//         sidemenuTrashText.style.display = "block";
+sidemenuArchivesLogo.addEventListener("mousedown", openCloseSideMenu);
 
-//         sidemenu.style.boxShadow = sideMenuOpen.boxShadowSideMenu;
-//         sidemenu.style.width = sideMenuOpen.widthSideMenu + "px";
+sidemenuTrashLogo.addEventListener("mousedown", openCloseSideMenu);
 
-//         sidemenu.addEventListener("mouseout", function hoverOverLogo() {
-//             console.log("Menu hover out")
-//             sidemenuNotesText.style.display = "none";
-//             sidemenuRemindersText.style.display = "none";
-//             sidemenuEditLabelsText.style.display = "none";
-//             sidemenuArchivesText.style.display = "none";
-//             sidemenuTrashText.style.display = "none";
+// notepad
+var notepad = document.getElementById("notepad");
+var unclickedEntryBox = document.getElementById("unclicked_entry_box");
+var unclickedEntryBoxNote = document.getElementById("unclicked_entry_box_note");
+var unclickedEntryBoxNoteText = document.getElementById("unclicked_entry_box_note_text");
+var unclickedEntryBoxNoteNewList = document.getElementById("unclicked_entry_box_note_new_list");
+var unclickedEntryBoxNoteNewNoteDrawing = document.getElementById("unclicked_entry_box_note_new_note_drawing");
+var unclickedEntryBoxNoteNewNoteImage = document.getElementById("unclicked_entry_box_note_new_note_image");
 
-//             sidemenu.style.boxShadow = "none";
-//             sidemenu.style.width = sideMenuClosed.widthSideMenu + "px";
-//         });
-//     }
-// });
+const notepadClose = {
+    notepadLeft: window.innerWidth / 2 - 250,
+    notepadTop: 110,
+    notepadWidth: 500,
+    notepadHeight: 50,
+    entryBoxWidth: 480,
+    entryBoxHeight: 40,
+    entryBoxLeft: 10,
+    entryBoxTop: -11,
+    entryBoxNoteWidth: 460,
+    entryBoxNoteHeight: 30,
+    entryBoxNoteLeft: 10,
+    entryBoxNoteTop: 5,
+    entryBoxNoteTextWidth: 340,
+    entryBoxNoteTextHeight: 16,
+    entryBoxNoteTextLeft: -10,
+    entryBoxNoteTextTop: 8,
+    newListLeft: 250,
+    newListTop: -115,
+    newNoteDrawingLeft: 90,
+    newNoteDrawingTop: -115,
+    newListNoteImageLeft: 340,
+    newListNoteImageTop: -320
+}
+notepad.style.left = notepadClose.notepadLeft + "px";
+notepad.style.top = notepadClose.notepadTop + "px";
+notepad.style.width = notepadClose.notepadWidth + "px";
+notepad.style.height = notepadClose.notepadHeight + "px";
 
-mainNavbarHeaderMenuContainer.addEventListener("mousedown", function hoverOverLogo() {
-    if (clickedMenuButtonState == false) {
-        //sidemenu.removeEventListener("mouseover", hoverOverSideMenu);
-        clickedMenuButtonState = true;
-        sidemenuNotesText.style.display = "block";
-        sidemenuRemindersText.style.display = "block";
-        sidemenuEditLabelsText.style.display = "block";
-        sidemenuArchivesText.style.display = "block";
-        sidemenuTrashText.style.display = "block";
+unclickedEntryBox.style.left = notepadClose.entryBoxLeft + "px";
+unclickedEntryBox.style.top = notepadClose.entryBoxTop + "px";
+unclickedEntryBox.style.width = notepadClose.entryBoxWidth + "px";
+unclickedEntryBox.style.height = notepadClose.entryBoxHeight + "px";
 
-        sidemenu.style.boxShadow = sideMenuOpen.boxShadowSideMenu;
-        sidemenu.style.width = sideMenuOpen.widthSideMenu + "px";
-    }
-    else {
-        //sidemenu.addEventListener("mouseover", hoverOverSideMenu);
-        clickedMenuButtonState = false;
-        sidemenuNotesText.style.display = "none";
-        sidemenuRemindersText.style.display = "none";
-        sidemenuEditLabelsText.style.display = "none";
-        sidemenuArchivesText.style.display = "none";
-        sidemenuTrashText.style.display = "none";
+unclickedEntryBoxNote.style.left = notepadClose.entryBoxNoteLeft + "px";
+unclickedEntryBoxNote.style.top = notepadClose.entryBoxNoteTop + "px";
+unclickedEntryBoxNote.style.width = notepadClose.entryBoxNoteWidth + "px";
+unclickedEntryBoxNote.style.height = notepadClose.entryBoxNoteHeight + "px";
 
-        sidemenu.style.boxShadow = "none";
-        sidemenu.style.width = sideMenuClosed.widthSideMenu + "px";
-    }
-    console.log(clickedMenuButtonState);
-});
+unclickedEntryBoxNoteText.style.left = notepadClose.entryBoxNoteTextLeft + "px";
+unclickedEntryBoxNoteText.style.top = notepadClose.entryBoxNoteTextTop + "px";
+unclickedEntryBoxNoteText.style.width = notepadClose.entryBoxNoteTextWidth + "px";
+unclickedEntryBoxNoteText.style.height = notepadClose.entryBoxNoteTextHeight + "px";
 
+unclickedEntryBoxNoteNewList.style.left = notepadClose.newListLeft + "px";
+unclickedEntryBoxNoteNewList.style.top = notepadClose.newListTop + "px";
 
+unclickedEntryBoxNoteNewNoteDrawing.style.left = notepadClose.newNoteDrawingLeft + "px";
+unclickedEntryBoxNoteNewNoteDrawing.style.top = notepadClose.newNoteDrawingTop + "px";
 
-// sidemenuNotesContainer.addEventListener("mouseover", function hoverOverLogo() {
-//     sidemenuNotesText.style.color = "blue";
+unclickedEntryBoxNoteNewNoteImage.style.left = notepadClose.newListNoteImageLeft + "px";
+unclickedEntryBoxNoteNewNoteImage.style.top = notepadClose.newListNoteImageTop + "px";
 
-//     sidemenuNotesContainer.addEventListener("mouseout", function hoverOverLogo() {
-//         sidemenuNotesText.style.color = "black";
-//     });
-
-// }); // highlights inbetween the containers
-
-
-// moves too far to the left and hitbox for mouseover is bad
-// sidemenu_notes_container.addEventListener("mouseover", function hoverOverLogo() {
-//     console.log("Mouse is over the element");
-
-//     // Start moving the element
-//     const moveSidemenuItemNotes = setInterval(function () {
-//         moveSidemenuItem(sidemenu_notes_container);
-//     }, 25);
-
-//     sidemenu_notes_container.addEventListener("mouseout", function hoverOutLogo() {
-//         console.log("Mouse is out of the element");
-//         clearInterval(moveSidemenuItemNotes); // Stop moving the element
-
-//         // Reset position
-//         sidemenu_notes_container.style.left = "0px";
-//         counter = 0;
-//         value = 0;
-
-//         // Remove this event listener to avoid duplicate listeners
-//         sidemenu_notes_container.removeEventListener("mouseout", hoverOutLogo);
-//     });
-// });
-
-// function moveSidemenuItem(element) {
-//     value += 1;
-
-//     if (value <= 30) {
-//         counter += 1;
-//         element.style.left = counter + "px";
-//     } else {
-//         counter -= 1;
-//         element.style.left = counter + "px"
-//     }
-// }
