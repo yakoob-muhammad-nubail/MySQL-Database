@@ -1,4 +1,5 @@
-- Account should be change to google account circle - tbd - optional
+immediate
+    - Account should be change to google account circle - tbd - optional
         - after login page is done
     - responsive for smaller computer screen and phone screen (basic responsive design) - tbd - optional
         - after app is done
@@ -25,5 +26,5 @@
     - responsive web design (3) - tbd - final
         - large screen, min screen and mobile
 
-    - side note
-        - currently working on the notes page
+side note
+    - currently working on the notes page
