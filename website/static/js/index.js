@@ -20,6 +20,7 @@ var width, height; // throw in preset values and object
 var navContainerHeight = 100;
 var mainNavbarHeaderNavTextWidth = 100;
 var clickedMenuButtonState = false;
+var clickedMoreItemsState = false;
 // var menuClick = false;
 
 width = window.innerWidth;
@@ -341,7 +342,7 @@ sidemenuArchivesLogo.addEventListener("mousedown", openCloseSideMenu);
 
 sidemenuTrashLogo.addEventListener("mousedown", openCloseSideMenu);
 
-// notepad
+// notepad closed
 var notepad = document.getElementById("notepad");
 var unclickedEntryBox = document.getElementById("unclicked_entry_box");
 var unclickedEntryBoxNote = document.getElementById("unclicked_entry_box_note");
@@ -403,3 +404,206 @@ unclickedEntryBoxNoteNewNoteDrawing.style.top = notepadClose.newNoteDrawingTop +
 unclickedEntryBoxNoteNewNoteImage.style.left = notepadClose.newListNoteImageLeft + "px";
 unclickedEntryBoxNoteNewNoteImage.style.top = notepadClose.newListNoteImageTop + "px";
 
+//notepad open
+var clickedEntryBox = document.getElementById("clicked_entry_box");
+var clickedEntryBoxTitleText = document.getElementById("clicked_entry_box_title_text");
+var clickedEntryBoxPin = document.getElementById("clicked_entry_box_pin");
+var clickedEntryBoxEntryText = document.getElementById("clicked_entry_box_entry_text");
+var clickedEntryBoxBellShare = document.getElementById("clicked_entry_box_bell_share");
+var clickedEntryBoxShare = document.getElementById("clicked_entry_box_share");
+var clickedEntryBoxBackground = document.getElementById("clicked_entry_box_background");
+var clickedEntryBoxImage = document.getElementById("clicked_entry_box_image");
+var clickedEntryBoxArchive = document.getElementById("clicked_entry_box_archive");
+var clickedEntryBoxMore = document.getElementById("clicked_entry_box_more");
+var clickedEntryBoxMoreItems = document.getElementById("clicked_entry_box_more_items");
+var clickedEntryBoxMoreAddLabel = document.getElementById("clicked_entry_box_more_add_label");
+var clickedEntryBoxMoreAddDrawing = document.getElementById("clicked_entry_box_more_add_drawing");
+var clickedEntryBoxMoreShowCheckboxes = document.getElementById("clicked_entry_box_more_show_checkboxes");
+var clickedEntryBoxUndo = document.getElementById("clicked_entry_box_undo");
+var clickedEntryBoxRedo = document.getElementById("clicked_entry_box_redo");
+var clickedEntryBoxClose = document.getElementById("clicked_entry_box_close");
+
+function clickedEntryBoxOpen() {
+
+}
+
+const notepadOpen = {
+    notepadWidth: notepadClose.notepadWidth,
+    notepadHeight: 125,
+    titleTextLeft: 10,
+    titleTextWidth: 430,
+    titleTextHeight: 16,
+    pinLeft: 375,
+    pinTop: -125,
+    entryTextLeft: 10,
+    entryTextTop: -210,
+    entryTextWidth: 470,
+    entryTextHeight: 16,
+    bellLeft: -80,
+    bellTop: -295,
+    shareLeft: -240,
+    shareTop: -295,
+    backgroundLeft: -5,
+    backgroundTop: -515,
+    imageLeft: -180,
+    imageTop: -532,
+    archiveLeft: 100,
+    archiveTop: -735,
+    moreLeft: -60,
+    moreTop: -735,
+    moreItemsLeft: 220,
+    moreItemsTop: -840,
+    moreItemsWidth: 150,
+    moreItemsHeight: 110,
+    moreItemsOpacity: 1,
+    addLabelLeft: 10,
+    addLabelTop: 0,
+    addLabelPaddingTop: 10,
+    addDrawingLeft: 10,
+    addDrawingTop: 0,
+    showCheckboxesLeft: 10,
+    showCheckboxesTop: 0,
+    undoLeft: 180,
+    undoTop: -1065,
+    redoLeft: 20,
+    redoTop: -1065,
+    closeLeft: 445,
+    closeTop: -1190,
+    closeWidth: 45,
+    closeHeight: 16,
+};
+
+// clickedEntryBoxMoreItems.style.display = "none";
+
+notepad.style.width = notepadOpen.notepadWidth + "px";
+notepad.style.height = notepadOpen.notepadHeight + "px";
+
+clickedEntryBox.style.width = notepadOpen.notepadWidth + "px";
+clickedEntryBox.style.height = notepadOpen.notepadHeight + "px";
+
+clickedEntryBoxTitleText.style.left = notepadOpen.titleTextLeft + "px";
+clickedEntryBoxTitleText.style.width = notepadOpen.titleTextWidth + "px";
+clickedEntryBoxTitleText.style.height = notepadOpen.titleTextHeight + "px";
+
+clickedEntryBoxPin.style.left = notepadOpen.pinLeft + "px";
+clickedEntryBoxPin.style.top = notepadOpen.pinTop + "px";
+
+clickedEntryBoxEntryText.style.left = notepadOpen.entryTextLeft + "px";
+clickedEntryBoxEntryText.style.top = notepadOpen.entryTextTop + "px";
+clickedEntryBoxEntryText.style.width = notepadOpen.entryTextWidth + "px";
+clickedEntryBoxEntryText.style.height = notepadOpen.entryTextHeight + "px";
+
+clickedEntryBoxBellShare.style.left = notepadOpen.bellLeft + "px";
+clickedEntryBoxBellShare.style.top = notepadOpen.bellTop + "px";
+// clickedEntryBoxBellShare.style.width = notepadOpen.entryTextWidth + "px";
+// clickedEntryBoxBellShare.style.height = notepadOpen.entryTextHeight + "px";
+
+clickedEntryBoxShare.style.left = notepadOpen.shareLeft + "px";
+clickedEntryBoxShare.style.top = notepadOpen.shareTop + "px";
+// clickedEntryBoxShare.style.width = notepadOpen.entryTextWidth + "px";
+// clickedEntryBoxShare.style.height = notepadOpen.entryTextHeight + "px";
+
+clickedEntryBoxBackground.style.left = notepadOpen.backgroundLeft + "px";
+clickedEntryBoxBackground.style.top = notepadOpen.backgroundTop + "px";
+// clickedEntryBoxShare.style.width = notepadOpen.entryTextWidth + "px";
+// clickedEntryBoxShare.style.height = notepadOpen.entryTextHeight + "px";
+
+clickedEntryBoxImage.style.left = notepadOpen.imageLeft + "px";
+clickedEntryBoxImage.style.top = notepadOpen.imageTop + "px";
+// clickedEntryBoxBackground.style.width = notepadOpen.entryTextWidth + "px";
+// clickedEntryBoxBackground.style.height = notepadOpen.entryTextHeight + "px";
+
+clickedEntryBoxArchive.style.left = notepadOpen.archiveLeft + "px";
+clickedEntryBoxArchive.style.top = notepadOpen.archiveTop + "px";
+// clickedEntryBoxBackground.style.width = notepadOpen.entryTextWidth + "px";
+// clickedEntryBoxBackground.style.height = notepadOpen.entryTextHeight + "px";
+
+clickedEntryBoxMore.style.left = notepadOpen.moreLeft + "px";
+clickedEntryBoxMore.style.top = notepadOpen.moreTop + "px";
+// clickedEntryBoxBackground.style.width = notepadOpen.entryTextWidth + "px";
+// clickedEntryBoxBackground.style.height = notepadOpen.entryTextHeight + "px";
+
+clickedEntryBoxMoreItems.style.left = notepadOpen.moreItemsLeft + "px";
+clickedEntryBoxMoreItems.style.top = notepadOpen.moreItemsTop + "px";
+clickedEntryBoxMoreItems.style.width = notepadOpen.moreItemsWidth + "px";
+clickedEntryBoxMoreItems.style.height = notepadOpen.moreItemsHeight + "px";
+clickedEntryBoxMoreItems.style.opacity = notepadOpen.moreItemsOpacity;
+
+clickedEntryBoxMoreAddLabel.style.left = notepadOpen.addLabelLeft + "px";
+clickedEntryBoxMoreAddLabel.style.top = notepadOpen.addLabelTop + "px";
+clickedEntryBoxMoreAddLabel.style.paddingTop = notepadOpen.addLabelPaddingTop + "px";
+
+clickedEntryBoxMoreAddDrawing.style.left = notepadOpen.addDrawingLeft + "px";
+clickedEntryBoxMoreAddDrawing.style.top = notepadOpen.addDrawingTop + "px";
+
+clickedEntryBoxMoreShowCheckboxes.style.left = notepadOpen.showCheckboxesLeft + "px";
+clickedEntryBoxMoreShowCheckboxes.style.top = notepadOpen.showCheckboxesTop + "px";
+
+clickedEntryBoxUndo.style.left = notepadOpen.undoLeft + "px";
+clickedEntryBoxUndo.style.top = notepadOpen.undoTop + "px";
+
+clickedEntryBoxRedo.style.left = notepadOpen.redoLeft + "px";
+clickedEntryBoxRedo.style.top = notepadOpen.redoTop + "px";
+
+clickedEntryBoxClose.style.left = notepadOpen.closeLeft + "px";
+clickedEntryBoxClose.style.top = notepadOpen.closeTop + "px";
+clickedEntryBoxClose.style.width = notepadOpen.closeWidth + "px";
+clickedEntryBoxClose.style.height = notepadOpen.closeHeight + "px";
+
+const notepadOpenMoreClicked = {
+    undoTop: notepadOpen.undoTop + 126,
+    redoTop: notepadOpen.redoTop + 126,
+    closeTop: notepadOpen.closeTop + 126
+};
+
+function openOpenMoreItemsMenu() {
+    if (clickedMoreItemsState == false) {
+        clickedMoreItemsState = true;
+        clickedEntryBoxMoreItems.style.display = "none";
+
+        clickedEntryBoxUndo.style.top = notepadOpenMoreClicked.undoTop + "px";
+
+        clickedEntryBoxRedo.style.top = notepadOpenMoreClicked.redoTop + "px";
+
+        clickedEntryBoxClose.style.top = notepadOpenMoreClicked.closeTop + "px";
+    }
+    else {
+        clickedMoreItemsState = false;
+        clickedEntryBoxMoreItems.style.display = "block";
+
+        clickedEntryBoxUndo.style.top = notepadOpen.undoTop + "px";
+
+        clickedEntryBoxRedo.style.top = notepadOpen.redoTop + "px";
+
+        clickedEntryBoxClose.style.top = notepadOpen.closeTop + "px";
+    }
+}
+
+clickedEntryBoxMore.addEventListener("mousedown", openOpenMoreItemsMenu);
+
+clickedEntryBoxClose.addEventListener("mousedown", function hoverOverSideMenu() {
+    clickedEntryBox.style.display = "none";
+
+    unclickedEntryBox.style.display = "block";
+
+    notepad.style.left = notepadClose.notepadLeft + "px";
+    notepad.style.top = notepadClose.notepadTop + "px";
+    notepad.style.width = notepadClose.notepadWidth + "px";
+    notepad.style.height = notepadClose.notepadHeight + "px";
+});
+
+unclickedEntryBoxNoteText.addEventListener("mousedown", function hoverOverSideMenu() {
+    clickedEntryBox.style.display = "block";
+
+    unclickedEntryBox.style.display = "none";
+    clickedEntryBoxMoreItems.style.display = "none";
+
+    clickedEntryBoxUndo.style.top = notepadOpenMoreClicked.undoTop + "px";
+
+    clickedEntryBoxRedo.style.top = notepadOpenMoreClicked.redoTop + "px";
+
+    clickedEntryBoxClose.style.top = notepadOpenMoreClicked.closeTop + "px";
+
+    notepad.style.width = notepadOpen.notepadWidth + "px";
+    notepad.style.height = notepadOpen.notepadHeight + "px";
+});

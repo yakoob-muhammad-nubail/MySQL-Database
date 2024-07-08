@@ -5,6 +5,7 @@ body {
     font-family: "Arial", Helvetica, sans-serif;
     user-select: none;
     z-index: 0;
+    overflow: hidden;
 }
 
 /* navigation menu */
@@ -184,35 +185,134 @@ nav {
     position: absolute;
     width: 200px;
     font-size: 16px;
+    color: grey;
     box-shadow: 0px 0px 5px #888;
     border-radius: 10px;
+    border: 1px black;
+    z-index: 1;
 }
 
 .unclicked_entry_box {
     /* background-color: aqua; */
     position: relative;
+    z-index: 1;
+    display: none;
 }
 
 .unclicked_entry_box_note {
     /* background-color: blue; */
     position: relative;
+    z-index: 1;
 }
 
 .unclicked_entry_box_note_text {
     position: relative;
+    z-index: 1;
 }
 
 .unclicked_entry_box_note_new_list {
     position: relative;
     transform: scale(0.1);
+    z-index: 1;
 }
 
 .unclicked_entry_box_note_new_note_drawing {
     position: relative;
     transform: scale(0.1);
+    z-index: 1;
 }
 
 .unclicked_entry_box_note_new_note_image {
     position: relative;
     transform: scale(0.1);
+    z-index: 1;
+}
+
+.clicked_entry_box {
+    /* background-color: cyan; */
+    position: absolute;
+    border-radius: 10px;
+    color: grey;
+    z-index: 6;
+    /* display: none; */
+}
+
+.clicked_entry_box_title_text {
+    position: relative;
+}
+
+.clicked_entry_box_pin {
+    position: relative;
+    transform: scale(0.1);
+}
+
+.clicked_entry_box_entry_text {
+    position: relative;
+}
+
+.clicked_entry_box_bell_share {
+    position: relative;
+    transform: scale(0.1);
+}
+
+.clicked_entry_box_share {
+    position: relative;
+    transform: scale(0.1);
+}
+
+.clicked_entry_box_background {
+    position: relative;
+    transform: scale(0.1);
+}
+
+.clicked_entry_box_image {
+    position: relative;
+    transform: scale(0.1);
+}
+
+.clicked_entry_box_archive {
+    position: relative;
+    transform: scale(0.1);
+}
+
+.clicked_entry_box_more {
+    position: relative;
+    transform: scale(0.1);
+}
+
+.clicked_entry_box_more_items {
+    /* display: none; */
+    background-color: white;
+    position: relative;
+    box-shadow: 0px 0px 5px #888;
+    border-radius: 10px;
+}
+
+.clicked_entry_box_more_add_label {
+    position: relative;
+    /* display: none; */
+}
+
+.clicked_entry_box_more_add_drawing {
+    position: relative;
+    /* display: none; */
+}
+
+.clicked_entry_box_more_show_checkboxes {
+    position: relative;
+    /* display: none; */
+}
+
+.clicked_entry_box_undo {
+    position: relative;
+    transform: scale(0.1);
+}
+
+.clicked_entry_box_redo {
+    position: relative;
+    transform: scale(0.1);
+}
+
+.clicked_entry_box_close {
+    position: relative;
 }
