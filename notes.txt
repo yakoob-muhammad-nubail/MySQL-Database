@@ -6,6 +6,11 @@ immediate
     - the highlight for the search bar creates an issue
         - when mousedown mouseup is used the hitbox is 100 px below the search bar as well
         - when fixed using the fix in index.js 
+    - the onclick for the menu causes issues
+        - when onclick is done for menu logo the onhover interaction closes the menu
+            - unwanted interaction
+    - the onclick target for the unclicked notepad is smaller than needed 
+        - throw in a div and change other css accordingly to get a clickable that encompasses the area
     - rename functions in eventlisteners
     - eventlisteners to add in later
         - highlight on click search
@@ -28,3 +33,4 @@ immediate
 
 side note
     - currently working on the notes page
+    - add what buttons do not work or are under construction

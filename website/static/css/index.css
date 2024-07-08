@@ -196,7 +196,7 @@ nav {
     /* background-color: aqua; */
     position: relative;
     z-index: 1;
-    display: none;
+    /* display: none; */
 }
 
 .unclicked_entry_box_note {
@@ -206,6 +206,7 @@ nav {
 }
 
 .unclicked_entry_box_note_text {
+    /* background-color: orange; */
     position: relative;
     z-index: 1;
 }
@@ -234,7 +235,7 @@ nav {
     border-radius: 10px;
     color: grey;
     z-index: 6;
-    /* display: none; */
+    display: none;
 }
 
 .clicked_entry_box_title_text {

@@ -475,8 +475,8 @@ const notepadOpen = {
 
 // clickedEntryBoxMoreItems.style.display = "none";
 
-notepad.style.width = notepadOpen.notepadWidth + "px";
-notepad.style.height = notepadOpen.notepadHeight + "px";
+// notepad.style.width = notepadOpen.notepadWidth + "px";
+// notepad.style.height = notepadOpen.notepadHeight + "px";
 
 clickedEntryBox.style.width = notepadOpen.notepadWidth + "px";
 clickedEntryBox.style.height = notepadOpen.notepadHeight + "px";
@@ -601,7 +601,6 @@ unclickedEntryBoxNoteText.addEventListener("mousedown", function hoverOverSideMe
     clickedEntryBoxUndo.style.top = notepadOpenMoreClicked.undoTop + "px";
 
     clickedEntryBoxRedo.style.top = notepadOpenMoreClicked.redoTop + "px";
-
     clickedEntryBoxClose.style.top = notepadOpenMoreClicked.closeTop + "px";
 
     notepad.style.width = notepadOpen.notepadWidth + "px";
