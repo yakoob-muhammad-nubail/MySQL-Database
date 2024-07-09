@@ -20,4 +20,4 @@ def home():
 
 @views.route('/notes')
 def notes():
-    return "<p>home</p>"
+    return "<p>notes app</p>"
