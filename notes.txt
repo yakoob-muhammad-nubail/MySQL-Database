@@ -34,3 +34,6 @@ immediate
 side note
     - currently working on the notes page
     - add what buttons do not work or are under construction
+    - for keycodes other than entering values there needs to be a function for said action
+        - start with what is in commments
+    - throw comments in code before functions, variable sections etc (section based)

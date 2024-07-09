@@ -375,6 +375,7 @@ const notepadClose = {
     newListNoteImageLeft: 340,
     newListNoteImageTop: -320
 }
+
 notepad.style.left = notepadClose.notepadLeft + "px";
 notepad.style.top = notepadClose.notepadTop + "px";
 notepad.style.width = notepadClose.notepadWidth + "px";
@@ -423,10 +424,6 @@ var clickedEntryBoxUndo = document.getElementById("clicked_entry_box_undo");
 var clickedEntryBoxRedo = document.getElementById("clicked_entry_box_redo");
 var clickedEntryBoxClose = document.getElementById("clicked_entry_box_close");
 
-function clickedEntryBoxOpen() {
-
-}
-
 const notepadOpen = {
     notepadWidth: notepadClose.notepadWidth,
     notepadHeight: 125,
@@ -455,7 +452,7 @@ const notepadOpen = {
     moreItemsTop: -840,
     moreItemsWidth: 150,
     moreItemsHeight: 110,
-    moreItemsOpacity: 1,
+    //moreItemsOpacity: 1,
     addLabelLeft: 10,
     addLabelTop: 0,
     addLabelPaddingTop: 10,
@@ -527,7 +524,7 @@ clickedEntryBoxMoreItems.style.left = notepadOpen.moreItemsLeft + "px";
 clickedEntryBoxMoreItems.style.top = notepadOpen.moreItemsTop + "px";
 clickedEntryBoxMoreItems.style.width = notepadOpen.moreItemsWidth + "px";
 clickedEntryBoxMoreItems.style.height = notepadOpen.moreItemsHeight + "px";
-clickedEntryBoxMoreItems.style.opacity = notepadOpen.moreItemsOpacity;
+//clickedEntryBoxMoreItems.style.opacity = notepadOpen.moreItemsOpacity;
 
 clickedEntryBoxMoreAddLabel.style.left = notepadOpen.addLabelLeft + "px";
 clickedEntryBoxMoreAddLabel.style.top = notepadOpen.addLabelTop + "px";
@@ -556,7 +553,7 @@ const notepadOpenMoreClicked = {
     closeTop: notepadOpen.closeTop + 126
 };
 
-function openOpenMoreItemsMenu() {
+function openMoreItemsMenu() {
     if (clickedMoreItemsState == false) {
         clickedMoreItemsState = true;
         clickedEntryBoxMoreItems.style.display = "none";
@@ -579,7 +576,55 @@ function openOpenMoreItemsMenu() {
     }
 }
 
-clickedEntryBoxMore.addEventListener("mousedown", openOpenMoreItemsMenu);
+function editTitle() {
+
+}
+
+function editText() {
+
+}
+
+function keyUp() {
+    //grab from animation game
+}
+
+function parseString(element) {
+    //length of text
+    //if keycode is registered
+    //add to element or perform function
+}
+
+function textLength() {
+    //in px
+}
+
+function keyCodeArray() {
+    //registered keycode array
+    //start with a-z, A-Z
+    //functions space, backspace, delete, tab, enter
+}
+
+function addSpace() {
+
+}
+
+function addBackspace() {
+
+}
+
+function addDelete() {
+
+}
+
+function addTab() {
+
+}
+
+function addEnter() {
+
+}
+
+clickedEntryBoxMore.addEventListener("mousedown", openMoreItemsMenu);
 
 clickedEntryBoxClose.addEventListener("mousedown", function hoverOverSideMenu() {
     clickedEntryBox.style.display = "none";
@@ -605,4 +650,7 @@ unclickedEntryBoxNoteText.addEventListener("mousedown", function hoverOverSideMe
 
     notepad.style.width = notepadOpen.notepadWidth + "px";
     notepad.style.height = notepadOpen.notepadHeight + "px";
+
+    // eventlistener title
+    // eventlistener text
 });
