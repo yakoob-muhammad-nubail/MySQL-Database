@@ -225,6 +225,7 @@ function openCloseSideMenu() {
     if (clickedMenuButtonState == false) {
         //sidemenu.removeEventListener("mouseover", hoverOverSideMenu);
         clickedMenuButtonState = true;
+
         sidemenuNotesText.style.display = "block";
         sidemenuRemindersText.style.display = "block";
         sidemenuEditLabelsText.style.display = "block";
@@ -237,6 +238,7 @@ function openCloseSideMenu() {
     else {
         //sidemenu.addEventListener("mouseover", hoverOverSideMenu);
         clickedMenuButtonState = false;
+
         sidemenuNotesText.style.display = "none";
         sidemenuRemindersText.style.display = "none";
         sidemenuEditLabelsText.style.display = "none";
@@ -406,6 +408,10 @@ unclickedEntryBoxNoteNewNoteImage.style.left = notepadClose.newListNoteImageLeft
 unclickedEntryBoxNoteNewNoteImage.style.top = notepadClose.newListNoteImageTop + "px";
 
 //notepad open
+var string = "";
+var temp = "";
+var method = -1;
+
 var clickedEntryBox = document.getElementById("clicked_entry_box");
 var clickedEntryBoxTitleText = document.getElementById("clicked_entry_box_title_text");
 var clickedEntryBoxPin = document.getElementById("clicked_entry_box_pin");
@@ -556,22 +562,20 @@ const notepadOpenMoreClicked = {
 function openMoreItemsMenu() {
     if (clickedMoreItemsState == false) {
         clickedMoreItemsState = true;
+
         clickedEntryBoxMoreItems.style.display = "none";
 
         clickedEntryBoxUndo.style.top = notepadOpenMoreClicked.undoTop + "px";
-
         clickedEntryBoxRedo.style.top = notepadOpenMoreClicked.redoTop + "px";
-
         clickedEntryBoxClose.style.top = notepadOpenMoreClicked.closeTop + "px";
     }
     else {
         clickedMoreItemsState = false;
+
         clickedEntryBoxMoreItems.style.display = "block";
 
         clickedEntryBoxUndo.style.top = notepadOpen.undoTop + "px";
-
         clickedEntryBoxRedo.style.top = notepadOpen.redoTop + "px";
-
         clickedEntryBoxClose.style.top = notepadOpen.closeTop + "px";
     }
 }
@@ -587,65 +591,59 @@ function editText() {
 function keyUp(e) {
     //grab from animation game
     //string needs to be reset, might get done as eventlistener is removed and restarted
-
-    var array = keyCodeArray();
-    var string = "";
-    var method = -1;
-
     charCode = e.keycode || e.which;
-    key = array[charCode] || String.fromCharCode(charCode);
 
     if (sortKey(charCode)) { string += "&#'{charCode}'"; }
     else {
-        method = sortKey(charCode);
-
-        switch (method) {
-            case 0:
+        switch (charCode) {
+            case 8:
+                addBackspace();
                 break;
-            case 1:
+            case 9:
+                addTab();
                 break;
-            case 2:
+            case 13:
+                addEnter();
                 break;
-            case 3:
+            case 32:
+                addSpace();
                 break;
-            case 4:
-                break;
+            // case 46:
+            //     addDelete();
+            //     break;
             default:
                 console.log("error : ", method);
         }
     }
 
     parseString(string);
+    updateString()
 
 }
 
 function parseString(element) {
-    //length of text
-    //if keycode is registered
-    //add to element or perform function
+    //length of text is larger than the div then enter into a new line
 }
 
 function textLength() {
     //in px
 }
 
-function keyCodeArray() {
-    //registered keycode array
-    //start with a-z, A-Z
-    //functions space, backspace, delete, tab, enter
-    return Array;
-}
-
-function sortKey() {
-
+function sortKey(charCode) {
+    if (charCode >= 65 && charCode <= 90 || charCode >= 97 && charCode <= 122) { return true; }
+    else { return false; }
 }
 
 function addSpace() {
-
+    string += " ";
 }
 
 function addBackspace() {
+    for (var i = 0; i < (string.length() - 1); i++) {
+        temp += string.charAt(i);
+    }
 
+    string = temp;
 }
 
 function addDelete() {
