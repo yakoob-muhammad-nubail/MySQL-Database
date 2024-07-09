@@ -584,8 +584,39 @@ function editText() {
 
 }
 
-function keyUp() {
+function keyUp(e) {
     //grab from animation game
+    //string needs to be reset, might get done as eventlistener is removed and restarted
+
+    var array = keyCodeArray();
+    var string = "";
+    var method = -1;
+
+    charCode = e.keycode || e.which;
+    key = array[charCode] || String.fromCharCode(charCode);
+
+    if (sortKey(charCode)) { string += "&#'{charCode}'"; }
+    else {
+        method = sortKey(charCode);
+
+        switch (method) {
+            case 0:
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            default:
+                console.log("error : ", method);
+        }
+    }
+
+    parseString(string);
+
 }
 
 function parseString(element) {
@@ -602,6 +633,11 @@ function keyCodeArray() {
     //registered keycode array
     //start with a-z, A-Z
     //functions space, backspace, delete, tab, enter
+    return Array;
+}
+
+function sortKey() {
+
 }
 
 function addSpace() {
