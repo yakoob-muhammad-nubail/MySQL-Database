@@ -413,7 +413,9 @@ var temp = "";
 var method = -1;
 var entryTextSelected = false;
 var titleTextSelected = false;
-var lowerCase = false;
+var caseState = "LOWER";
+var switchCase = false;
+var shiftCase = false;
 
 var e = 0;
 var charCode = 0;
@@ -601,16 +603,30 @@ function keyUp(e) {
 
     charCode = e.keyCode || e.which;
 
-    sortKey(charCode);
+    //sortKey(charCode);
 
-    if (lowerCase) { key = keyCodeMap[charCode]; }
-    else { key = keyCodeMap[charCode + 32]; }
+    console.log("case state : " + caseState);
+    console.log("shift state : " + shiftCase);
+
+    switch (caseState) {
+        case "LOWER":
+            key = keyCodeMap[charCode + 32];
+            break;
+        default:
+            key = keyCodeMap[charCode];
+            break;
+    }
+
+    // if (inputCase) { key = keyCodeMap[charCode]; console.log("uppercase"); }
+    // else { key = keyCodeMap[charCode + 32]; console.log("lowercase"); }
 
     console.log("char : " + charCode);
     console.log("key : " + key);
 
-    if (sortKey(charCode)) { string += key; }
-    else {
+    if (sortKey(charCode)) {
+        string += key;
+        if (shiftCase == true) { shiftCase = false; caseState = "LOWER"; }
+    } else {
         switch (charCode) {
             case 8:
                 addBackspace();
@@ -625,8 +641,8 @@ function keyUp(e) {
                 addShift();
                 break;
             case 20:
+                changeCapsCase();
                 addCaps();
-                console.log("caps");
                 break;
             case 32:
                 addSpace();
@@ -636,12 +652,15 @@ function keyUp(e) {
                 break;
             default:
                 console.log("error : ", method);
+                // switchCase = false;
+                break;
         }
     }
 
     parseString();
     updateString();
     console.log(string);
+    console.log("");
 }
 
 function parseString() {
@@ -681,9 +700,9 @@ function keyCodes() {
 }
 
 function sortKey(charCode) {
-    if (charCode >= 65 && charCode <= 90) { lowerCase = false; return true; }
-    else if (charCode >= 97 && charCode <= 122) { lowerCase = true; charCode += 32; return true; }
-    else if (charCode >= 48 && charCode <= 57) { lowerCase = true; return true; }
+    if (charCode >= 65 && charCode <= 90 || charCode >= 97 && charCode <= 122 || charCode >= 48 && charCode <= 57) {
+        return true;
+    }
     else { return false; }
 }
 
@@ -708,11 +727,19 @@ function addEnter() {
 }
 
 function addShift() {
-
+    shiftCase = true;
+    if (caseState == "UPPER" && shiftCase == true || caseState == "LOWER" && shiftCase == false) { caseState = "LOWER" }
+    else { caseState = "UPPER" }
 }
 
 function addCaps() {
-    caps = true;
+    if (switchCase) { caseState = "UPPER"; }
+    else { caseState = "LOWER"; }
+}
+
+function changeCapsCase() {
+    if (switchCase) { switchCase = false; }
+    else { switchCase = true; }
 }
 
 clickedEntryBoxMore.addEventListener("mousedown", openMoreItemsMenu);
