@@ -13,17 +13,26 @@ immediate
         - throw in a div and change other css accordingly to get a clickable that encompasses the area
     - rename functions in eventlisteners
     - eventlisteners to add in later
-        - highlight on click search
+        - highlight on click (search)
         - hover over side menu show which does not remove side menu click action from header image
-    - setup localhost (1) - tbd - immediate
+    - setup localhost- done
         - login, logout, sign-up, notes, reminders, labels, archive, trash
+    - notes page - tbd - immediate
+        - delete function - optional
+            - location of cursor function - optional
+        - maintain length of text - done
+            - method one 
+                - calculate length of text based off of characters inputted
+            - counter used instead
+        - maintain height of text - done
+            - add in scroll wheel if lines exceed two - optional
     - refactor js (2) - tbd - immediate
         - `${x}px` put variables in that format for HTML DOM
         - tested it out didnt work needs further testing
-    - reminders page
-    - labels page
-    - archive page
-    - trash page
+    - reminders page - tbd - optional
+    - labels page - tbd - optional
+    - archive page - tbd - optional
+    - trash page - tbd - optional
     - sign in page (4) - tbd - immediate
     - sign out page (5) - tbd - immediate
     - log in page (6) - tbd - immediate
@@ -41,3 +50,4 @@ side note
     - for spacebar function when there is no text no space is added
         - basic functionality of strings in js (treated like null or zero)
         - easy fix
+    - edit backspace to delete enters

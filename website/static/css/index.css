@@ -240,6 +240,8 @@ nav {
 
 .clicked_entry_box_title_text {
     position: relative;
+    font-family: "Arial", Helvetica, sans-serif;
+    white-space: pre-wrap;
 }
 
 .clicked_entry_box_pin {
@@ -249,6 +251,8 @@ nav {
 
 .clicked_entry_box_entry_text {
     position: relative;
+    font-family: "Arial", Helvetica, sans-serif;
+    white-space: pre-wrap;
 }
 
 .clicked_entry_box_bell_share {
