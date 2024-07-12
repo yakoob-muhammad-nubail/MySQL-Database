@@ -16,9 +16,10 @@ immediate
         - highlight on click search
         - hover over side menu show which does not remove side menu click action from header image
     - setup localhost (1) - tbd - immediate
-        - login, logout, sign-up, scoreboard, game, home/notes, reminders, labels, archive, trash
+        - login, logout, sign-up, notes, reminders, labels, archive, trash
     - refactor js (2) - tbd - immediate
         - `${x}px` put variables in that format for HTML DOM
+        - tested it out didnt work needs further testing
     - reminders page
     - labels page
     - archive page

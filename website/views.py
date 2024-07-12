@@ -14,10 +14,26 @@ def logout():
 def sign_up():
     return "<p>Sign Up</p>"
 
-@views.route('/home')
-def home():
-    return "<p>home</p>"
-
 @views.route('/notes')
+def home():
+    return "<p>notes</p>"
+
+@views.route('/reminders')
 def notes():
-    return "<p>notes app</p>"
+    return "<p>reminders</p>"
+
+@views.route('/labels')
+def notes():
+    return "<p>labels</p>"
+
+@views.route('/archive')
+def notes():
+    return "<p>archive</p>"
+
+@views.route('/trash')
+def notes():
+    return "<p>trash</p>"
+
+@views.route('/home')
+def notes():
+    return "<p>home</p>"
