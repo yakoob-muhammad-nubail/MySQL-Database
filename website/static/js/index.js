@@ -411,6 +411,12 @@ unclickedEntryBoxNoteNewNoteImage.style.top = notepadClose.newListNoteImageTop +
 var string = "";
 var temp = "";
 var method = -1;
+var entryTextSelected = false;
+var titleTextSelected = false;
+var lowerCase = false;
+
+var e = 0;
+var charCode = 0;
 
 var clickedEntryBox = document.getElementById("clicked_entry_box");
 var clickedEntryBoxTitleText = document.getElementById("clicked_entry_box_title_text");
@@ -591,9 +597,20 @@ function editText() {
 function keyUp(e) {
     //grab from animation game
     //string needs to be reset, might get done as eventlistener is removed and restarted
-    charCode = e.keycode || e.which;
+    const keyCodeMap = keyCodes();
 
-    if (sortKey(charCode)) { string += "&#'{charCode}'"; }
+    charCode = e.keyCode || e.which;
+
+    sortKey(charCode);
+
+    if (!lowerCase) { key = keyCodeMap[charCode]; }
+    else { key = keyCodeMap[charCode + 32]; }
+
+
+    console.log("char : " + charCode);
+    console.log("key : " + key);
+
+    if (sortKey(charCode)) { string += key; }
     else {
         switch (charCode) {
             case 8:
@@ -608,29 +625,58 @@ function keyUp(e) {
             case 32:
                 addSpace();
                 break;
-            // case 46:
-            //     addDelete();
-            //     break;
+            case 46:
+                addDelete();
+                break;
             default:
                 console.log("error : ", method);
         }
     }
 
-    parseString(string);
-    updateString()
-
+    parseString();
+    updateString();
 }
 
-function parseString(element) {
+function parseString() {
     //length of text is larger than the div then enter into a new line
+}
+
+function updateString() {
+    clickedEntryBoxEntryText.innerHTML = string;
 }
 
 function textLength() {
     //in px
 }
 
+function keyCodes() {
+    const keyCodeMap = {
+        // Lowercase letters
+        97: "a", 98: "b", 99: "c", 100: "d", 101: "e",
+        102: "f", 103: "g", 104: "h", 105: "i", 106: "j",
+        107: "k", 108: "l", 109: "m", 110: "n", 111: "o",
+        112: "p", 113: "q", 114: "r", 115: "s", 116: "t",
+        117: "u", 118: "v", 119: "w", 120: "x", 121: "y", 122: "z",
+
+        // Uppercase letters
+        65: "A", 66: "B", 67: "C", 68: "D", 69: "E",
+        70: "F", 71: "G", 72: "H", 73: "I", 74: "J",
+        75: "K", 76: "L", 77: "M", 78: "N", 79: "O",
+        80: "P", 81: "Q", 82: "R", 83: "S", 84: "T",
+        85: "U", 86: "V", 87: "W", 88: "X", 89: "Y", 90: "Z",
+
+        // Digits
+        48: "0", 49: "1", 50: "2", 51: "3", 52: "4",
+        53: "5", 54: "6", 55: "7", 56: "8", 57: "9"
+    };
+
+    return keyCodeMap;
+}
+
 function sortKey(charCode) {
-    if (charCode >= 65 && charCode <= 90 || charCode >= 97 && charCode <= 122) { return true; }
+    if (charCode >= 65 && charCode <= 90) { lowerCase = true; return true; }
+    else if (charCode >= 97 && charCode <= 122) { lowerCase = false; return true; }
+    else if (charCode >= 48 && charCode <= 57) { lowerCase = false; return true; }
     else { return false; }
 }
 
@@ -686,5 +732,10 @@ unclickedEntryBoxNoteText.addEventListener("mousedown", function hoverOverSideMe
     notepad.style.height = notepadOpen.notepadHeight + "px";
 
     // eventlistener title
-    // eventlistener text
+
+});
+
+clickedEntryBox.addEventListener("mousedown", function () {
+    console.log("Entry box clicked, enabling keydown event.");
+    window.addEventListener("keydown", keyUp);
 });
