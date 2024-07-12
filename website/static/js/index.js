@@ -603,9 +603,8 @@ function keyUp(e) {
 
     sortKey(charCode);
 
-    if (!lowerCase) { key = keyCodeMap[charCode]; }
+    if (lowerCase) { key = keyCodeMap[charCode]; }
     else { key = keyCodeMap[charCode + 32]; }
-
 
     console.log("char : " + charCode);
     console.log("key : " + key);
@@ -622,6 +621,13 @@ function keyUp(e) {
             case 13:
                 addEnter();
                 break;
+            case 16:
+                addShift();
+                break;
+            case 20:
+                addCaps();
+                console.log("caps");
+                break;
             case 32:
                 addSpace();
                 break;
@@ -635,6 +641,7 @@ function keyUp(e) {
 
     parseString();
     updateString();
+    console.log(string);
 }
 
 function parseString() {
@@ -674,9 +681,9 @@ function keyCodes() {
 }
 
 function sortKey(charCode) {
-    if (charCode >= 65 && charCode <= 90) { lowerCase = true; return true; }
-    else if (charCode >= 97 && charCode <= 122) { lowerCase = false; return true; }
-    else if (charCode >= 48 && charCode <= 57) { lowerCase = false; return true; }
+    if (charCode >= 65 && charCode <= 90) { lowerCase = false; return true; }
+    else if (charCode >= 97 && charCode <= 122) { lowerCase = true; charCode += 32; return true; }
+    else if (charCode >= 48 && charCode <= 57) { lowerCase = true; return true; }
     else { return false; }
 }
 
@@ -685,11 +692,7 @@ function addSpace() {
 }
 
 function addBackspace() {
-    for (var i = 0; i < (string.length() - 1); i++) {
-        temp += string.charAt(i);
-    }
-
-    string = temp;
+    string = string.slice(0, -1);
 }
 
 function addDelete() {
@@ -704,12 +707,23 @@ function addEnter() {
 
 }
 
+function addShift() {
+
+}
+
+function addCaps() {
+    caps = true;
+}
+
 clickedEntryBoxMore.addEventListener("mousedown", openMoreItemsMenu);
 
 clickedEntryBoxClose.addEventListener("mousedown", function hoverOverSideMenu() {
     clickedEntryBox.style.display = "none";
 
     unclickedEntryBox.style.display = "block";
+
+    clickedEntryBoxEntryText.innerHTML = "Take a note...";
+    string = "";
 
     notepad.style.left = notepadClose.notepadLeft + "px";
     notepad.style.top = notepadClose.notepadTop + "px";
