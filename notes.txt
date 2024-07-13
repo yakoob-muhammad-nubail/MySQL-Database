@@ -56,3 +56,5 @@ side note
         - basic functionality of strings in js (treated like null or zero)
         - easy fix
     - edit backspace to delete enters
+    - issue with keyloggers is that parsing the functions changes with entry and title
+        - easy refactor into one function

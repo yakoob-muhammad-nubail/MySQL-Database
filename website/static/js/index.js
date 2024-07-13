@@ -421,12 +421,6 @@ unclickedEntryBoxNoteNewNoteImage.style.top = notepadClose.newListNoteImageTop +
 // var e = 0;
 // var charCode = 0;
 
-let string = "";
-let caseState = "LOWER";
-let shiftCase = false;
-let switchCase = false;
-let numberCase = false;
-
 var clickedEntryBox = document.getElementById("clicked_entry_box");
 var clickedEntryBoxTitleText = document.getElementById("clicked_entry_box_title_text");
 var clickedEntryBoxPin = document.getElementById("clicked_entry_box_pin");
@@ -595,166 +589,207 @@ function openMoreItemsMenu() {
     }
 }
 
-var counter = 0;
-var line = 1; // if the line count exceeds two then throw in scroll wheel
+var stringEntry = "";
+var stringTitle = "";
+var currentString = "";
+var stringType = "ENTRY";
+var caseState = "LOWER";
+var shiftCase = false;
+var switchCase = false;
+var numberCase = false;
+var counter1 = 0;
+var line1 = 1; // if the line count exceeds two then throw in scroll wheel
+var counter2 = 0;
+var line2 = 1;
 
-function readAndTypeText(e) {
-    const keyCodeMap = keyCodes();
+const keyCodeMap = {
+    // Lowercase letters
+    97: "a", 98: "b", 99: "c", 100: "d", 101: "e",
+    102: "f", 103: "g", 104: "h", 105: "i", 106: "j",
+    107: "k", 108: "l", 109: "m", 110: "n", 111: "o",
+    112: "p", 113: "q", 114: "r", 115: "s", 116: "t",
+    117: "u", 118: "v", 119: "w", 120: "x", 121: "y", 122: "z",
+
+    // Uppercase letters
+    65: "A", 66: "B", 67: "C", 68: "D", 69: "E",
+    70: "F", 71: "G", 72: "H", 73: "I", 74: "J",
+    75: "K", 76: "L", 77: "M", 78: "N", 79: "O",
+    80: "P", 81: "Q", 82: "R", 83: "S", 84: "T",
+    85: "U", 86: "V", 87: "W", 88: "X", 89: "Y", 90: "Z",
+
+    // Digits
+    48: "0", 49: "1", 50: "2", 51: "3", 52: "4",
+    53: "5", 54: "6", 55: "7", 56: "8", 57: "9"
+};
+
+function handleKey(e, counter, line) {
     let charCode = e.keyCode || e.which;
     let key = "";
 
     console.log(counter);
+    console.log(line);
+    console.log(charCode);
+    console.log(key);
 
-    function sortKey(charCode) {
-        if (counter < 52) {
-            if ((charCode >= 65 && charCode <= 90) || (charCode >= 97 && charCode <= 122)) {
-                numberCase = false;
-                caseState === "UPPER" ? counter += 1.2 : counter++;
-                return true;
-            } else if (charCode >= 48 && charCode <= 57) {
-                numberCase = true;
-                caseState = "NUMBER";
-                counter++;
-                return true;
-            } else if ([8, 9, 13, 16, 20, 32, 46].includes(charCode)) {
-                numberCase = false;
-                caseState = "SPECIAL_CHAR";
-            } else {
-                return false;
-            }
-        }
-    }
-
-    function keyCodes() {
-        const keyCodeMap = {
-            // Lowercase letters
-            97: "a", 98: "b", 99: "c", 100: "d", 101: "e",
-            102: "f", 103: "g", 104: "h", 105: "i", 106: "j",
-            107: "k", 108: "l", 109: "m", 110: "n", 111: "o",
-            112: "p", 113: "q", 114: "r", 115: "s", 116: "t",
-            117: "u", 118: "v", 119: "w", 120: "x", 121: "y", 122: "z",
-
-            // Uppercase letters
-            65: "A", 66: "B", 67: "C", 68: "D", 69: "E",
-            70: "F", 71: "G", 72: "H", 73: "I", 74: "J",
-            75: "K", 76: "L", 77: "M", 78: "N", 79: "O",
-            80: "P", 81: "Q", 82: "R", 83: "S", 84: "T",
-            85: "U", 86: "V", 87: "W", 88: "X", 89: "Y", 90: "Z",
-
-            // Digits
-            48: "0", 49: "1", 50: "2", 51: "3", 52: "4",
-            53: "5", 54: "6", 55: "7", 56: "8", 57: "9"
-        };
-        return keyCodeMap;
-    }
-
-    if (sortKey(charCode)) {
-        if (caseState === "LOWER") {
-            key = keyCodeMap[charCode + 32] || keyCodeMap[charCode];
-        } else {
-            key = keyCodeMap[charCode];
-        }
-
-        string += key;
+    if (sortKey(charCode, counter)) {
+        key = getKey(charCode);
+        currentString += key;
 
         if (shiftCase) {
             shiftCase = false;
             caseState = "LOWER";
         }
     } else {
-        switch (charCode) {
-            case 8:
-                if (string) {
-                    string = string.slice(0, -1);
-                    counter -= 1;
-                } else {
-                    counter = 0;
-                }
-                break;
-            case 9:
-                string += "\t";
-                counter += 3;
-                break;
-            case 13:
-                if (line < 2) {
-                    string += "\n";
-                    counter = 0;
-                    line++;
-                }
-                break;
-            case 16:
-                shiftCase = !shiftCase;
-                break;
-            case 20:
-                switchCase = !switchCase;
-                caseState = switchCase ? "UPPER" : "LOWER";
-                break;
-            case 32:
-                string += " ";
-                break;
-            case 46:
-                // Handle delete (if needed)
-                // need location of cursor
-                break;
-            default:
-                break;
-        }
+        handleSpecialKeys(charCode, counter, line);
     }
 
-    // Output the string to your desired element
     updateString();
 }
 
+function sortKey(charCode, counter) {
+    if (counter < 52) {
+        if ((charCode >= 65 && charCode <= 90) || (charCode >= 97 && charCode <= 122)) {
+            numberCase = false;
+            caseState === "UPPER" ? counter += 1.2 : counter++;
+            console.log(counter);
+            return true;
+        } else if (charCode >= 48 && charCode <= 57) {
+            numberCase = true;
+            caseState = "NUMBER";
+            counter++;
+            return true;
+        } else if ([8, 9, 13, 16, 20, 32, 46].includes(charCode)) {
+            numberCase = false;
+            caseState = "SPECIAL_CHAR";
+            return false;
+        }
+    }
+    return false;
+}
+
+function getKey(charCode) {
+    if (caseState === "LOWER") {
+        return keyCodeMap[charCode + 32] || keyCodeMap[charCode];
+    } else {
+        return keyCodeMap[charCode];
+    }
+}
+
+function handleSpecialKeys(charCode, counter, line) {
+    switch (charCode) {
+        case 8:
+            if (currentString) {
+                currentString = currentString.slice(0, -1);
+                counter -= 1;
+            }
+            break;
+        case 9:
+            currentString += "\t";
+            counter += 3;
+            break;
+        case 13:
+            if (line < 2) {
+                currentString += "\n";
+                counter = 0;
+                line++;
+            }
+            break;
+        case 16:
+            shiftCase = !shiftCase;
+            break;
+        case 20:
+            switchCase = !switchCase;
+            caseState = switchCase ? "UPPER" : "LOWER";
+            break;
+        case 32:
+            currentString += " ";
+            break;
+        case 46:
+            // Handle delete (if needed)
+            // need location of cursor
+            break;
+        default:
+            break;
+    }
+}
+
 function updateString() {
-    clickedEntryBoxEntryText.innerHTML = string;
+    if (stringType == "ENTRY") {
+        stringEntry = currentString;
+        clickedEntryBoxEntryText.innerHTML = stringEntry;
+    } else if (stringType == "TITLE") {
+        stringTitle = currentString;
+        clickedEntryBoxTitleText.innerHTML = stringTitle;
+    } else {
+        console.log("incorrect stringType : " + stringType);
+    }
 }
 
 function updateNotepad() {
-
+    // Implementation here
 }
 
-
-clickedEntryBoxMore.addEventListener("mousedown", openMoreItemsMenu);
-
-clickedEntryBoxClose.addEventListener("mousedown", function hoverOverSideMenu() {
+function handleMouseDownEventForEntryBox() {
     clickedEntryBox.style.display = "none";
-
     unclickedEntryBox.style.display = "block";
-
     clickedEntryBoxEntryText.innerHTML = "Take a note...";
 
-    if (string) { updateNotepad() }
+    if (stringEntry || stringTitle) {
+        updateNotepad();
+    }
 
-    string = "";
+    stringEntry = "";
+    stringTitle = "";
+    clickedEntryBoxEntryText.innerHTML = "Take a note...";
+    clickedEntryBoxTitleText.innerHTML = "Title";
 
     notepad.style.left = notepadClose.notepadLeft + "px";
     notepad.style.top = notepadClose.notepadTop + "px";
     notepad.style.width = notepadClose.notepadWidth + "px";
     notepad.style.height = notepadClose.notepadHeight + "px";
-});
+}
 
-unclickedEntryBoxNoteText.addEventListener("mousedown", function hoverOverSideMenu() {
+function handleMouseDownEventForUnclickedBox() {
     clickedEntryBox.style.display = "block";
-
     unclickedEntryBox.style.display = "none";
     clickedEntryBoxMoreItems.style.display = "none";
-
     clickedEntryBoxUndo.style.top = notepadOpenMoreClicked.undoTop + "px";
-
     clickedEntryBoxRedo.style.top = notepadOpenMoreClicked.redoTop + "px";
     clickedEntryBoxClose.style.top = notepadOpenMoreClicked.closeTop + "px";
-
     notepad.style.width = notepadOpen.notepadWidth + "px";
     notepad.style.height = notepadOpen.notepadHeight + "px";
+}
 
-    // eventlistener title
-
-});
-
-clickedEntryBox.addEventListener("mousedown", function () {
+function handleEntryBoxClick() {
     console.log("Entry box clicked, enabling keydown event.");
+    currentString = stringEntry;
+    stringType = "ENTRY";
+    window.removeEventListener("keydown", readAndTypeTextTitle);
+    window.addEventListener("keydown", readAndTypeTextEntry);
+}
 
-    counter = 0;
+function handleTitleBoxClick() {
+    console.log("Title box clicked, enabling keydown event.");
+    currentString = stringTitle;
+    stringType = "TITLE";
+    window.removeEventListener("keydown", readAndTypeTextEntry);
+    window.addEventListener("keydown", readAndTypeTextTitle);
+}
 
-    window.addEventListener("keydown", readAndTypeText);
-});
+function readAndTypeTextEntry(e) {
+    handleKey(e, counter1, line1);
+}
+
+function readAndTypeTextTitle(e) {
+    handleKey(e, counter2, line2);
+}
+
+clickedEntryBoxMore.addEventListener("mousedown", openMoreItemsMenu);
+
+clickedEntryBoxClose.addEventListener("mousedown", handleMouseDownEventForEntryBox);
+
+unclickedEntryBoxNoteText.addEventListener("mousedown", handleMouseDownEventForUnclickedBox);
+
+clickedEntryBoxEntryText.addEventListener("mousedown", handleEntryBoxClick);
+
+clickedEntryBoxTitleText.addEventListener("mousedown", handleTitleBoxClick);
