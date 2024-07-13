@@ -242,6 +242,7 @@ nav {
     position: relative;
     font-family: "Arial", Helvetica, sans-serif;
     white-space: pre-wrap;
+    display: inline-block;
 }
 
 .clicked_entry_box_pin {

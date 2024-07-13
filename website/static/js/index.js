@@ -594,6 +594,7 @@ function openMoreItemsMenu() {
         clickedEntryBoxClose.style.top = notepadOpen.closeTop + "px";
     }
 }
+
 var counter = 0;
 var line = 1; // if the line count exceeds two then throw in scroll wheel
 
@@ -608,7 +609,7 @@ function readAndTypeText(e) {
         if (counter < 52) {
             if ((charCode >= 65 && charCode <= 90) || (charCode >= 97 && charCode <= 122)) {
                 numberCase = false;
-                counter++;
+                caseState === "UPPER" ? counter += 1.2 : counter++;
                 return true;
             } else if (charCode >= 48 && charCode <= 57) {
                 numberCase = true;
@@ -655,6 +656,7 @@ function readAndTypeText(e) {
         }
 
         string += key;
+
         if (shiftCase) {
             shiftCase = false;
             caseState = "LOWER";
@@ -662,10 +664,16 @@ function readAndTypeText(e) {
     } else {
         switch (charCode) {
             case 8:
-                string = string.slice(0, -1);
+                if (string) {
+                    string = string.slice(0, -1);
+                    counter -= 1;
+                } else {
+                    counter = 0;
+                }
                 break;
             case 9:
                 string += "\t";
+                counter += 3;
                 break;
             case 13:
                 if (line < 2) {
@@ -701,6 +709,10 @@ function updateString() {
     clickedEntryBoxEntryText.innerHTML = string;
 }
 
+function updateNotepad() {
+
+}
+
 
 clickedEntryBoxMore.addEventListener("mousedown", openMoreItemsMenu);
 
@@ -710,6 +722,9 @@ clickedEntryBoxClose.addEventListener("mousedown", function hoverOverSideMenu() 
     unclickedEntryBox.style.display = "block";
 
     clickedEntryBoxEntryText.innerHTML = "Take a note...";
+
+    if (string) { updateNotepad() }
+
     string = "";
 
     notepad.style.left = notepadClose.notepadLeft + "px";
@@ -738,6 +753,8 @@ unclickedEntryBoxNoteText.addEventListener("mousedown", function hoverOverSideMe
 
 clickedEntryBox.addEventListener("mousedown", function () {
     console.log("Entry box clicked, enabling keydown event.");
+
     counter = 0;
+
     window.addEventListener("keydown", readAndTypeText);
 });

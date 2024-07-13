@@ -24,6 +24,11 @@ immediate
             - method one 
                 - calculate length of text based off of characters inputted
             - counter used instead
+                - this counter limit needs to account for different width of characters - tbd - optional
+                - a char map needs to be created of each char st each char wont exceed the max
+                length of the text. note that standard was set for a row of a's in lowercase
+                    - this could be simplified if the width of the pre tag adjusts to the 
+                    length of the text in it but isnt possible in js
         - maintain height of text - done
             - add in scroll wheel if lines exceed two - optional
     - refactor js (2) - tbd - immediate
@@ -36,7 +41,7 @@ immediate
     - sign in page (4) - tbd - immediate
     - sign out page (5) - tbd - immediate
     - log in page (6) - tbd - immediate
-    - home page (7) - tbd - optional
+    - home page (7) - tbd - immediate
         - login/sign up
     - responsive web design (3) - tbd - final
         - large screen, min screen and mobile
