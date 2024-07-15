@@ -17,31 +17,35 @@ var mainNavbarHeaderNavAboutText = document.getElementById("main_navbar_header_n
 var mainNavbarHeaderNavAccountText = document.getElementById("main_navbar_header_nav_account_text");
 
 var width, height; // throw in preset values and object
-var navContainerHeight = 100;
-var mainNavbarHeaderNavTextWidth = 100;
-var clickedMenuButtonState = false;
-var clickedMoreItemsState = false;
+
+const navMenu = {
+    navContainerHeight: 100,
+    mainNavbarHeaderNavTextWidth: 100,
+    clickedMenuButtonState: false,
+    clickedMoreItemsState: false
+};
+
 // var menuClick = false;
 
 width = window.innerWidth;
 mainNavbar.style.width = width + "px";
 
 mainNavbarHeader.style.width = width + "px";
-mainNavbarHeader.style.height = navContainerHeight + "px";
+mainNavbarHeader.style.height = navMenu.navContainerHeight + "px";
 
 mainNavbarHeader.style.top = -10 + "px";
 mainNavbarHeader.style.left = -10 + "px";
 
 width = 100;
 mainNavbarHeaderMenuContainer.style.width = width + "px";
-mainNavbarHeaderMenuContainer.style.height = navContainerHeight + "px";
+mainNavbarHeaderMenuContainer.style.height = navMenu.navContainerHeight + "px";
 
 mainNavbarHeaderMenu.style.left = -50 + "px";
 mainNavbarHeaderMenu.style.top = -50 + "px";
 
 width = 100;
 mainNavbarHeaderLogoContainer.style.width = width + "px";
-mainNavbarHeaderLogoContainer.style.height = navContainerHeight + "px";
+mainNavbarHeaderLogoContainer.style.height = navMenu.navContainerHeight + "px";
 
 mainNavbarHeaderLogoContainer.style.left = 100 + "px";
 mainNavbarHeaderLogoContainer.style.top = -100 + "px";
@@ -67,15 +71,15 @@ mainNavbarHeaderNavSearchLogoContainer.style.top = 0 + "px";
 mainNavbarHeaderNavSearchLogo.style.left = -40 + "px";
 mainNavbarHeaderNavSearchLogo.style.top = -34 + "px";
 
-mainNavbarHeaderNavSearchText.style.width = mainNavbarHeaderNavTextWidth + "px";
+mainNavbarHeaderNavSearchText.style.width = navMenu.mainNavbarHeaderNavTextWidth + "px";
 mainNavbarHeaderNavSearchText.style.left = 25 + "px";
 mainNavbarHeaderNavSearchText.style.top = -112 + "px";
 
-mainNavbarHeaderNavAboutText.style.width = mainNavbarHeaderNavTextWidth + "px";
+mainNavbarHeaderNavAboutText.style.width = navMenu.mainNavbarHeaderNavTextWidth + "px";
 mainNavbarHeaderNavAboutText.style.left = window.innerWidth - 825 + "px";
 mainNavbarHeaderNavAboutText.style.top = -35 + "px";
 
-mainNavbarHeaderNavAccountText.style.width = mainNavbarHeaderNavTextWidth + "px";
+mainNavbarHeaderNavAccountText.style.width = navMenu.mainNavbarHeaderNavTextWidth + "px";
 mainNavbarHeaderNavAccountText.style.left = window.innerWidth - 700 + "px";
 mainNavbarHeaderNavAccountText.style.top = -73 + "px"; //38
 
@@ -146,7 +150,7 @@ var sidemenuTrashText = document.getElementById("sidemenu_trash_text");
 const sideMenuOpen = {
     widthSideMenu: 180,
     widthLogoSidemenu: 200, // image is loaded in first then css is applied (scaling down)
-    heightSidemenu: window.innerHeight - navContainerHeight,
+    heightSidemenu: window.innerHeight - navMenu.navContainerHeight,
     topSidemenu: -70,
     leftSidemenu: -60,
     widthTextSideMenu: 100,
@@ -222,9 +226,9 @@ sidemenuArchivesText.style.display = "none";
 sidemenuTrashText.style.display = "none";
 
 function openCloseSideMenu() {
-    if (clickedMenuButtonState == false) {
+    if (navMenu.clickedMenuButtonState == false) {
         //sidemenu.removeEventListener("mouseover", hoverOverSideMenu);
-        clickedMenuButtonState = true;
+        navMenu.clickedMenuButtonState = true;
 
         sidemenuNotesText.style.display = "block";
         sidemenuRemindersText.style.display = "block";
@@ -237,7 +241,7 @@ function openCloseSideMenu() {
     }
     else {
         //sidemenu.addEventListener("mouseover", hoverOverSideMenu);
-        clickedMenuButtonState = false;
+        navMenu.clickedMenuButtonState = false;
 
         sidemenuNotesText.style.display = "none";
         sidemenuRemindersText.style.display = "none";
@@ -248,7 +252,7 @@ function openCloseSideMenu() {
         // sidemenu.style.boxShadow = "none";
         sidemenu.style.width = sideMenuClosed.widthSideMenu + "px";
     }
-    //console.log(clickedMenuButtonState);
+    //console.log(navMenu.clickedMenuButtonState);
 }
 
 sidemenuNotesText.addEventListener("mouseover", function hoverOverSideMenu() {
@@ -569,8 +573,8 @@ const notepadOpenMoreClicked = {
 };
 
 function openMoreItemsMenu() {
-    if (clickedMoreItemsState == false) {
-        clickedMoreItemsState = true;
+    if (navMenu.clickedMoreItemsState == false) {
+        navMenu.clickedMoreItemsState = true;
 
         clickedEntryBoxMoreItems.style.display = "none";
 
@@ -579,7 +583,7 @@ function openMoreItemsMenu() {
         clickedEntryBoxClose.style.top = notepadOpenMoreClicked.closeTop + "px";
     }
     else {
-        clickedMoreItemsState = false;
+        navMenu.clickedMoreItemsState = false;
 
         clickedEntryBoxMoreItems.style.display = "block";
 
@@ -905,3 +909,16 @@ clickedEntryBoxEntryText.addEventListener("mousedown", handleEntryBoxClick);
 clickedEntryBoxTitleText.addEventListener("mousedown", handleTitleBoxClick);
 
 //note slips
+var noteSlipsContainer = document.getElementById("note_slips_container");
+
+const noteSlips = {
+    noteSlipsContainerLeft: -315,
+    noteSlipsContainerTop: 70,
+    noteSlipsContainerWidth: window.innerWidth - 214,
+    noteSlipsContainerHeight: window.innerHeight - notepadClose.notepadHeight - notepadClose.notepadTop - 30
+};
+
+noteSlipsContainer.style.left = noteSlips.noteSlipsContainerLeft + "px";
+noteSlipsContainer.style.top = noteSlips.noteSlipsContainerTop + "px";
+noteSlipsContainer.style.width = noteSlips.noteSlipsContainerWidth + "px";
+noteSlipsContainer.style.height = noteSlips.noteSlipsContainerHeight + "px";

@@ -1,0 +1,14 @@
+/* root {}*/
+
+body {
+    background-color: white;
+    position: relative;
+    font-family: "Arial", Helvetica, sans-serif;
+    user-select: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.note_slips {
+    background-color: orange;
+}

@@ -9,14 +9,7 @@ body {
 }
 
 /* navigation menu */
-nav {
-    display: block;
-    /* position: absolute; */
-    /* box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .2); */
-}
-
 .main_navbar {
-    /* background-color: darkgrey; */
     display: block;
 }
 
@@ -94,7 +87,7 @@ nav {
 
 /* side menu */
 .sidemenu {
-    /* background-color: orange; */
+    /* background-color: red; */
     position: absolute;
     width: 200px;
     font-size: 16px;
@@ -192,6 +185,8 @@ nav {
     z-index: 1;
 }
 
+/* notepad */
+/* unclicked entry box */
 .unclicked_entry_box {
     /* background-color: aqua; */
     position: relative;
@@ -229,6 +224,8 @@ nav {
     z-index: 1;
 }
 
+/* notepad */
+/* clicked entry box */
 .clicked_entry_box {
     /* background-color: cyan; */
     position: absolute;
@@ -321,4 +318,15 @@ nav {
 
 .clicked_entry_box_close {
     position: relative;
+}
+
+/* notepad */
+/* open list */
+
+/* notepad */
+/* notes slips */
+
+.note_slips_container {
+    /* background-color: orange; */
+    position: absolute;
 }
