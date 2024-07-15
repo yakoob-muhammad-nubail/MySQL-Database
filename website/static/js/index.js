@@ -903,3 +903,5 @@ unclickedEntryBoxNoteText.addEventListener("mousedown", handleMouseDownEventForU
 clickedEntryBoxEntryText.addEventListener("mousedown", handleEntryBoxClick);
 
 clickedEntryBoxTitleText.addEventListener("mousedown", handleTitleBoxClick);
+
+//note slips
