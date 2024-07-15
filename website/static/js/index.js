@@ -622,41 +622,102 @@ const keyCodeMap = {
     53: "5", 54: "6", 55: "7", 56: "8", 57: "9"
 };
 
-function handleKey(e, counter, line) {
+function handleKey(e) {
     let charCode = e.keyCode || e.which;
     let key = "";
 
-    console.log(counter);
-    console.log(line);
-    console.log(charCode);
-    console.log(key);
+    if (stringType) {
+        if (stringType == "ENTRY") {
+            console.log(counter1);
+            console.log(line1);
 
-    if (sortKey(charCode, counter)) {
-        key = getKey(charCode);
-        currentString += key;
+            console.log(charCode);
+            console.log(key);
 
-        if (shiftCase) {
-            shiftCase = false;
-            caseState = "LOWER";
+            if (sortKeyEntry(charCode)) {
+                key = getKey(charCode);
+                currentString += key;
+
+                if (shiftCase) {
+                    shiftCase = false;
+                    caseState = "LOWER";
+                }
+            } else {
+                handleSpecialKeys(charCode);
+            }
+
+        } else if (stringType == "TITLE") {
+            console.log(counter2);
+            console.log(line2);
+
+            console.log(charCode);
+            console.log(key);
+
+            if (sortKeyTitle(charCode)) {
+                key = getKey(charCode);
+                currentString += key;
+
+                if (shiftCase) {
+                    shiftCase = false;
+                    caseState = "LOWER";
+                }
+            } else {
+                handleSpecialKeys(charCode);
+            }
+        } else {
+            console.log("incorrect value for stringType : " + stringType);
         }
     } else {
-        handleSpecialKeys(charCode, counter, line);
+        console.log("stringType is null or empty : " + stringType);
     }
 
     updateString();
 }
 
-function sortKey(charCode, counter) {
-    if (counter < 52) {
+function sortKeyEntry(charCode) {
+    if (counter1 < 52) {
         if ((charCode >= 65 && charCode <= 90) || (charCode >= 97 && charCode <= 122)) {
+
             numberCase = false;
-            caseState === "UPPER" ? counter += 1.2 : counter++;
-            console.log(counter);
+
+            caseState === "UPPER" ? counter1 += 1.2 : counter1++;
+            console.log(counter1);
+
             return true;
         } else if (charCode >= 48 && charCode <= 57) {
             numberCase = true;
             caseState = "NUMBER";
-            counter++;
+
+            counter1++;
+            console.log(counter1);
+
+            return true;
+        } else if ([8, 9, 13, 16, 20, 32, 46].includes(charCode)) {
+            numberCase = false;
+            caseState = "SPECIAL_CHAR";
+            return false;
+        }
+    }
+    return false;
+}
+
+function sortKeyTitle(charCode) {
+    if (counter2 < 52) {
+        if ((charCode >= 65 && charCode <= 90) || (charCode >= 97 && charCode <= 122)) {
+
+            numberCase = false;
+
+            caseState === "UPPER" ? counter2 += 1.2 : counter2++;
+            console.log(counter2);
+
+            return true;
+        } else if (charCode >= 48 && charCode <= 57) {
+            numberCase = true;
+            caseState = "NUMBER";
+
+            counter2++;
+            console.log(counter2);
+
             return true;
         } else if ([8, 9, 13, 16, 20, 32, 46].includes(charCode)) {
             numberCase = false;
@@ -675,24 +736,72 @@ function getKey(charCode) {
     }
 }
 
-function handleSpecialKeys(charCode, counter, line) {
+function handleSpecialKeys(charCode) {
     switch (charCode) {
         case 8:
             if (currentString) {
                 currentString = currentString.slice(0, -1);
-                counter -= 1;
+
+                if (stringType) {
+                    if (stringType == "ENTRY") {
+                        counter1 -= 1;
+                        console.log(counter1);
+                    } else if (stringType == "TITLE") {
+                        counter2 -= 1;
+                        console.log(counter2);
+                    } else {
+                        console.log("incorrect value for stringType : " + stringType);
+                    }
+                } else {
+                    console.log("stringType is null or empty : " + stringType);
+                }
+
             }
             break;
         case 9:
             currentString += "\t";
-            counter += 3;
+
+            if (stringType) {
+                if (stringType == "ENTRY") {
+                    counter1 += 3;
+                    console.log(counter1);
+                } else if (stringType == "TITLE") {
+                    counter2 += 3;
+                    console.log(counter2);
+                } else {
+                    console.log("incorrect value for stringType : " + stringType);
+                }
+            } else {
+                console.log("stringType is null or empty : " + stringType);
+            }
+
             break;
         case 13:
-            if (line < 2) {
-                currentString += "\n";
-                counter = 0;
-                line++;
+
+            if (stringType) {
+                if (stringType == "ENTRY") {
+                    if (line1 < 2) {
+                        currentString += "\n";
+                        counter1 = 0;
+                        line1++;
+                        console.log(counter1);
+                        console.log(line1);
+                    }
+                } else if (stringType == "TITLE") {
+                    if (line2 < 2) {
+                        currentString += "\n";
+                        counter2 = 0;
+                        line2++;
+                        console.log(counter2);
+                        console.log(line2);
+                    }
+                } else {
+                    console.log("incorrect value for stringType : " + stringType);
+                }
+            } else {
+                console.log("stringType is null or empty : " + stringType);
             }
+
             break;
         case 16:
             shiftCase = !shiftCase;
@@ -740,6 +849,7 @@ function handleMouseDownEventForEntryBox() {
 
     stringEntry = "";
     stringTitle = "";
+
     clickedEntryBoxEntryText.innerHTML = "Take a note...";
     clickedEntryBoxTitleText.innerHTML = "Title";
 
@@ -777,11 +887,11 @@ function handleTitleBoxClick() {
 }
 
 function readAndTypeTextEntry(e) {
-    handleKey(e, counter1, line1);
+    handleKey(e);
 }
 
 function readAndTypeTextTitle(e) {
-    handleKey(e, counter2, line2);
+    handleKey(e);
 }
 
 clickedEntryBoxMore.addEventListener("mousedown", openMoreItemsMenu);

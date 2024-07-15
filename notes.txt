@@ -20,15 +20,18 @@ immediate
     - notes page - tbd - immediate
         - delete function - optional
             - location of cursor function - optional
-        - maintain length of text - done
-            - method one 
-                - calculate length of text based off of characters inputted
+        - maintain length of text - tbd - immediate
+            - the counters need to be global values because js handles memory addressing on its own with 
+            out allowing for the developer to change the value stored at a certain address passing changing 
+            values from different local scopes is an issue and will not change the value itself
             - counter used instead
                 - this counter limit needs to account for different width of characters - tbd - optional
                 - a char map needs to be created of each char st each char wont exceed the max
                 length of the text. note that standard was set for a row of a's in lowercase
                     - this could be simplified if the width of the pre tag adjusts to the 
                     length of the text in it but isnt possible in js
+                    - most letters are the same width except m and w the two of which have similar sizes
+                    - single digits all have similar width however are smaller than the smallest letter 
         - maintain height of text - done
             - add in scroll wheel if lines exceed two - optional
     - refactor js (2) - tbd - immediate
