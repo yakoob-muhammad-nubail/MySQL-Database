@@ -1,5 +1,6 @@
 // could format for thinner header
 // all css setup and eventlisteners
+
 // nav menu
 var mainNavbarHeaderMenu = document.getElementById("main_navbar_header_menu");
 var mainNavbarHeaderMenuContainer = document.getElementById("main_navbar_header_menu_container");
@@ -18,8 +19,21 @@ var mainNavbarHeaderNavAccountText = document.getElementById("main_navbar_header
 
 var width, height; // throw in preset values and object
 
+var stringEntry = "";
+var stringTitle = "";
+var currentString = "";
+var stringType = "ENTRY";
+var caseState = "LOWER";
+var shiftCase = false;
+var switchCase = false;
+var numberCase = false;
+var counter1 = 0;
+var line1 = 1; // if the line count exceeds two then throw in scroll wheel
+var counter2 = 0;
+var line2 = 1;
+
 const navMenu = {
-    navContainerHeight: 100,
+    navContainerHeight: 90,
     mainNavbarHeaderNavTextWidth: 100,
     clickedMenuButtonState: false,
     clickedMoreItemsState: false
@@ -33,8 +47,8 @@ mainNavbar.style.width = width + "px";
 mainNavbarHeader.style.width = width + "px";
 mainNavbarHeader.style.height = navMenu.navContainerHeight + "px";
 
-mainNavbarHeader.style.top = -10 + "px";
-mainNavbarHeader.style.left = -10 + "px";
+mainNavbarHeader.style.top = 0 + "px";
+mainNavbarHeader.style.left = 0 + "px";
 
 width = 100;
 mainNavbarHeaderMenuContainer.style.width = width + "px";
@@ -48,20 +62,20 @@ mainNavbarHeaderLogoContainer.style.width = width + "px";
 mainNavbarHeaderLogoContainer.style.height = navMenu.navContainerHeight + "px";
 
 mainNavbarHeaderLogoContainer.style.left = 100 + "px";
-mainNavbarHeaderLogoContainer.style.top = -100 + "px";
+mainNavbarHeaderLogoContainer.style.top = -90 + "px";
 
 width = -50;
 mainNavbarHeaderLogo.style.left = width + "px";
-mainNavbarHeaderLogo.style.top = -50 + "px";
+mainNavbarHeaderLogo.style.top = -55 + "px";
 
 mainNavbarHeaderTextContainer.style.left = 200 + "px";
-mainNavbarHeaderTextContainer.style.top = -225 + "px";
+mainNavbarHeaderTextContainer.style.top = -215 + "px";
 mainNavbarHeaderTextContainer.style.width = 250 + "px";
 
 mainNavbarHeaderNavContainer.style.width = 500 + "px";
 mainNavbarHeaderNavContainer.style.height = 25 + "px";
-mainNavbarHeaderNavContainer.style.left = 550 + "px";
-mainNavbarHeaderNavContainer.style.top = -315 + "px";
+mainNavbarHeaderNavContainer.style.left = 580 + "px";
+mainNavbarHeaderNavContainer.style.top = -305 + "px";
 
 mainNavbarHeaderNavSearchLogoContainer.style.width = 500 + "px";
 mainNavbarHeaderNavSearchLogoContainer.style.height = 25 + "px";
@@ -77,11 +91,11 @@ mainNavbarHeaderNavSearchText.style.top = -112 + "px";
 
 mainNavbarHeaderNavAboutText.style.width = navMenu.mainNavbarHeaderNavTextWidth + "px";
 mainNavbarHeaderNavAboutText.style.left = window.innerWidth - 825 + "px";
-mainNavbarHeaderNavAboutText.style.top = -35 + "px";
+mainNavbarHeaderNavAboutText.style.top = -40 + "px";
 
 mainNavbarHeaderNavAccountText.style.width = navMenu.mainNavbarHeaderNavTextWidth + "px";
 mainNavbarHeaderNavAccountText.style.left = window.innerWidth - 700 + "px";
-mainNavbarHeaderNavAccountText.style.top = -73 + "px"; //38
+mainNavbarHeaderNavAccountText.style.top = -78 + "px"; //38
 
 mainNavbarHeaderLogo.addEventListener("mouseover", function hoverOverLogo() {
     // mainNavbarHeaderLogo.src = "../static/images/logo250_highlight.png";
@@ -152,15 +166,16 @@ const sideMenuOpen = {
     widthLogoSidemenu: 200, // image is loaded in first then css is applied (scaling down)
     heightSidemenu: window.innerHeight - navMenu.navContainerHeight,
     topSidemenu: -70,
-    leftSidemenu: -60,
+    leftSidemenu: -48,
     widthTextSideMenu: 100,
-    leftTextSideMenu: 75,
+    leftTextSideMenu: 100,
     topTextSideMenu: -198
     // boxShadowSideMenu: "10px 0 5px -2px #888"
 };
 
 const sideMenuClosed = {
-    widthSideMenu: 50
+    widthSideMenu: 50,
+    leftSideMenu: 25
 };
 
 sidemenu.style.width = sideMenuClosed.widthSideMenu + "px";
@@ -177,24 +192,28 @@ sidemenuNotesLogo.style.left = sideMenuOpen.leftSidemenu + "px";
 
 sidemenuRemindersContainer.style.width = sideMenuOpen.widthSideMenu + "px";
 sidemenuRemindersContainer.style.height = 50 + "px";
+sidemenuRemindersContainer.style.left = sideMenuClosed.leftSideMenu + "px";
 sidemenuRemindersLogo.style.width = sideMenuOpen.widthLogoSidemenu + "px";
 sidemenuRemindersLogo.style.top = sideMenuOpen.topSidemenu + "px";
 sidemenuRemindersLogo.style.left = sideMenuOpen.leftSidemenu + "px";
 
 sidemenuEditLabelsContainer.style.width = sideMenuOpen.widthSideMenu + "px";
 sidemenuEditLabelsContainer.style.height = 50 + "px";
+sidemenuEditLabelsContainer.style.left = sideMenuClosed.leftSideMenu + "px";
 sidemenuEditLabelsLogo.style.width = sideMenuOpen.widthLogoSidemenu + "px";
 sidemenuEditLabelsLogo.style.top = sideMenuOpen.topSidemenu + "px";
 sidemenuEditLabelsLogo.style.left = sideMenuOpen.leftSidemenu + "px";
 
 sidemenuArchivesContainer.style.width = sideMenuOpen.widthSideMenu + "px";
 sidemenuArchivesContainer.style.height = 50 + "px";
+sidemenuArchivesContainer.style.left = sideMenuClosed.leftSideMenu + "px";
 sidemenuArchivesLogo.style.width = sideMenuOpen.widthLogoSidemenu + "px";
 sidemenuArchivesLogo.style.top = sideMenuOpen.topSidemenu + "px";
 sidemenuArchivesLogo.style.left = sideMenuOpen.leftSidemenu + "px";
 
 sidemenuTrashContainer.style.width = sideMenuOpen.widthSideMenu + "px";
 sidemenuTrashContainer.style.height = 50 + "px";
+sidemenuTrashContainer.style.left = sideMenuClosed.leftSideMenu + "px";
 sidemenuTrashLogo.style.width = sideMenuOpen.widthLogoSidemenu + "px";
 sidemenuTrashLogo.style.top = sideMenuOpen.topSidemenu + "px";
 sidemenuTrashLogo.style.left = sideMenuOpen.leftSidemenu + "px";
@@ -271,7 +290,6 @@ sidemenuNotesLogo.addEventListener("mouseout", function hoverOverSideMenu() {
     sidemenuNotesText.style.color = "black";
 });
 
-//
 sidemenuRemindersText.addEventListener("mouseover", function hoverOverSideMenu() {
     sidemenuRemindersText.style.color = "blue";
 });
@@ -593,19 +611,6 @@ function openMoreItemsMenu() {
     }
 }
 
-var stringEntry = "";
-var stringTitle = "";
-var currentString = "";
-var stringType = "ENTRY";
-var caseState = "LOWER";
-var shiftCase = false;
-var switchCase = false;
-var numberCase = false;
-var counter1 = 0;
-var line1 = 1; // if the line count exceeds two then throw in scroll wheel
-var counter2 = 0;
-var line2 = 1;
-
 const keyCodeMap = {
     // Lowercase letters
     97: "a", 98: "b", 99: "c", 100: "d", 101: "e",
@@ -632,11 +637,11 @@ function handleKey(e) {
 
     if (stringType) {
         if (stringType == "ENTRY") {
-            console.log(counter1);
-            console.log(line1);
+            // console.log(counter1);
+            // console.log(line1);
 
-            console.log(charCode);
-            console.log(key);
+            // console.log(charCode);
+            // console.log(key);
 
             if (sortKeyEntry(charCode)) {
                 key = getKey(charCode);
@@ -651,11 +656,11 @@ function handleKey(e) {
             }
 
         } else if (stringType == "TITLE") {
-            console.log(counter2);
-            console.log(line2);
+            // console.log(counter2);
+            // console.log(line2);
 
-            console.log(charCode);
-            console.log(key);
+            // console.log(charCode);
+            // console.log(key);
 
             if (sortKeyTitle(charCode)) {
                 key = getKey(charCode);
@@ -669,10 +674,10 @@ function handleKey(e) {
                 handleSpecialKeys(charCode);
             }
         } else {
-            console.log("incorrect value for stringType : " + stringType);
+            // console.log("incorrect value for stringType : " + stringType);
         }
     } else {
-        console.log("stringType is null or empty : " + stringType);
+        // console.log("stringType is null or empty : " + stringType);
     }
 
     updateString();
@@ -685,7 +690,7 @@ function sortKeyEntry(charCode) {
             numberCase = false;
 
             caseState === "UPPER" ? counter1 += 1.2 : counter1++;
-            console.log(counter1);
+            // console.log(counter1);
 
             return true;
         } else if (charCode >= 48 && charCode <= 57) {
@@ -693,7 +698,7 @@ function sortKeyEntry(charCode) {
             caseState = "NUMBER";
 
             counter1++;
-            console.log(counter1);
+            // console.log(counter1);
 
             return true;
         } else if ([8, 9, 13, 16, 20, 32, 46].includes(charCode)) {
@@ -706,13 +711,13 @@ function sortKeyEntry(charCode) {
 }
 
 function sortKeyTitle(charCode) {
-    if (counter2 < 52) {
+    if (counter2 < 38) {
         if ((charCode >= 65 && charCode <= 90) || (charCode >= 97 && charCode <= 122)) {
 
             numberCase = false;
 
             caseState === "UPPER" ? counter2 += 1.2 : counter2++;
-            console.log(counter2);
+            // console.log(counter2);
 
             return true;
         } else if (charCode >= 48 && charCode <= 57) {
@@ -720,7 +725,7 @@ function sortKeyTitle(charCode) {
             caseState = "NUMBER";
 
             counter2++;
-            console.log(counter2);
+            // console.log(counter2);
 
             return true;
         } else if ([8, 9, 13, 16, 20, 32, 46].includes(charCode)) {
@@ -749,15 +754,15 @@ function handleSpecialKeys(charCode) {
                 if (stringType) {
                     if (stringType == "ENTRY") {
                         counter1 -= 1;
-                        console.log(counter1);
+                        // console.log(counter1);
                     } else if (stringType == "TITLE") {
                         counter2 -= 1;
-                        console.log(counter2);
+                        // console.log(counter2);
                     } else {
-                        console.log("incorrect value for stringType : " + stringType);
+                        // console.log("incorrect value for stringType : " + stringType);
                     }
                 } else {
-                    console.log("stringType is null or empty : " + stringType);
+                    // console.log("stringType is null or empty : " + stringType);
                 }
 
             }
@@ -773,10 +778,10 @@ function handleSpecialKeys(charCode) {
                     counter2 += 3;
                     console.log(counter2);
                 } else {
-                    console.log("incorrect value for stringType : " + stringType);
+                    // console.log("incorrect value for stringType : " + stringType);
                 }
             } else {
-                console.log("stringType is null or empty : " + stringType);
+                // console.log("stringType is null or empty : " + stringType);
             }
 
             break;
@@ -788,22 +793,22 @@ function handleSpecialKeys(charCode) {
                         currentString += "\n";
                         counter1 = 0;
                         line1++;
-                        console.log(counter1);
-                        console.log(line1);
+                        // console.log(counter1);
+                        // console.log(line1);
                     }
                 } else if (stringType == "TITLE") {
                     if (line2 < 2) {
                         currentString += "\n";
                         counter2 = 0;
                         line2++;
-                        console.log(counter2);
-                        console.log(line2);
+                        // console.log(counter2);
+                        // console.log(line2);
                     }
                 } else {
-                    console.log("incorrect value for stringType : " + stringType);
+                    // console.log("incorrect value for stringType : " + stringType);
                 }
             } else {
-                console.log("stringType is null or empty : " + stringType);
+                // console.log("stringType is null or empty : " + stringType);
             }
 
             break;
@@ -834,7 +839,7 @@ function updateString() {
         stringTitle = currentString;
         clickedEntryBoxTitleText.innerHTML = stringTitle;
     } else {
-        console.log("incorrect stringType : " + stringType);
+        // console.log("incorrect stringType : " + stringType);
     }
 }
 
@@ -847,12 +852,18 @@ function handleMouseDownEventForEntryBox() {
     unclickedEntryBox.style.display = "block";
     clickedEntryBoxEntryText.innerHTML = "Take a note...";
 
-    if (stringEntry || stringTitle) {
+    // Check if either stringEntry or stringTitle is not empty
+    if ((stringEntry.trim() !== "") && (stringEntry || stringTitle) || (stringTitle.trim() !== "") && (stringEntry || stringTitle)) {
         updateNotepad();
+        addNewNote(stringTitle, stringEntry);
     }
 
     stringEntry = "";
     stringTitle = "";
+    counter1 = 0;
+    line1 = 1;
+    counter2 = 0;
+    line2 = 1;
 
     clickedEntryBoxEntryText.innerHTML = "Take a note...";
     clickedEntryBoxTitleText.innerHTML = "Title";
@@ -861,6 +872,8 @@ function handleMouseDownEventForEntryBox() {
     notepad.style.top = notepadClose.notepadTop + "px";
     notepad.style.width = notepadClose.notepadWidth + "px";
     notepad.style.height = notepadClose.notepadHeight + "px";
+
+    noteSlipsContainer.style.top = 60 + "px";
 }
 
 function handleMouseDownEventForUnclickedBox() {
@@ -872,10 +885,12 @@ function handleMouseDownEventForUnclickedBox() {
     clickedEntryBoxClose.style.top = notepadOpenMoreClicked.closeTop + "px";
     notepad.style.width = notepadOpen.notepadWidth + "px";
     notepad.style.height = notepadOpen.notepadHeight + "px";
+
+    noteSlipsContainer.style.top = 140 + "px";
 }
 
 function handleEntryBoxClick() {
-    console.log("Entry box clicked, enabling keydown event.");
+    // console.log("Entry box clicked, enabling keydown event.");
     currentString = stringEntry;
     stringType = "ENTRY";
     window.removeEventListener("keydown", readAndTypeTextTitle);
@@ -883,7 +898,7 @@ function handleEntryBoxClick() {
 }
 
 function handleTitleBoxClick() {
-    console.log("Title box clicked, enabling keydown event.");
+    // console.log("Title box clicked, enabling keydown event.");
     currentString = stringTitle;
     stringType = "TITLE";
     window.removeEventListener("keydown", readAndTypeTextEntry);
@@ -912,13 +927,103 @@ clickedEntryBoxTitleText.addEventListener("mousedown", handleTitleBoxClick);
 var noteSlipsContainer = document.getElementById("note_slips_container");
 
 const noteSlips = {
-    noteSlipsContainerLeft: -315,
+    noteSlipsContainerLeft: -300,
     noteSlipsContainerTop: 70,
-    noteSlipsContainerWidth: window.innerWidth - 214,
-    noteSlipsContainerHeight: window.innerHeight - notepadClose.notepadHeight - notepadClose.notepadTop - 30
+    noteSlipsContainerWidth: window.innerWidth,
+    noteSlipsContainerHeight: window.innerHeight - notepadClose.notepadHeight - notepadClose.notepadTop,
+    counter: 0
 };
 
 noteSlipsContainer.style.left = noteSlips.noteSlipsContainerLeft + "px";
 noteSlipsContainer.style.top = noteSlips.noteSlipsContainerTop + "px";
 noteSlipsContainer.style.width = noteSlips.noteSlipsContainerWidth + "px";
 noteSlipsContainer.style.height = noteSlips.noteSlipsContainerHeight + "px";
+
+function addNewNote(title, entry) {
+    const createDiv = document.createElement("div");
+    noteSlips.counter++;
+
+    // Create title element
+    if (title) {
+        const titleElement = document.createElement("pre");
+        const titleText = document.createTextNode(title);
+
+        titleElement.appendChild(titleText);
+        titleElement.style.fontFamily = "Arial, Helvetica, sans-serif";
+        titleElement.style.margin = "10px";
+        titleElement.style.boxSizing = "border-box";
+        titleElement.style.display = "block";
+        titleElement.style.whiteSpace = "pre-wrap";
+        titleElement.style.overflowWrap = "break-word";
+
+        createDiv.appendChild(titleElement);
+    }
+
+    // Create entry element
+    if (entry) {
+        const entryElement = document.createElement("pre");
+        const entryText = document.createTextNode(entry);
+
+        entryElement.appendChild(entryText);
+        entryElement.style.fontFamily = "Arial, Helvetica, sans-serif";
+        entryElement.style.margin = "10px";
+        entryElement.style.boxSizing = "border-box";
+        entryElement.style.display = "block";
+        entryElement.style.whiteSpace = "pre-wrap";
+        entryElement.style.overflowWrap = "break-word";
+
+        createDiv.appendChild(entryElement);
+    }
+
+    // Append new div to the note_slips container
+    // Style the new div
+    createDiv.style.backgroundColor = "white";
+    createDiv.style.width = "400px";
+    createDiv.style.height = "200px"; // Change height to auto to adjust based on content
+    createDiv.style.margin = "10px";
+    createDiv.style.padding = "10px";
+    createDiv.style.boxSizing = "border-box";
+    createDiv.style.borderRadius = "15px"; // Add rounded corners
+    createDiv.style.boxShadow = "0 0 5px #000000";
+    createDiv.style.overflow = "hidden";
+    createDiv.style.position = "absolute";
+    createDiv.className = "note_slip_" + noteSlips.counter;
+    createDiv.id = "note_slip_" + noteSlips.counter;
+    //createDiv.style.paddingRight = "20px";
+
+    document.getElementById("note_slips_container").appendChild(createDiv);
+
+    console.log("adding note : " + noteSlips.counter);
+    setNotePosition(noteSlips.counter);
+}
+
+function setNotePosition(counter) {
+    const noteDiv = document.getElementById("note_slip_" + counter);
+    switch (counter) {
+        case 1:
+            break;
+        case 2:
+            noteDiv.style.left = "425px";
+            noteDiv.style.top = "0px";
+            break;
+        case 3:
+            noteDiv.style.left = "850px";
+            noteDiv.style.top = "0px";
+            break;
+        case 4:
+            noteDiv.style.left = "0px";
+            noteDiv.style.top = "225px";
+            break;
+        case 5:
+            noteDiv.style.left = "425px";
+            noteDiv.style.top = "225px";
+            break;
+        case 6:
+            noteDiv.style.left = "850px";
+            noteDiv.style.top = "225px";
+            break;
+        default:
+            console.log("notes full");
+            break;
+    }
+}

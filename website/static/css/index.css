@@ -1,4 +1,8 @@
 /* root {}*/
+* {
+    box-sizing: border-box;
+}
+
 body {
     background-color: white;
     position: relative;
@@ -6,6 +10,7 @@ body {
     user-select: none;
     z-index: 0;
     overflow: hidden;
+    margin: 0;
 }
 
 /* navigation menu */
@@ -20,12 +25,11 @@ body {
 }
 
 .main_navbar_header_menu_container {
-    /* background-color: red; */
+    /* background-color: blue; */
     position: relative;
 }
 
 .main_navbar_header_menu {
-    /* background-color: blueviolet; */
     position: relative;
     transform: scale(0.15);
 }
@@ -46,7 +50,6 @@ body {
 }
 
 .main_navbar_header_text {
-    /* background-color: blue; */
     position: relative;
     font-size: 50px;
 }
