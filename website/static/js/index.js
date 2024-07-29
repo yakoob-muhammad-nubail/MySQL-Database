@@ -936,13 +936,13 @@ const noteSlips = {
     discrepencyx: 0,
     discrepencyy: 0,
     discrepencyxtext: 0,
-    discrepencyytext: 0,
-    clickedMenuButtonStateOne: false,
-    clickedMenuButtonStateTwo: false,
-    clickedMenuButtonStateThree: false,
-    clickedMenuButtonStateFour: false,
-    clickedMenuButtonStateFive: false,
-    clickedMenuButtonStateSix: false
+    iscrepencyytext: 0 //,
+    // clickedMenuButtonStateOne: false,
+    // clickedMenuButtonStateTwo: false,
+    // clickedMenuButtonStateThree: false,
+    // clickedMenuButtonStateFour: false,
+    // clickedMenuButtonStateFive: false,
+    // clickedMenuButtonStateSix: false
 };
 
 noteSlipsContainer.style.left = noteSlips.noteSlipsContainerLeft + "px";
@@ -1211,31 +1211,6 @@ function addNewNote(title, entry) {
     createDiv.appendChild(archiveButtonContainer);
     createDiv.appendChild(moreButtonContainer);
     noteSlipsContainer.appendChild(createDiv);
-}
-
-function updateNoteSlipStates() {
-    switch (noteSlips.counter) {
-        case 1:
-            noteSlips.clickedMenuButtonStateOne = true;
-            break;
-        case 2:
-            noteSlips.clickedMenuButtonStateTwo = true;
-            break;
-        case 3:
-            noteSlips.clickedMenuButtonStateThree = true;
-            break;
-        case 4:
-            noteSlips.clickedMenuButtonStateFour = true;
-            break;
-        case 5:
-            noteSlips.clickedMenuButtonStateFive = true;
-            break;
-        case 6:
-            noteSlips.clickedMenuButtonStateSix = true;
-            break;
-        default:
-            break;
-    }
 }
 
 
