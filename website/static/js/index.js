@@ -66,16 +66,16 @@ mainNavbarHeaderLogoContainer.style.top = -90 + "px";
 
 width = -50;
 mainNavbarHeaderLogo.style.left = width + "px";
-mainNavbarHeaderLogo.style.top = -55 + "px";
+mainNavbarHeaderLogo.style.top = -50 + "px";
 
 mainNavbarHeaderTextContainer.style.left = 200 + "px";
-mainNavbarHeaderTextContainer.style.top = -215 + "px";
+mainNavbarHeaderTextContainer.style.top = -208 + "px";
 mainNavbarHeaderTextContainer.style.width = 250 + "px";
 
 mainNavbarHeaderNavContainer.style.width = 500 + "px";
 mainNavbarHeaderNavContainer.style.height = 25 + "px";
 mainNavbarHeaderNavContainer.style.left = 580 + "px";
-mainNavbarHeaderNavContainer.style.top = -305 + "px";
+mainNavbarHeaderNavContainer.style.top = -300 + "px";
 
 mainNavbarHeaderNavSearchLogoContainer.style.width = 500 + "px";
 mainNavbarHeaderNavSearchLogoContainer.style.height = 25 + "px";
@@ -377,7 +377,7 @@ var unclickedEntryBoxNoteNewNoteImage = document.getElementById("unclicked_entry
 
 const notepadClose = {
     notepadLeft: window.innerWidth / 2 - 250,
-    notepadTop: 110,
+    notepadTop: 90,
     notepadWidth: 500,
     notepadHeight: 50,
     entryBoxWidth: 480,
@@ -873,7 +873,7 @@ function handleMouseDownEventForEntryBox() {
     notepad.style.width = notepadClose.notepadWidth + "px";
     notepad.style.height = notepadClose.notepadHeight + "px";
 
-    noteSlipsContainer.style.top = 60 + "px";
+    noteSlipsContainer.style.top = 70 + "px";
 }
 
 function handleMouseDownEventForUnclickedBox() {
@@ -886,7 +886,7 @@ function handleMouseDownEventForUnclickedBox() {
     notepad.style.width = notepadOpen.notepadWidth + "px";
     notepad.style.height = notepadOpen.notepadHeight + "px";
 
-    noteSlipsContainer.style.top = 140 + "px";
+    noteSlipsContainer.style.top = 150 + "px";
 }
 
 function handleEntryBoxClick() {
@@ -931,7 +931,18 @@ const noteSlips = {
     noteSlipsContainerTop: 70,
     noteSlipsContainerWidth: window.innerWidth,
     noteSlipsContainerHeight: window.innerHeight - notepadClose.notepadHeight - notepadClose.notepadTop,
-    counter: 0
+    counter: 0,
+    moreOptionsNote: false,
+    discrepencyx: 0,
+    discrepencyy: 0,
+    discrepencyxtext: 0,
+    discrepencyytext: 0,
+    clickedMenuButtonStateOne: false,
+    clickedMenuButtonStateTwo: false,
+    clickedMenuButtonStateThree: false,
+    clickedMenuButtonStateFour: false,
+    clickedMenuButtonStateFive: false,
+    clickedMenuButtonStateSix: false
 };
 
 noteSlipsContainer.style.left = noteSlips.noteSlipsContainerLeft + "px";
@@ -940,7 +951,13 @@ noteSlipsContainer.style.width = noteSlips.noteSlipsContainerWidth + "px";
 noteSlipsContainer.style.height = noteSlips.noteSlipsContainerHeight + "px";
 
 function addNewNote(title, entry) {
+    if (noteSlips.counter >= 6) {
+        console.log("Cannot add more notes. Limit reached.");
+        return;
+    }
+
     const createDiv = document.createElement("div");
+
     noteSlips.counter++;
 
     // Create title element
@@ -975,55 +992,255 @@ function addNewNote(title, entry) {
         createDiv.appendChild(entryElement);
     }
 
-    // Append new div to the note_slips container
-    // Style the new div
-    createDiv.style.backgroundColor = "white";
-    createDiv.style.width = "400px";
-    createDiv.style.height = "200px"; // Change height to auto to adjust based on content
-    createDiv.style.margin = "10px";
-    createDiv.style.padding = "10px";
-    createDiv.style.boxSizing = "border-box";
-    createDiv.style.borderRadius = "15px"; // Add rounded corners
-    createDiv.style.boxShadow = "0 0 5px #000000";
-    createDiv.style.overflow = "hidden";
-    createDiv.style.position = "absolute";
-    createDiv.className = "note_slip_" + noteSlips.counter;
-    createDiv.id = "note_slip_" + noteSlips.counter;
-    //createDiv.style.paddingRight = "20px";
-
-    document.getElementById("note_slips_container").appendChild(createDiv);
-
-    console.log("adding note : " + noteSlips.counter);
-    setNotePosition(noteSlips.counter);
-}
-
-function setNotePosition(counter) {
-    const noteDiv = document.getElementById("note_slip_" + counter);
-    switch (counter) {
+    switch (noteSlips.counter) {
         case 1:
+            noteSlips.discrepencyx = 0;
+            noteSlips.discrepencyy = 0;
+            noteSlips.clickedMenuButtonStateOne = true;
             break;
         case 2:
-            noteDiv.style.left = "425px";
-            noteDiv.style.top = "0px";
+            noteSlips.discrepencyx = 420;
+            noteSlips.discrepencyy = 0;
+            noteSlips.clickedMenuButtonStateTwo = true;
             break;
         case 3:
-            noteDiv.style.left = "850px";
-            noteDiv.style.top = "0px";
+            noteSlips.discrepencyx = 840;
+            noteSlips.discrepencyy = 0;
+            noteSlips.clickedMenuButtonStateThree = true;
             break;
         case 4:
-            noteDiv.style.left = "0px";
-            noteDiv.style.top = "225px";
+            noteSlips.discrepencyx = 0;
+            noteSlips.discrepencyy = 220;
+            noteSlips.clickedMenuButtonStateFour = true;
             break;
         case 5:
-            noteDiv.style.left = "425px";
-            noteDiv.style.top = "225px";
+            noteSlips.discrepencyx = 420;
+            noteSlips.discrepencyy = 220;
+            noteSlips.clickedMenuButtonStateFive = true;
             break;
         case 6:
-            noteDiv.style.left = "850px";
-            noteDiv.style.top = "225px";
+            noteSlips.discrepencyx = 840;
+            noteSlips.discrepencyy = 220;
+            noteSlips.clickedMenuButtonStateSix = true;
             break;
         default:
-            console.log("notes full");
+            console.log("no discrepency added")
+            break;
+    }
+
+    console.log(noteSlips.counter);
+
+    const reminderButtonContainer = document.createElement("div");
+    const reminderButton = document.createElement("img");
+    reminderButton.src = "../static/images/bell_plus.png";
+    reminderButton.style.transform = "scale(0.1)";
+    reminderButton.style.position = "absolute";
+    reminderButtonContainer.style.position = "absolute";
+    reminderButtonContainer.style.left = "-75px";
+    reminderButtonContainer.style.top = "70px";
+    reminderButtonContainer.appendChild(reminderButton);
+    createDiv.appendChild(reminderButtonContainer);
+
+    const shareButtonContainer = document.createElement("div");
+    const shareButton = document.createElement("img");
+    shareButton.src = "../static/images/person_plus.png";
+    shareButton.style.transform = "scale(0.1)";
+    shareButton.style.position = "absolute";
+    shareButtonContainer.style.position = "absolute";
+    shareButtonContainer.style.left = "-40px";
+    shareButtonContainer.style.top = "70px";
+    shareButtonContainer.appendChild(shareButton);
+    createDiv.appendChild(shareButtonContainer);
+
+    const backgroundButtonContainer = document.createElement("div");
+    const backgroundButton = document.createElement("img");
+    backgroundButton.src = "../static/images/paint_pallet.png";
+    backgroundButton.style.transform = "scale(0.1)";
+    backgroundButton.style.position = "absolute";
+    backgroundButtonContainer.style.position = "absolute";
+    backgroundButtonContainer.style.left = "-15px";
+    backgroundButtonContainer.style.top = "55px";
+    backgroundButtonContainer.appendChild(backgroundButton);
+    createDiv.appendChild(backgroundButtonContainer);
+
+    const imageButtonContainer = document.createElement("div");
+    const imageButton = document.createElement("img");
+    imageButton.src = "../static/images/easle.png";
+    imageButton.style.transform = "scale(0.1)";
+    imageButton.style.position = "absolute";
+    imageButtonContainer.style.position = "absolute";
+    imageButtonContainer.style.left = "40px";
+    imageButtonContainer.style.top = "72px";
+    imageButtonContainer.appendChild(imageButton);
+    createDiv.appendChild(imageButtonContainer);
+
+    const archiveButtonContainer = document.createElement("div");
+    const archiveButton = document.createElement("img");
+    archiveButton.src = "../static/images/archive.png";
+    archiveButton.style.transform = "scale(0.1)";
+    archiveButton.style.position = "absolute";
+    archiveButtonContainer.style.position = "absolute";
+    archiveButtonContainer.style.left = "80px";
+    archiveButtonContainer.style.top = "72px";
+    archiveButtonContainer.appendChild(archiveButton);
+    createDiv.appendChild(archiveButtonContainer);
+
+    const moreButtonContainer = document.createElement("div");
+    const moreButton = document.createElement("img");
+    moreButton.src = "../static/images/more.png";
+    moreButton.style.transform = "scale(0.1)";
+    moreButton.style.position = "absolute";
+    moreButtonContainer.style.position = "absolute";
+    moreButtonContainer.style.left = "115px";
+    moreButtonContainer.style.top = "73px";
+    moreButtonContainer.appendChild(moreButton);
+    createDiv.appendChild(moreButtonContainer);
+
+    const moreTextContainer = document.createElement("div");
+    const deleteText = document.createElement("p");
+    const deleteTextNode = document.createTextNode("Delete note");
+    deleteText.appendChild(deleteTextNode);
+    moreTextContainer.appendChild(deleteText);
+
+    deleteText.style.left = "10px";
+    deleteText.style.top = "0px";
+    deleteText.style.position = "absolute";
+
+    const labelText = document.createElement("p");
+    const labelTextNode = document.createTextNode("Add label");
+    labelText.appendChild(labelTextNode);
+    moreTextContainer.appendChild(labelText);
+
+    labelText.style.left = "10px";
+    labelText.style.top = "25px";
+    labelText.style.position = "absolute";
+
+    const drawingText = document.createElement("p");
+    const drawingTextNode = document.createTextNode("Add drawing");
+    drawingText.appendChild(drawingTextNode);
+    moreTextContainer.appendChild(drawingText);
+
+    drawingText.style.left = "10px";
+    drawingText.style.top = "50px";
+    drawingText.style.position = "absolute";
+
+    const copyText = document.createElement("p");
+    const copyTextNode = document.createTextNode("Make a copy");
+    copyText.appendChild(copyTextNode);
+    moreTextContainer.appendChild(copyText);
+
+    copyText.style.left = "10px";
+    copyText.style.top = "75px";
+    copyText.style.position = "absolute";
+
+    const checkboxesText = document.createElement("p");
+    const checkboxesTextNode = document.createTextNode("Show checkboxes");
+    checkboxesText.appendChild(checkboxesTextNode);
+    moreTextContainer.appendChild(checkboxesText);
+
+    checkboxesText.style.left = "10px";
+    checkboxesText.style.top = "100px";
+    checkboxesText.style.position = "absolute";
+
+    const copyDocsText = document.createElement("p");
+    const copyDocsTextNode = document.createTextNode("Copy to ____ Docs");
+    copyDocsText.appendChild(copyDocsTextNode);
+    moreTextContainer.appendChild(copyDocsText);
+
+    copyDocsText.style.left = "10px";
+    copyDocsText.style.top = "125px";
+    copyDocsText.style.position = "absolute";
+
+    const historyText = document.createElement("p");
+    const historyTextNode = document.createTextNode("Version history");
+    historyText.appendChild(historyTextNode);
+    moreTextContainer.appendChild(historyText);
+
+    historyText.style.left = "10px";
+    historyText.style.top = "150px";
+    historyText.style.position = "absolute";
+
+    moreTextContainer.style.zIndex = "7";
+    moreTextContainer.style.position = "absolute";
+    moreTextContainer.style.display = "block";
+    moreTextContainer.style.width = "155px";
+    moreTextContainer.style.height = "195px";
+    moreTextContainer.style.left = 395 + noteSlips.discrepencyx + "px";
+    moreTextContainer.style.top = 355 + noteSlips.discrepencyy + "px";
+    moreTextContainer.style.borderRadius = "15px";
+    moreTextContainer.style.boxShadow = "0 0 5px #000000";
+    moreTextContainer.style.backgroundColor = "white";
+    moreTextContainer.appendChild(deleteText);
+    moreTextContainer.appendChild(labelText);
+    moreTextContainer.appendChild(drawingText);
+    moreTextContainer.appendChild(copyText);
+    moreTextContainer.appendChild(checkboxesText);
+    moreTextContainer.appendChild(copyDocsText);
+    moreTextContainer.appendChild(historyText);
+    document.body.appendChild(moreTextContainer);
+    moreTextContainer.style.visibility = "hidden";
+
+    // More button event listener
+    moreButton.addEventListener("click", () => {
+        moreTextContainer.style.visibility =
+            moreTextContainer.style.visibility === "visible" ? "hidden" : "visible";
+    });
+
+    deleteText.addEventListener("click", () => {
+        document.body.removeChild(moreTextContainer);
+        noteSlipsContainer.removeChild(createDiv);
+        noteSlips.counter--;
+        updateNoteSlipStates();
+    });
+
+    // Position and style the createDiv
+    createDiv.style.zIndex = "2";
+    createDiv.style.position = "absolute";
+    createDiv.style.display = "block";
+    createDiv.style.width = "400px";
+    createDiv.style.height = "200px";
+    createDiv.style.left = noteSlips.discrepencyx + "px";
+    createDiv.style.top = noteSlips.discrepencyy + "px";
+    createDiv.style.borderRadius = "15px";
+    createDiv.style.boxShadow = "0 0 5px #000000";
+    createDiv.style.backgroundColor = "white";
+    createDiv.appendChild(reminderButtonContainer);
+    createDiv.appendChild(shareButtonContainer);
+    createDiv.appendChild(backgroundButtonContainer);
+    createDiv.appendChild(imageButtonContainer);
+    createDiv.appendChild(archiveButtonContainer);
+    createDiv.appendChild(moreButtonContainer);
+    noteSlipsContainer.appendChild(createDiv);
+}
+
+function updateNoteSlipStates() {
+    switch (noteSlips.counter) {
+        case 1:
+            noteSlips.clickedMenuButtonStateOne = true;
+            break;
+        case 2:
+            noteSlips.clickedMenuButtonStateTwo = true;
+            break;
+        case 3:
+            noteSlips.clickedMenuButtonStateThree = true;
+            break;
+        case 4:
+            noteSlips.clickedMenuButtonStateFour = true;
+            break;
+        case 5:
+            noteSlips.clickedMenuButtonStateFive = true;
+            break;
+        case 6:
+            noteSlips.clickedMenuButtonStateSix = true;
+            break;
+        default:
             break;
     }
 }
+
+
+
+
+
+
+
