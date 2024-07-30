@@ -936,13 +936,8 @@ const noteSlips = {
     discrepencyx: 0,
     discrepencyy: 0,
     discrepencyxtext: 0,
-    iscrepencyytext: 0 //,
-    // clickedMenuButtonStateOne: false,
-    // clickedMenuButtonStateTwo: false,
-    // clickedMenuButtonStateThree: false,
-    // clickedMenuButtonStateFour: false,
-    // clickedMenuButtonStateFive: false,
-    // clickedMenuButtonStateSix: false
+    iscrepencyytext: 0,
+    notes: []
 };
 
 noteSlipsContainer.style.left = noteSlips.noteSlipsContainerLeft + "px";
@@ -996,32 +991,26 @@ function addNewNote(title, entry) {
         case 1:
             noteSlips.discrepencyx = 0;
             noteSlips.discrepencyy = 0;
-            noteSlips.clickedMenuButtonStateOne = true;
             break;
         case 2:
             noteSlips.discrepencyx = 420;
             noteSlips.discrepencyy = 0;
-            noteSlips.clickedMenuButtonStateTwo = true;
             break;
         case 3:
             noteSlips.discrepencyx = 840;
             noteSlips.discrepencyy = 0;
-            noteSlips.clickedMenuButtonStateThree = true;
             break;
         case 4:
             noteSlips.discrepencyx = 0;
             noteSlips.discrepencyy = 220;
-            noteSlips.clickedMenuButtonStateFour = true;
             break;
         case 5:
             noteSlips.discrepencyx = 420;
             noteSlips.discrepencyy = 220;
-            noteSlips.clickedMenuButtonStateFive = true;
             break;
         case 6:
             noteSlips.discrepencyx = 840;
             noteSlips.discrepencyy = 220;
-            noteSlips.clickedMenuButtonStateSix = true;
             break;
         default:
             console.log("no discrepency added")
@@ -1167,6 +1156,8 @@ function addNewNote(title, entry) {
     moreTextContainer.style.height = "195px";
     moreTextContainer.style.left = 395 + noteSlips.discrepencyx + "px";
     moreTextContainer.style.top = 355 + noteSlips.discrepencyy + "px";
+    moreTextContainer.className = "more_text_container" + noteSlips.counter;
+    moreTextContainer.id = "more_text_container" + noteSlips.counter;
     moreTextContainer.style.borderRadius = "15px";
     moreTextContainer.style.boxShadow = "0 0 5px #000000";
     moreTextContainer.style.backgroundColor = "white";
@@ -1190,7 +1181,7 @@ function addNewNote(title, entry) {
         document.body.removeChild(moreTextContainer);
         noteSlipsContainer.removeChild(createDiv);
         noteSlips.counter--;
-        updateNoteSlipStates();
+        updateNoteSlipStates(createDiv.id, noteSlips.counter, noteSlips.notes.length);
     });
 
     // Position and style the createDiv
@@ -1201,9 +1192,15 @@ function addNewNote(title, entry) {
     createDiv.style.height = "200px";
     createDiv.style.left = noteSlips.discrepencyx + "px";
     createDiv.style.top = noteSlips.discrepencyy + "px";
+    createDiv.className = "note_slip_" + noteSlips.counter;
+    createDiv.id = "note_slip_" + noteSlips.counter;
     createDiv.style.borderRadius = "15px";
     createDiv.style.boxShadow = "0 0 5px #000000";
     createDiv.style.backgroundColor = "white";
+
+    noteSlips.notes.push("note_slip_" + noteSlips.counter);
+    //console.log(noteSlips.notes);
+
     createDiv.appendChild(reminderButtonContainer);
     createDiv.appendChild(shareButtonContainer);
     createDiv.appendChild(backgroundButtonContainer);
@@ -1213,6 +1210,377 @@ function addNewNote(title, entry) {
     noteSlipsContainer.appendChild(createDiv);
 }
 
+function updateNoteSlipStates(id, counter, length) {
+    console.log("");
+    console.log(id);
+    console.log(counter);
+    console.log(length);
+    var string = "";
+
+    switch (id) {
+        case "note_slip_1":
+            noteSlips.notes.splice(0, 1);
+            console.log(noteSlips.notes);
+
+            for (let i = 0; i < length - 1; i++) {
+
+                string = "note_slip_" + (i + 1);
+                console.log("string : ", string);
+
+                document.getElementById("note_slip_" + (i + 2)).className = string;
+                document.getElementById("note_slip_" + (i + 2)).id = string;
+
+                string = "more_text_container" + (i + 1);
+                console.log("string : ", string);
+
+                document.getElementById("more_text_container" + (i + 2)).className = string;
+                document.getElementById("more_text_container" + (i + 2)).id = string;
+            }
+
+            for (let i = 0; i < length - 1; i++) {
+
+                switch (i) {
+                    case 0:
+                        noteSlips.discrepencyx = 0;
+                        noteSlips.discrepencyy = 0;
+                        break;
+                    case 1:
+                        noteSlips.discrepencyx = 420;
+                        noteSlips.discrepencyy = 0;
+                        break;
+                    case 2:
+                        noteSlips.discrepencyx = 840;
+                        noteSlips.discrepencyy = 0;
+                        break;
+                    case 3:
+                        noteSlips.discrepencyx = 0;
+                        noteSlips.discrepencyy = 220;
+                        break;
+                    case 4:
+                        noteSlips.discrepencyx = 420;
+                        noteSlips.discrepencyy = 220;
+                        break;
+                    case 5:
+                        noteSlips.discrepencyx = 840;
+                        noteSlips.discrepencyy = 220;
+                        break;
+                    default:
+                        console.log("no discrepency added")
+                        break;
+                }
+
+                document.getElementById("note_slip_" + (i + 1)).style.left = noteSlips.discrepencyx + "px";
+                document.getElementById("note_slip_" + (i + 1)).style.top = noteSlips.discrepencyy + "px";
+                document.getElementById("more_text_container" + (i + 1)).style.left = 395 + noteSlips.discrepencyx + "px";
+                document.getElementById("more_text_container" + (i + 1)).style.top = 355 + noteSlips.discrepencyy + "px";
+            }
+
+            break;
+        case "note_slip_2":
+            noteSlips.notes.splice(1, 1);
+            console.log(noteSlips.notes);
+            console.log("second note deleted");
+
+            for (let i = 0; i < length; i++) {
+
+                if (i > 1) {
+                    string = "note_slip_" + (i);
+                    console.log("string : ", string);
+
+                    document.getElementById("note_slip_" + (i + 1)).className = string;
+                    document.getElementById("note_slip_" + (i + 1)).id = string;
+
+                    string = "more_text_container" + (i);
+                    console.log("string : ", string);
+
+                    document.getElementById("more_text_container" + (i + 1)).className = string;
+                    document.getElementById("more_text_container" + (i + 1)).id = string;
+                }
+            }
+
+            for (let i = 0; i < length - 1; i++) {
+                console.log(i);
+
+                switch (i) {
+                    case 0:
+                        noteSlips.discrepencyx = 0;
+                        noteSlips.discrepencyy = 0;
+                        break;
+                    case 1:
+                        noteSlips.discrepencyx = 420;
+                        noteSlips.discrepencyy = 0;
+                        break;
+                    case 2:
+                        noteSlips.discrepencyx = 840;
+                        noteSlips.discrepencyy = 0;
+                        break;
+                    case 3:
+                        noteSlips.discrepencyx = 0;
+                        noteSlips.discrepencyy = 220;
+                        break;
+                    case 4:
+                        noteSlips.discrepencyx = 420;
+                        noteSlips.discrepencyy = 220;
+                        break;
+                    case 5:
+                        noteSlips.discrepencyx = 840;
+                        noteSlips.discrepencyy = 220;
+                        break;
+                    default:
+                        console.log("no discrepency added")
+                        break;
+                }
+
+                document.getElementById("note_slip_" + (i + 1)).style.left = noteSlips.discrepencyx + "px";
+                document.getElementById("note_slip_" + (i + 1)).style.top = noteSlips.discrepencyy + "px";
+                document.getElementById("more_text_container" + (i + 1)).style.left = 395 + noteSlips.discrepencyx + "px";
+                document.getElementById("more_text_container" + (i + 1)).style.top = 355 + noteSlips.discrepencyy + "px";
+            }
+
+            break;
+        case "note_slip_3":
+            noteSlips.notes.splice(2, 1);
+            console.log(noteSlips.notes);
+            console.log("third note deleted");
+
+            for (let i = 0; i < length; i++) {
+
+                if (i > 2) {
+                    string = "note_slip_" + (i);
+                    console.log("string : ", string);
+
+                    document.getElementById("note_slip_" + (i + 1)).className = string;
+                    document.getElementById("note_slip_" + (i + 1)).id = string;
+
+                    string = "more_text_container" + (i);
+                    console.log("string : ", string);
+
+                    document.getElementById("more_text_container" + (i + 1)).className = string;
+                    document.getElementById("more_text_container" + (i + 1)).id = string;
+                }
+            }
+
+            for (let i = 0; i < length - 1; i++) {
+
+                switch (i) {
+                    case 0:
+                        noteSlips.discrepencyx = 0;
+                        noteSlips.discrepencyy = 0;
+                        break;
+                    case 1:
+                        noteSlips.discrepencyx = 420;
+                        noteSlips.discrepencyy = 0;
+                        break;
+                    case 2:
+                        noteSlips.discrepencyx = 840;
+                        noteSlips.discrepencyy = 0;
+                        break;
+                    case 3:
+                        noteSlips.discrepencyx = 0;
+                        noteSlips.discrepencyy = 220;
+                        break;
+                    case 4:
+                        noteSlips.discrepencyx = 420;
+                        noteSlips.discrepencyy = 220;
+                        break;
+                    case 5:
+                        noteSlips.discrepencyx = 840;
+                        noteSlips.discrepencyy = 220;
+                        break;
+                    default:
+                        console.log("no discrepency added")
+                        break;
+                }
+
+                document.getElementById("note_slip_" + (i + 1)).style.left = noteSlips.discrepencyx + "px";
+                document.getElementById("note_slip_" + (i + 1)).style.top = noteSlips.discrepencyy + "px";
+                document.getElementById("more_text_container" + (i + 1)).style.left = 395 + noteSlips.discrepencyx + "px";
+                document.getElementById("more_text_container" + (i + 1)).style.top = 355 + noteSlips.discrepencyy + "px";
+            }
+
+            break;
+        case "note_slip_4":
+            noteSlips.notes.splice(3, 1);
+            console.log(noteSlips.notes);
+
+            for (let i = 0; i < length; i++) {
+
+                if (i > 3) {
+                    string = "note_slip_" + (i);
+                    console.log("string : ", string);
+
+                    document.getElementById("note_slip_" + (i + 1)).className = string;
+                    document.getElementById("note_slip_" + (i + 1)).id = string;
+
+                    string = "more_text_container" + (i);
+                    console.log("string : ", string);
+
+                    document.getElementById("more_text_container" + (i + 1)).className = string;
+                    document.getElementById("more_text_container" + (i + 1)).id = string;
+                }
+            }
+
+            for (let i = 0; i < length - 1; i++) {
+
+                switch (i) {
+                    case 0:
+                        noteSlips.discrepencyx = 0;
+                        noteSlips.discrepencyy = 0;
+                        break;
+                    case 1:
+                        noteSlips.discrepencyx = 420;
+                        noteSlips.discrepencyy = 0;
+                        break;
+                    case 2:
+                        noteSlips.discrepencyx = 840;
+                        noteSlips.discrepencyy = 0;
+                        break;
+                    case 3:
+                        noteSlips.discrepencyx = 0;
+                        noteSlips.discrepencyy = 220;
+                        break;
+                    case 4:
+                        noteSlips.discrepencyx = 420;
+                        noteSlips.discrepencyy = 220;
+                        break;
+                    case 5:
+                        noteSlips.discrepencyx = 840;
+                        noteSlips.discrepencyy = 220;
+                        break;
+                    default:
+                        console.log("no discrepency added")
+                        break;
+                }
+
+                document.getElementById("note_slip_" + (i + 1)).style.left = noteSlips.discrepencyx + "px";
+                document.getElementById("note_slip_" + (i + 1)).style.top = noteSlips.discrepencyy + "px";
+                document.getElementById("more_text_container" + (i + 1)).style.left = 395 + noteSlips.discrepencyx + "px";
+                document.getElementById("more_text_container" + (i + 1)).style.top = 355 + noteSlips.discrepencyy + "px";
+            }
+
+            break;
+        case "note_slip_5":
+            noteSlips.notes.splice(4, 1);
+            console.log(noteSlips.notes);
+
+            for (let i = 0; i < length; i++) {
+
+                if (i > 4) {
+                    string = "note_slip_" + (i);
+                    console.log("string : ", string);
+
+                    document.getElementById("note_slip_" + (i + 1)).className = string;
+                    document.getElementById("note_slip_" + (i + 1)).id = string;
+
+                    string = "more_text_container" + (i);
+                    console.log("string : ", string);
+
+                    document.getElementById("more_text_container" + (i + 1)).className = string;
+                    document.getElementById("more_text_container" + (i + 1)).id = string;
+                }
+            }
+
+            for (let i = 0; i < length - 1; i++) {
+
+                switch (i) {
+                    case 0:
+                        noteSlips.discrepencyx = 0;
+                        noteSlips.discrepencyy = 0;
+                        break;
+                    case 1:
+                        noteSlips.discrepencyx = 420;
+                        noteSlips.discrepencyy = 0;
+                        break;
+                    case 2:
+                        noteSlips.discrepencyx = 840;
+                        noteSlips.discrepencyy = 0;
+                        break;
+                    case 3:
+                        noteSlips.discrepencyx = 0;
+                        noteSlips.discrepencyy = 220;
+                        break;
+                    case 4:
+                        noteSlips.discrepencyx = 420;
+                        noteSlips.discrepencyy = 220;
+                        break;
+                    case 5:
+                        noteSlips.discrepencyx = 840;
+                        noteSlips.discrepencyy = 220;
+                        break;
+                    default:
+                        console.log("no discrepency added")
+                        break;
+                }
+
+                document.getElementById("note_slip_" + (i + 1)).style.left = noteSlips.discrepencyx + "px";
+                document.getElementById("note_slip_" + (i + 1)).style.top = noteSlips.discrepencyy + "px";
+                document.getElementById("more_text_container" + (i + 1)).style.left = 395 + noteSlips.discrepencyx + "px";
+                document.getElementById("more_text_container" + (i + 1)).style.top = 355 + noteSlips.discrepencyy + "px";
+            }
+
+            break;
+        case "note_slip_6":
+            noteSlips.notes.splice(5, 1);
+            console.log(noteSlips.notes);
+
+            for (let i = 0; i < length; i++) {
+
+                if (i > 5) {
+                    string = "note_slip_" + (i);
+                    console.log("string : ", string);
+
+                    document.getElementById("note_slip_" + (i + 1)).className = string;
+                    document.getElementById("note_slip_" + (i + 1)).id = string;
+
+                    string = "more_text_container" + (i);
+                    console.log("string : ", string);
+
+                    document.getElementById("more_text_container" + (i + 1)).className = string;
+                    document.getElementById("more_text_container" + (i + 1)).id = string;
+                }
+            }
+
+            for (let i = 0; i < length - 1; i++) {
+
+                switch (i) {
+                    case 0:
+                        noteSlips.discrepencyx = 0;
+                        noteSlips.discrepencyy = 0;
+                        break;
+                    case 1:
+                        noteSlips.discrepencyx = 420;
+                        noteSlips.discrepencyy = 0;
+                        break;
+                    case 2:
+                        noteSlips.discrepencyx = 840;
+                        noteSlips.discrepencyy = 0;
+                        break;
+                    case 3:
+                        noteSlips.discrepencyx = 0;
+                        noteSlips.discrepencyy = 220;
+                        break;
+                    case 4:
+                        noteSlips.discrepencyx = 420;
+                        noteSlips.discrepencyy = 220;
+                        break;
+                    case 5:
+                        noteSlips.discrepencyx = 840;
+                        noteSlips.discrepencyy = 220;
+                        break;
+                    default:
+                        console.log("no discrepency added")
+                        break;
+                }
+
+                document.getElementById("note_slip_" + (i + 1)).style.left = noteSlips.discrepencyx + "px";
+                document.getElementById("note_slip_" + (i + 1)).style.top = noteSlips.discrepencyy + "px";
+                document.getElementById("more_text_container" + (i + 1)).style.left = 395 + noteSlips.discrepencyx + "px";
+                document.getElementById("more_text_container" + (i + 1)).style.top = 355 + noteSlips.discrepencyy + "px";
+            }
+
+            break;
+    }
+}
 
 
 
