@@ -952,21 +952,21 @@ function addNewNote(title, entry) {
     }
 
     const createDiv = document.createElement("div");
-
     noteSlips.counter++;
 
     // Create title element
     if (title) {
         const titleElement = document.createElement("pre");
-        const titleText = document.createTextNode(title);
+        titleElement.textContent = title;
 
-        titleElement.appendChild(titleText);
-        titleElement.style.fontFamily = "Arial, Helvetica, sans-serif";
-        titleElement.style.margin = "10px";
-        titleElement.style.boxSizing = "border-box";
-        titleElement.style.display = "block";
-        titleElement.style.whiteSpace = "pre-wrap";
-        titleElement.style.overflowWrap = "break-word";
+        Object.assign(titleElement.style, {
+            fontFamily: "Arial, Helvetica, sans-serif",
+            margin: "10px",
+            boxSizing: "border-box",
+            display: "block",
+            whiteSpace: "pre-wrap",
+            overflowWrap: "break-word"
+        });
 
         createDiv.appendChild(titleElement);
     }
@@ -974,611 +974,172 @@ function addNewNote(title, entry) {
     // Create entry element
     if (entry) {
         const entryElement = document.createElement("pre");
-        const entryText = document.createTextNode(entry);
+        entryElement.textContent = entry;
 
-        entryElement.appendChild(entryText);
-        entryElement.style.fontFamily = "Arial, Helvetica, sans-serif";
-        entryElement.style.margin = "10px";
-        entryElement.style.boxSizing = "border-box";
-        entryElement.style.display = "block";
-        entryElement.style.whiteSpace = "pre-wrap";
-        entryElement.style.overflowWrap = "break-word";
+        Object.assign(entryElement.style, {
+            fontFamily: "Arial, Helvetica, sans-serif",
+            margin: "10px",
+            boxSizing: "border-box",
+            display: "block",
+            whiteSpace: "pre-wrap",
+            overflowWrap: "break-word"
+        });
 
         createDiv.appendChild(entryElement);
     }
 
-    switch (noteSlips.counter) {
-        case 1:
-            noteSlips.discrepencyx = 0;
-            noteSlips.discrepencyy = 0;
-            break;
-        case 2:
-            noteSlips.discrepencyx = 420;
-            noteSlips.discrepencyy = 0;
-            break;
-        case 3:
-            noteSlips.discrepencyx = 840;
-            noteSlips.discrepencyy = 0;
-            break;
-        case 4:
-            noteSlips.discrepencyx = 0;
-            noteSlips.discrepencyy = 220;
-            break;
-        case 5:
-            noteSlips.discrepencyx = 420;
-            noteSlips.discrepencyy = 220;
-            break;
-        case 6:
-            noteSlips.discrepencyx = 840;
-            noteSlips.discrepencyy = 220;
-            break;
-        default:
-            console.log("no discrepency added")
-            break;
-    }
+    // Set positions based on note count
+    const positions = [
+        { x: 0, y: 0 }, { x: 420, y: 0 }, { x: 840, y: 0 },
+        { x: 0, y: 220 }, { x: 420, y: 220 }, { x: 840, y: 220 }
+    ];
 
-    console.log(noteSlips.counter);
+    const positionDiv = positions[noteSlips.counter * 2 - 1] || { x: 0, y: 0 };
+    noteSlips.discrepencyx = positionDiv.x;
+    noteSlips.discrepencyy = positionDiv.y;
 
-    const reminderButtonContainer = document.createElement("div");
-    const reminderButton = document.createElement("img");
-    reminderButton.src = "../static/images/bell_plus.png";
-    reminderButton.style.transform = "scale(0.1)";
-    reminderButton.style.position = "absolute";
-    reminderButtonContainer.style.position = "absolute";
-    reminderButtonContainer.style.left = "-75px";
-    reminderButtonContainer.style.top = "70px";
-    reminderButtonContainer.appendChild(reminderButton);
-    createDiv.appendChild(reminderButtonContainer);
+    // console.log(noteSlips.counter);
+    // console.log(noteSlips.discrepencyx);
+    // console.log(noteSlips.discrepencyy);
 
-    const shareButtonContainer = document.createElement("div");
-    const shareButton = document.createElement("img");
-    shareButton.src = "../static/images/person_plus.png";
-    shareButton.style.transform = "scale(0.1)";
-    shareButton.style.position = "absolute";
-    shareButtonContainer.style.position = "absolute";
-    shareButtonContainer.style.left = "-40px";
-    shareButtonContainer.style.top = "70px";
-    shareButtonContainer.appendChild(shareButton);
-    createDiv.appendChild(shareButtonContainer);
+    const createButtonContainer = (imgSrc, left, top) => {
+        const container = document.createElement("div");
+        const button = document.createElement("img");
+        button.src = imgSrc;
 
-    const backgroundButtonContainer = document.createElement("div");
-    const backgroundButton = document.createElement("img");
-    backgroundButton.src = "../static/images/paint_pallet.png";
-    backgroundButton.style.transform = "scale(0.1)";
-    backgroundButton.style.position = "absolute";
-    backgroundButtonContainer.style.position = "absolute";
-    backgroundButtonContainer.style.left = "-15px";
-    backgroundButtonContainer.style.top = "55px";
-    backgroundButtonContainer.appendChild(backgroundButton);
-    createDiv.appendChild(backgroundButtonContainer);
+        Object.assign(button.style, {
+            transform: "scale(0.1)",
+            position: "absolute"
+        });
 
-    const imageButtonContainer = document.createElement("div");
-    const imageButton = document.createElement("img");
-    imageButton.src = "../static/images/easle.png";
-    imageButton.style.transform = "scale(0.1)";
-    imageButton.style.position = "absolute";
-    imageButtonContainer.style.position = "absolute";
-    imageButtonContainer.style.left = "40px";
-    imageButtonContainer.style.top = "72px";
-    imageButtonContainer.appendChild(imageButton);
-    createDiv.appendChild(imageButtonContainer);
+        Object.assign(container.style, {
+            position: "absolute",
+            left: left,
+            top: top
+        });
 
-    const archiveButtonContainer = document.createElement("div");
-    const archiveButton = document.createElement("img");
-    archiveButton.src = "../static/images/archive.png";
-    archiveButton.style.transform = "scale(0.1)";
-    archiveButton.style.position = "absolute";
-    archiveButtonContainer.style.position = "absolute";
-    archiveButtonContainer.style.left = "80px";
-    archiveButtonContainer.style.top = "72px";
-    archiveButtonContainer.appendChild(archiveButton);
-    createDiv.appendChild(archiveButtonContainer);
+        container.appendChild(button);
 
-    const moreButtonContainer = document.createElement("div");
-    const moreButton = document.createElement("img");
-    moreButton.src = "../static/images/more.png";
-    moreButton.style.transform = "scale(0.1)";
-    moreButton.style.position = "absolute";
-    moreButtonContainer.style.position = "absolute";
-    moreButtonContainer.style.left = "115px";
-    moreButtonContainer.style.top = "73px";
-    moreButtonContainer.appendChild(moreButton);
-    createDiv.appendChild(moreButtonContainer);
+        return container;
+    };
+
+    createDiv.appendChild(createButtonContainer("../static/images/bell_plus.png", "-75px", "70px"));
+    createDiv.appendChild(createButtonContainer("../static/images/person_plus.png", "-40px", "70px"));
+    createDiv.appendChild(createButtonContainer("../static/images/paint_pallet.png", "-15px", "55px"));
+    createDiv.appendChild(createButtonContainer("../static/images/easle.png", "40px", "72px"));
+    createDiv.appendChild(createButtonContainer("../static/images/archive.png", "80px", "72px"));
+    createDiv.appendChild(createButtonContainer("../static/images/more.png", "115px", "73px"));
 
     const moreTextContainer = document.createElement("div");
-    const deleteText = document.createElement("p");
-    const deleteTextNode = document.createTextNode("Delete note");
-    deleteText.appendChild(deleteTextNode);
-    moreTextContainer.appendChild(deleteText);
+    moreTextContainer.innerHTML = `
+        <p style="position: absolute; left: 10px; top: 0px;">Delete note</p>
+        <p style="position: absolute; left: 10px; top: 25px;">Add label</p>
+        <p style="position: absolute; left: 10px; top: 50px;">Add drawing</p>
+        <p style="position: absolute; left: 10px; top: 75px;">Make a copy</p>
+        <p style="position: absolute; left: 10px; top: 100px;">Show checkboxes</p>
+        <p style="position: absolute; left: 10px; top: 125px;">Copy to ____ Docs</p>
+        <p style="position: absolute; left: 10px; top: 150px;">Version history</p>
+    `;
 
-    deleteText.style.left = "10px";
-    deleteText.style.top = "0px";
-    deleteText.style.position = "absolute";
+    Object.assign(moreTextContainer.style, {
+        zIndex: "7",
+        position: "absolute",
+        display: "block",
+        width: "155px",
+        height: "195px",
+        left: 395 + noteSlips.discrepencyx + "px",
+        top: 355 + noteSlips.discrepencyy + "px",
+        borderRadius: "15px",
+        boxShadow: "0 0 5px #000000",
+        backgroundColor: "white"
+    });
 
-    const labelText = document.createElement("p");
-    const labelTextNode = document.createTextNode("Add label");
-    labelText.appendChild(labelTextNode);
-    moreTextContainer.appendChild(labelText);
+    const positionText = positions[noteSlips.counter - 1] || { x: 0, y: 0 };
+    noteSlips.discrepencyx = positionText.x;
+    noteSlips.discrepencyy = positionText.y;
 
-    labelText.style.left = "10px";
-    labelText.style.top = "25px";
-    labelText.style.position = "absolute";
+    // console.log("");
+    // console.log(noteSlips.counter);
+    // console.log(noteSlips.discrepencyx);
+    // console.log(noteSlips.discrepencyy);
 
-    const drawingText = document.createElement("p");
-    const drawingTextNode = document.createTextNode("Add drawing");
-    drawingText.appendChild(drawingTextNode);
-    moreTextContainer.appendChild(drawingText);
-
-    drawingText.style.left = "10px";
-    drawingText.style.top = "50px";
-    drawingText.style.position = "absolute";
-
-    const copyText = document.createElement("p");
-    const copyTextNode = document.createTextNode("Make a copy");
-    copyText.appendChild(copyTextNode);
-    moreTextContainer.appendChild(copyText);
-
-    copyText.style.left = "10px";
-    copyText.style.top = "75px";
-    copyText.style.position = "absolute";
-
-    const checkboxesText = document.createElement("p");
-    const checkboxesTextNode = document.createTextNode("Show checkboxes");
-    checkboxesText.appendChild(checkboxesTextNode);
-    moreTextContainer.appendChild(checkboxesText);
-
-    checkboxesText.style.left = "10px";
-    checkboxesText.style.top = "100px";
-    checkboxesText.style.position = "absolute";
-
-    const copyDocsText = document.createElement("p");
-    const copyDocsTextNode = document.createTextNode("Copy to ____ Docs");
-    copyDocsText.appendChild(copyDocsTextNode);
-    moreTextContainer.appendChild(copyDocsText);
-
-    copyDocsText.style.left = "10px";
-    copyDocsText.style.top = "125px";
-    copyDocsText.style.position = "absolute";
-
-    const historyText = document.createElement("p");
-    const historyTextNode = document.createTextNode("Version history");
-    historyText.appendChild(historyTextNode);
-    moreTextContainer.appendChild(historyText);
-
-    historyText.style.left = "10px";
-    historyText.style.top = "150px";
-    historyText.style.position = "absolute";
-
-    moreTextContainer.style.zIndex = "7";
-    moreTextContainer.style.position = "absolute";
-    moreTextContainer.style.display = "block";
-    moreTextContainer.style.width = "155px";
-    moreTextContainer.style.height = "195px";
-    moreTextContainer.style.left = 395 + noteSlips.discrepencyx + "px";
-    moreTextContainer.style.top = 355 + noteSlips.discrepencyy + "px";
     moreTextContainer.className = "more_text_container" + noteSlips.counter;
     moreTextContainer.id = "more_text_container" + noteSlips.counter;
-    moreTextContainer.style.borderRadius = "15px";
-    moreTextContainer.style.boxShadow = "0 0 5px #000000";
-    moreTextContainer.style.backgroundColor = "white";
-    moreTextContainer.appendChild(deleteText);
-    moreTextContainer.appendChild(labelText);
-    moreTextContainer.appendChild(drawingText);
-    moreTextContainer.appendChild(copyText);
-    moreTextContainer.appendChild(checkboxesText);
-    moreTextContainer.appendChild(copyDocsText);
-    moreTextContainer.appendChild(historyText);
-    document.body.appendChild(moreTextContainer);
+    moreTextContainer.style.left = (190 + noteSlips.discrepencyx) + "px";
+    moreTextContainer.style.top = (190 + noteSlips.discrepencyy) + "px";
     moreTextContainer.style.visibility = "hidden";
+    noteSlipsContainer.appendChild(moreTextContainer);
 
     // More button event listener
+    const moreButton = createDiv.querySelector("img[src='../static/images/more.png']");
     moreButton.addEventListener("click", () => {
         moreTextContainer.style.visibility =
             moreTextContainer.style.visibility === "visible" ? "hidden" : "visible";
     });
 
+    const deleteText = moreTextContainer.querySelector("p:first-child");
     deleteText.addEventListener("click", () => {
-        document.body.removeChild(moreTextContainer);
+        console.log("hit");
+        noteSlipsContainer.removeChild(moreTextContainer);
         noteSlipsContainer.removeChild(createDiv);
         noteSlips.counter--;
         updateNoteSlipStates(createDiv.id, noteSlips.counter, noteSlips.notes.length);
     });
 
-    // Position and style the createDiv
-    createDiv.style.zIndex = "2";
-    createDiv.style.position = "absolute";
-    createDiv.style.display = "block";
-    createDiv.style.width = "400px";
-    createDiv.style.height = "200px";
-    createDiv.style.left = noteSlips.discrepencyx + "px";
-    createDiv.style.top = noteSlips.discrepencyy + "px";
+    Object.assign(createDiv.style, {
+        zIndex: "2",
+        position: "absolute",
+        display: "block",
+        width: "400px",
+        height: "200px",
+        left: noteSlips.discrepencyx + "px",
+        top: noteSlips.discrepencyy + "px",
+        borderRadius: "15px",
+        boxShadow: "0 0 5px #000000",
+        backgroundColor: "white"
+    });
+
     createDiv.className = "note_slip_" + noteSlips.counter;
     createDiv.id = "note_slip_" + noteSlips.counter;
-    createDiv.style.borderRadius = "15px";
-    createDiv.style.boxShadow = "0 0 5px #000000";
-    createDiv.style.backgroundColor = "white";
-
     noteSlips.notes.push("note_slip_" + noteSlips.counter);
-    //console.log(noteSlips.notes);
-
-    createDiv.appendChild(reminderButtonContainer);
-    createDiv.appendChild(shareButtonContainer);
-    createDiv.appendChild(backgroundButtonContainer);
-    createDiv.appendChild(imageButtonContainer);
-    createDiv.appendChild(archiveButtonContainer);
-    createDiv.appendChild(moreButtonContainer);
     noteSlipsContainer.appendChild(createDiv);
 }
 
 function updateNoteSlipStates(id, counter, length) {
-    console.log("");
-    console.log(id);
-    console.log(counter);
-    console.log(length);
-    var string = "";
+    // console.log("");
+    // console.log(id);
+    // console.log(counter);
+    // console.log(length);
 
-    switch (id) {
-        case "note_slip_1":
-            noteSlips.notes.splice(0, 1);
-            console.log(noteSlips.notes);
+    const positions = [
+        { x: 0, y: 0 }, { x: 420, y: 0 }, { x: 840, y: 0 },
+        { x: 0, y: 220 }, { x: 420, y: 220 }, { x: 840, y: 220 }
+    ];
 
-            for (let i = 0; i < length - 1; i++) {
+    const updatePosition = (i) => {
+        const position = positions[i] || { x: 0, y: 0 };
+        noteSlips.discrepencyx = position.x;
+        noteSlips.discrepencyy = position.y;
+    };
 
-                string = "note_slip_" + (i + 1);
-                console.log("string : ", string);
+    let startIdx = parseInt(id.split("_")[2]) - 1;
+    noteSlips.notes.splice(startIdx, 1);
+    console.log(noteSlips.notes);
 
-                document.getElementById("note_slip_" + (i + 2)).className = string;
-                document.getElementById("note_slip_" + (i + 2)).id = string;
+    for (let i = startIdx; i < length - 1; i++) {
+        const newNoteId = `note_slip_${i + 1}`;
+        document.getElementById(`note_slip_${i + 2}`).className = newNoteId;
+        document.getElementById(`note_slip_${i + 2}`).id = newNoteId;
 
-                string = "more_text_container" + (i + 1);
-                console.log("string : ", string);
+        const newMoreTextId = `more_text_container${i + 1}`;
+        document.getElementById(`more_text_container${i + 2}`).className = newMoreTextId;
+        document.getElementById(`more_text_container${i + 2}`).id = newMoreTextId;
 
-                document.getElementById("more_text_container" + (i + 2)).className = string;
-                document.getElementById("more_text_container" + (i + 2)).id = string;
-            }
-
-            for (let i = 0; i < length - 1; i++) {
-
-                switch (i) {
-                    case 0:
-                        noteSlips.discrepencyx = 0;
-                        noteSlips.discrepencyy = 0;
-                        break;
-                    case 1:
-                        noteSlips.discrepencyx = 420;
-                        noteSlips.discrepencyy = 0;
-                        break;
-                    case 2:
-                        noteSlips.discrepencyx = 840;
-                        noteSlips.discrepencyy = 0;
-                        break;
-                    case 3:
-                        noteSlips.discrepencyx = 0;
-                        noteSlips.discrepencyy = 220;
-                        break;
-                    case 4:
-                        noteSlips.discrepencyx = 420;
-                        noteSlips.discrepencyy = 220;
-                        break;
-                    case 5:
-                        noteSlips.discrepencyx = 840;
-                        noteSlips.discrepencyy = 220;
-                        break;
-                    default:
-                        console.log("no discrepency added")
-                        break;
-                }
-
-                document.getElementById("note_slip_" + (i + 1)).style.left = noteSlips.discrepencyx + "px";
-                document.getElementById("note_slip_" + (i + 1)).style.top = noteSlips.discrepencyy + "px";
-                document.getElementById("more_text_container" + (i + 1)).style.left = 395 + noteSlips.discrepencyx + "px";
-                document.getElementById("more_text_container" + (i + 1)).style.top = 355 + noteSlips.discrepencyy + "px";
-            }
-
-            break;
-        case "note_slip_2":
-            noteSlips.notes.splice(1, 1);
-            console.log(noteSlips.notes);
-            console.log("second note deleted");
-
-            for (let i = 0; i < length; i++) {
-
-                if (i > 1) {
-                    string = "note_slip_" + (i);
-                    console.log("string : ", string);
-
-                    document.getElementById("note_slip_" + (i + 1)).className = string;
-                    document.getElementById("note_slip_" + (i + 1)).id = string;
-
-                    string = "more_text_container" + (i);
-                    console.log("string : ", string);
-
-                    document.getElementById("more_text_container" + (i + 1)).className = string;
-                    document.getElementById("more_text_container" + (i + 1)).id = string;
-                }
-            }
-
-            for (let i = 0; i < length - 1; i++) {
-                console.log(i);
-
-                switch (i) {
-                    case 0:
-                        noteSlips.discrepencyx = 0;
-                        noteSlips.discrepencyy = 0;
-                        break;
-                    case 1:
-                        noteSlips.discrepencyx = 420;
-                        noteSlips.discrepencyy = 0;
-                        break;
-                    case 2:
-                        noteSlips.discrepencyx = 840;
-                        noteSlips.discrepencyy = 0;
-                        break;
-                    case 3:
-                        noteSlips.discrepencyx = 0;
-                        noteSlips.discrepencyy = 220;
-                        break;
-                    case 4:
-                        noteSlips.discrepencyx = 420;
-                        noteSlips.discrepencyy = 220;
-                        break;
-                    case 5:
-                        noteSlips.discrepencyx = 840;
-                        noteSlips.discrepencyy = 220;
-                        break;
-                    default:
-                        console.log("no discrepency added")
-                        break;
-                }
-
-                document.getElementById("note_slip_" + (i + 1)).style.left = noteSlips.discrepencyx + "px";
-                document.getElementById("note_slip_" + (i + 1)).style.top = noteSlips.discrepencyy + "px";
-                document.getElementById("more_text_container" + (i + 1)).style.left = 395 + noteSlips.discrepencyx + "px";
-                document.getElementById("more_text_container" + (i + 1)).style.top = 355 + noteSlips.discrepencyy + "px";
-            }
-
-            break;
-        case "note_slip_3":
-            noteSlips.notes.splice(2, 1);
-            console.log(noteSlips.notes);
-            console.log("third note deleted");
-
-            for (let i = 0; i < length; i++) {
-
-                if (i > 2) {
-                    string = "note_slip_" + (i);
-                    console.log("string : ", string);
-
-                    document.getElementById("note_slip_" + (i + 1)).className = string;
-                    document.getElementById("note_slip_" + (i + 1)).id = string;
-
-                    string = "more_text_container" + (i);
-                    console.log("string : ", string);
-
-                    document.getElementById("more_text_container" + (i + 1)).className = string;
-                    document.getElementById("more_text_container" + (i + 1)).id = string;
-                }
-            }
-
-            for (let i = 0; i < length - 1; i++) {
-
-                switch (i) {
-                    case 0:
-                        noteSlips.discrepencyx = 0;
-                        noteSlips.discrepencyy = 0;
-                        break;
-                    case 1:
-                        noteSlips.discrepencyx = 420;
-                        noteSlips.discrepencyy = 0;
-                        break;
-                    case 2:
-                        noteSlips.discrepencyx = 840;
-                        noteSlips.discrepencyy = 0;
-                        break;
-                    case 3:
-                        noteSlips.discrepencyx = 0;
-                        noteSlips.discrepencyy = 220;
-                        break;
-                    case 4:
-                        noteSlips.discrepencyx = 420;
-                        noteSlips.discrepencyy = 220;
-                        break;
-                    case 5:
-                        noteSlips.discrepencyx = 840;
-                        noteSlips.discrepencyy = 220;
-                        break;
-                    default:
-                        console.log("no discrepency added")
-                        break;
-                }
-
-                document.getElementById("note_slip_" + (i + 1)).style.left = noteSlips.discrepencyx + "px";
-                document.getElementById("note_slip_" + (i + 1)).style.top = noteSlips.discrepencyy + "px";
-                document.getElementById("more_text_container" + (i + 1)).style.left = 395 + noteSlips.discrepencyx + "px";
-                document.getElementById("more_text_container" + (i + 1)).style.top = 355 + noteSlips.discrepencyy + "px";
-            }
-
-            break;
-        case "note_slip_4":
-            noteSlips.notes.splice(3, 1);
-            console.log(noteSlips.notes);
-
-            for (let i = 0; i < length; i++) {
-
-                if (i > 3) {
-                    string = "note_slip_" + (i);
-                    console.log("string : ", string);
-
-                    document.getElementById("note_slip_" + (i + 1)).className = string;
-                    document.getElementById("note_slip_" + (i + 1)).id = string;
-
-                    string = "more_text_container" + (i);
-                    console.log("string : ", string);
-
-                    document.getElementById("more_text_container" + (i + 1)).className = string;
-                    document.getElementById("more_text_container" + (i + 1)).id = string;
-                }
-            }
-
-            for (let i = 0; i < length - 1; i++) {
-
-                switch (i) {
-                    case 0:
-                        noteSlips.discrepencyx = 0;
-                        noteSlips.discrepencyy = 0;
-                        break;
-                    case 1:
-                        noteSlips.discrepencyx = 420;
-                        noteSlips.discrepencyy = 0;
-                        break;
-                    case 2:
-                        noteSlips.discrepencyx = 840;
-                        noteSlips.discrepencyy = 0;
-                        break;
-                    case 3:
-                        noteSlips.discrepencyx = 0;
-                        noteSlips.discrepencyy = 220;
-                        break;
-                    case 4:
-                        noteSlips.discrepencyx = 420;
-                        noteSlips.discrepencyy = 220;
-                        break;
-                    case 5:
-                        noteSlips.discrepencyx = 840;
-                        noteSlips.discrepencyy = 220;
-                        break;
-                    default:
-                        console.log("no discrepency added")
-                        break;
-                }
-
-                document.getElementById("note_slip_" + (i + 1)).style.left = noteSlips.discrepencyx + "px";
-                document.getElementById("note_slip_" + (i + 1)).style.top = noteSlips.discrepencyy + "px";
-                document.getElementById("more_text_container" + (i + 1)).style.left = 395 + noteSlips.discrepencyx + "px";
-                document.getElementById("more_text_container" + (i + 1)).style.top = 355 + noteSlips.discrepencyy + "px";
-            }
-
-            break;
-        case "note_slip_5":
-            noteSlips.notes.splice(4, 1);
-            console.log(noteSlips.notes);
-
-            for (let i = 0; i < length; i++) {
-
-                if (i > 4) {
-                    string = "note_slip_" + (i);
-                    console.log("string : ", string);
-
-                    document.getElementById("note_slip_" + (i + 1)).className = string;
-                    document.getElementById("note_slip_" + (i + 1)).id = string;
-
-                    string = "more_text_container" + (i);
-                    console.log("string : ", string);
-
-                    document.getElementById("more_text_container" + (i + 1)).className = string;
-                    document.getElementById("more_text_container" + (i + 1)).id = string;
-                }
-            }
-
-            for (let i = 0; i < length - 1; i++) {
-
-                switch (i) {
-                    case 0:
-                        noteSlips.discrepencyx = 0;
-                        noteSlips.discrepencyy = 0;
-                        break;
-                    case 1:
-                        noteSlips.discrepencyx = 420;
-                        noteSlips.discrepencyy = 0;
-                        break;
-                    case 2:
-                        noteSlips.discrepencyx = 840;
-                        noteSlips.discrepencyy = 0;
-                        break;
-                    case 3:
-                        noteSlips.discrepencyx = 0;
-                        noteSlips.discrepencyy = 220;
-                        break;
-                    case 4:
-                        noteSlips.discrepencyx = 420;
-                        noteSlips.discrepencyy = 220;
-                        break;
-                    case 5:
-                        noteSlips.discrepencyx = 840;
-                        noteSlips.discrepencyy = 220;
-                        break;
-                    default:
-                        console.log("no discrepency added")
-                        break;
-                }
-
-                document.getElementById("note_slip_" + (i + 1)).style.left = noteSlips.discrepencyx + "px";
-                document.getElementById("note_slip_" + (i + 1)).style.top = noteSlips.discrepencyy + "px";
-                document.getElementById("more_text_container" + (i + 1)).style.left = 395 + noteSlips.discrepencyx + "px";
-                document.getElementById("more_text_container" + (i + 1)).style.top = 355 + noteSlips.discrepencyy + "px";
-            }
-
-            break;
-        case "note_slip_6":
-            noteSlips.notes.splice(5, 1);
-            console.log(noteSlips.notes);
-
-            for (let i = 0; i < length; i++) {
-
-                if (i > 5) {
-                    string = "note_slip_" + (i);
-                    console.log("string : ", string);
-
-                    document.getElementById("note_slip_" + (i + 1)).className = string;
-                    document.getElementById("note_slip_" + (i + 1)).id = string;
-
-                    string = "more_text_container" + (i);
-                    console.log("string : ", string);
-
-                    document.getElementById("more_text_container" + (i + 1)).className = string;
-                    document.getElementById("more_text_container" + (i + 1)).id = string;
-                }
-            }
-
-            for (let i = 0; i < length - 1; i++) {
-
-                switch (i) {
-                    case 0:
-                        noteSlips.discrepencyx = 0;
-                        noteSlips.discrepencyy = 0;
-                        break;
-                    case 1:
-                        noteSlips.discrepencyx = 420;
-                        noteSlips.discrepencyy = 0;
-                        break;
-                    case 2:
-                        noteSlips.discrepencyx = 840;
-                        noteSlips.discrepencyy = 0;
-                        break;
-                    case 3:
-                        noteSlips.discrepencyx = 0;
-                        noteSlips.discrepencyy = 220;
-                        break;
-                    case 4:
-                        noteSlips.discrepencyx = 420;
-                        noteSlips.discrepencyy = 220;
-                        break;
-                    case 5:
-                        noteSlips.discrepencyx = 840;
-                        noteSlips.discrepencyy = 220;
-                        break;
-                    default:
-                        console.log("no discrepency added")
-                        break;
-                }
-
-                document.getElementById("note_slip_" + (i + 1)).style.left = noteSlips.discrepencyx + "px";
-                document.getElementById("note_slip_" + (i + 1)).style.top = noteSlips.discrepencyy + "px";
-                document.getElementById("more_text_container" + (i + 1)).style.left = 395 + noteSlips.discrepencyx + "px";
-                document.getElementById("more_text_container" + (i + 1)).style.top = 355 + noteSlips.discrepencyy + "px";
-            }
-
-            break;
+        updatePosition(i);
+        document.getElementById(newNoteId).style.left = noteSlips.discrepencyx + "px";
+        document.getElementById(newNoteId).style.top = noteSlips.discrepencyy + "px";
+        document.getElementById(newMoreTextId).style.left = 190 + noteSlips.discrepencyx + "px";
+        document.getElementById(newMoreTextId).style.top = 190 + noteSlips.discrepencyy + "px";
     }
 }
 
