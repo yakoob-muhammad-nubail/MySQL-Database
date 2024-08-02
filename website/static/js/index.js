@@ -16,6 +16,10 @@ var mainNavbarHeaderNavSearchLogo = document.getElementById("main_navbar_header_
 var mainNavbarHeaderNavSearchText = document.getElementById("main_navbar_header_nav_search_text");
 var mainNavbarHeaderNavAboutText = document.getElementById("main_navbar_header_nav_about_text");
 var mainNavbarHeaderNavAccountText = document.getElementById("main_navbar_header_nav_account_text");
+var mainNavbarHeaderNavAccountContainer = document.getElementById("main_navbar_header_nav_account_container");
+var mainNavbarHeaderNavAccountLogin = document.getElementById("main_navbar_header_nav_account_login");
+var mainNavbarHeaderNavAccountSignup = document.getElementById("main_navbar_header_nav_account_signup");
+var mainNavbarHeaderNavAccountLogout = document.getElementById("main_navbar_header_nav_account_logout");
 
 var width, height; // throw in preset values and object
 
@@ -36,7 +40,8 @@ const navMenu = {
     navContainerHeight: 90,
     mainNavbarHeaderNavTextWidth: 100,
     clickedMenuButtonState: false,
-    clickedMoreItemsState: false
+    clickedMoreItemsState: false,
+    clickedAccountState: false
 };
 
 // var menuClick = false;
@@ -97,6 +102,35 @@ mainNavbarHeaderNavAccountText.style.width = navMenu.mainNavbarHeaderNavTextWidt
 mainNavbarHeaderNavAccountText.style.left = window.innerWidth - 700 + "px";
 mainNavbarHeaderNavAccountText.style.top = -78 + "px"; //38
 
+mainNavbarHeaderNavAccountContainer.style.width = 75 + "px";
+mainNavbarHeaderNavAccountContainer.style.height = 75 + "px";
+mainNavbarHeaderNavAccountContainer.style.left = 835 + "px";
+mainNavbarHeaderNavAccountContainer.style.top = -80 + "px";
+mainNavbarHeaderNavAccountContainer.style.display = "none";
+
+mainNavbarHeaderNavAccountLogin.style.width = 50 + "px";
+
+mainNavbarHeaderNavAccountSignup.style.width = 65 + "px";
+mainNavbarHeaderNavAccountSignup.style.top = -10 + "px";
+
+mainNavbarHeaderNavAccountLogout.style.width = 60 + "px";
+mainNavbarHeaderNavAccountLogout.style.top = -20 + "px";
+
+function openCloseAccountMenu() {
+    console.log("hit");
+
+    if (navMenu.clickedAccountState == false) {
+        navMenu.clickedAccountState = true;
+
+        mainNavbarHeaderNavAccountContainer.style.display = "block";
+    }
+    else {
+        navMenu.clickedAccountState = false;
+
+        mainNavbarHeaderNavAccountContainer.style.display = "none";
+    }
+}
+
 mainNavbarHeaderLogo.addEventListener("mouseover", function hoverOverLogo() {
     // mainNavbarHeaderLogo.src = "../static/images/logo250_highlight.png";
     mainNavbarHeaderText.style.color = "blue";
@@ -136,11 +170,28 @@ mainNavbarHeaderNavAccountText.addEventListener("mouseout", function hoverOutLog
     mainNavbarHeaderNavAccountText.style.color = "black";
 });
 
-// window.addEventListener("click", function printMousePos(event) {
-//     document.body.textContent = "clientX " + event.clientX + " - clientY: " + event.clientY;
-// });
+mainNavbarHeaderNavAccountLogin.addEventListener("mouseover", function hoverOverLogo() {
+    mainNavbarHeaderNavAccountLogin.style.color = "blue";
+});
+mainNavbarHeaderNavAccountLogin.addEventListener("mouseout", function hoverOutLogo() {
+    mainNavbarHeaderNavAccountLogin.style.color = "black";
+});
 
-//window.addEventListener("resize", function () { this.alert("hello") });
+mainNavbarHeaderNavAccountSignup.addEventListener("mouseover", function hoverOverLogo() {
+    mainNavbarHeaderNavAccountSignup.style.color = "blue";
+});
+mainNavbarHeaderNavAccountSignup.addEventListener("mouseout", function hoverOutLogo() {
+    mainNavbarHeaderNavAccountSignup.style.color = "black";
+});
+
+mainNavbarHeaderNavAccountLogout.addEventListener("mouseover", function hoverOverLogo() {
+    mainNavbarHeaderNavAccountLogout.style.color = "blue";
+});
+mainNavbarHeaderNavAccountLogout.addEventListener("mouseout", function hoverOutLogo() {
+    mainNavbarHeaderNavAccountLogout.style.color = "black";
+});
+
+mainNavbarHeaderNavAccountText.addEventListener("mousedown", openCloseAccountMenu);
 
 // side menu
 var sidemenu = document.getElementById("sidemenu");
@@ -994,9 +1045,9 @@ function addNewNote(title, entry) {
         { x: 0, y: 220 }, { x: 420, y: 220 }, { x: 840, y: 220 }
     ];
 
-    const positionDiv = positions[noteSlips.counter * 2 - 1] || { x: 0, y: 0 };
-    noteSlips.discrepencyx = positionDiv.x;
-    noteSlips.discrepencyy = positionDiv.y;
+    const position = positions[noteSlips.counter - 1] || { x: 0, y: 0 };
+    noteSlips.discrepencyx = position.x;
+    noteSlips.discrepencyy = position.y;
 
     // console.log(noteSlips.counter);
     // console.log(noteSlips.discrepencyx);
@@ -1054,10 +1105,6 @@ function addNewNote(title, entry) {
         backgroundColor: "white"
     });
 
-    const positionText = positions[noteSlips.counter - 1] || { x: 0, y: 0 };
-    noteSlips.discrepencyx = positionText.x;
-    noteSlips.discrepencyy = positionText.y;
-
     // console.log("");
     // console.log(noteSlips.counter);
     // console.log(noteSlips.discrepencyx);
@@ -1079,11 +1126,11 @@ function addNewNote(title, entry) {
 
     const deleteText = moreTextContainer.querySelector("p:first-child");
     deleteText.addEventListener("click", () => {
-        console.log("hit");
+        // console.log("hit");
         noteSlipsContainer.removeChild(moreTextContainer);
         noteSlipsContainer.removeChild(createDiv);
         noteSlips.counter--;
-        updateNoteSlipStates(createDiv.id, noteSlips.counter, noteSlips.notes.length);
+        updateNoteSlipStates(createDiv.id, noteSlips.notes.length, positions);
     });
 
     Object.assign(createDiv.style, {
@@ -1105,16 +1152,10 @@ function addNewNote(title, entry) {
     noteSlipsContainer.appendChild(createDiv);
 }
 
-function updateNoteSlipStates(id, counter, length) {
+function updateNoteSlipStates(id, length, positions) {
     // console.log("");
     // console.log(id);
-    // console.log(counter);
     // console.log(length);
-
-    const positions = [
-        { x: 0, y: 0 }, { x: 420, y: 0 }, { x: 840, y: 0 },
-        { x: 0, y: 220 }, { x: 420, y: 220 }, { x: 840, y: 220 }
-    ];
 
     const updatePosition = (i) => {
         const position = positions[i] || { x: 0, y: 0 };
@@ -1142,9 +1183,3 @@ function updateNoteSlipStates(id, counter, length) {
         document.getElementById(newMoreTextId).style.top = 190 + noteSlips.discrepencyy + "px";
     }
 }
-
-
-
-
-
-

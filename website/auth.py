@@ -15,25 +15,33 @@ def sign_up():
     return "<p>Sign Up</p>"
 
 @auth.route('/notes')
-def home():
+def notes():
     return "<p>notes</p>"
 
 @auth.route('/reminders')
-def notes():
+def reminders():
     return "<p>reminders</p>"
 
 @auth.route('/labels')
-def notes():
+def labels():
     return "<p>labels</p>"
 
 @auth.route('/archive')
-def notes():
+def archive():
     return "<p>archive</p>"
 
 @auth.route('/trash')
-def notes():
+def trash():
     return "<p>trash</p>"
 
-@auth.route('/home')
-def notes():
+@auth.route('/')
+def home():
     return "<p>home</p>"
+
+@auth.route('/about')
+def about():
+    return "<p>about</p>"
+
+@auth.route('/account')
+def account():
+    return "<p>account</p>"

@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint, render_template
 
 views = Blueprint('views', __name__)
 
@@ -15,25 +15,33 @@ def sign_up():
     return "<p>Sign Up</p>"
 
 @views.route('/notes')
-def home():
-    return "<p>notes</p>"
+def notes():
+    return render_template("notes.html")
 
 @views.route('/reminders')
-def notes():
+def reminders():
     return "<p>reminders</p>"
 
 @views.route('/labels')
-def notes():
+def labels():
     return "<p>labels</p>"
 
 @views.route('/archive')
-def notes():
+def archive():
     return "<p>archive</p>"
 
 @views.route('/trash')
-def notes():
+def trash():
     return "<p>trash</p>"
 
-@views.route('/home')
-def notes():
-    return "<p>home</p>"
+@views.route('/')
+def home():
+    return render_template("home.html")
+
+@views.route('/about')
+def about():
+    return "<p>about</p>"
+
+@views.route('/account')
+def account():
+    return "<p>account</p>"

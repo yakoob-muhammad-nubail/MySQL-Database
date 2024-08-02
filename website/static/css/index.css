@@ -89,6 +89,26 @@ body {
     position: relative;
 }
 
+.main_navbar_header_nav_account_container {
+    /* background-color: orange; */
+    position: relative;
+}
+
+.main_navbar_header_nav_account_login {
+    /* background-color: red; */
+    position: relative;
+}
+
+.main_navbar_header_nav_account_signup {
+    /* background-color: blue; */
+    position: relative;
+}
+
+.main_navbar_header_nav_account_logout {
+    /* background-color: plum; */
+    position: relative;
+}
+
 /* side menu */
 .sidemenu {
     /* background-color: red; */

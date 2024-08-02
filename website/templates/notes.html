@@ -6,10 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/css/index.css">
-    <title>Notes App</title>
-    <style>
-    </style>
-    <!-- <title>{% block title %}Home{% endblock %}</title> -->
+    <title>Notes App Notes</title>
 </head>
 
 <body>
@@ -20,11 +17,11 @@
                     alt="menu symbol image" />
             </div>
             <div id="main_navbar_header_logo_container" class="main_navbar_header_logo_container">
-                <img id="main_navbar_header_logo" class="main_navbar_header_logo" src="../static/images/logo250.png"
-                    alt="site logo image" />
+                <img id="main_navbar_header_logo" class="main_navbar_header_logo" href="/home"
+                    src="../static/images/logo250.png" alt="site logo image" />
             </div>
             <div id="main_navbar_header_text_container" class="main_navbar_header_logo_container">
-                <p id="main_navbar_header_text" class="main_navbar_header_text">Notes App</p>
+                <p id="main_navbar_header_text" class="main_navbar_header_text" href="/home">Notes App</p>
             </div>
             <div id="main_navbar_header_nav_container" class="main_navbar_header_nav_container">
                 <div id="main_navbar_header_nav_search_logo_container"
@@ -33,8 +30,20 @@
                         src="../static/images/searchLogo.png" alt="search logo image" />
                     <p id="main_navbar_header_nav_search_text" class="main_navbar_header_nav_search_text">Search</p>
                 </div>
-                <p id="main_navbar_header_nav_about_text" class="main_navbar_header_nav_about_text">About</p>
-                <p id="main_navbar_header_nav_account_text" class="main_navbar_header_nav_account_text">Account</p>
+                <p id="main_navbar_header_nav_about_text" class="main_navbar_header_nav_about_text" href="/about">About
+                </p>
+                <p id="main_navbar_header_nav_account_text" class="main_navbar_header_nav_account_text" href="/account">
+                    Account</p>
+                <div id="main_navbar_header_nav_account_container" class="main_navbar_header_nav_account_container">
+                    <p id="main_navbar_header_nav_account_login" class="main_navbar_header_nav_account_login"
+                        href="/login">
+                        Login
+                    </p>
+                    <p id="main_navbar_header_nav_account_signup" class="main_navbar_header_nav_account_signup"
+                        href="/sign-up">Sign-up</p>
+                    <p id="main_navbar_header_nav_account_logout" class="main_navbar_header_nav_account_logout"
+                        href="/logout">Logout</p>
+                </div>
                 <!-- <p id="main_navbar_header_About" class="main_navbar_header_About">Draw</p> -->
             </div>
         </div>
@@ -46,24 +55,27 @@
             <p id="sidemenu_notes_text" class="sidemenu_notes_text">Notes</p>
         </div>
         <div id="sidemenu_reminders_container">
-            <img id="sidemenu_reminders_logo" class="sidemenu_reminders_logo" src="../static/images/bell.png"
+            <img id="sidemenu_reminders_logo" class="sidemenu_reminders_logo " src="../static/images/bell.png"
                 alt="reminder logo image" />
-            <p id="sidemenu_reminders_text" class="sidemenu_notes_text">Reminders</p>
+            <p id="sidemenu_reminders_text" class="sidemenu_reminders_text sidemenu_notes_text" href="/reminders">
+                Reminders</p>
         </div>
         <div id="sidemenu_edit_labels_container">
             <img id="sidemenu_edit_logo" class="sidemenu_edit_logo" src="../static/images/pencil.png"
                 alt="edit logo image" />
-            <p id="sidemenu_edit_labels_text" class="sidemenu_notes_text">Edit Labels</p>
+            <p id="sidemenu_edit_labels_text" class="sidemenu_edit_labels_text sidemenu_notes_text" href="/labels">Edit
+                Labels</p>
         </div>
         <div id="sidemenu_archive_container">
             <img id="sidemenu_archives_logo" class="sidemenu_archives_logo" src="../static/images/folder.png"
                 alt="archives logo image" />
-            <p id="sidemenu_archives_text" class="sidemenu_notes_text">Archive</p>
+            <p id="sidemenu_archives_text" class="sidemenu_archives_text sidemenu_notes_text" href="/archives">Archives
+            </p>
         </div>
         <div id="sidemenu_trash_container">
             <img id="sidemenu_trash_logo" class="sidemenu_trash_logo" src="../static/images/trash.png"
                 alt="trash logo image" />
-            <p id="sidemenu_trash_text" class="sidemenu_notes_text">Trash</p>
+            <p id="sidemenu_trash_text" class="sidemenu_trash_text sidemenu_notes_text" href="/trash">Trash</p>
         </div>
     </div>
     <div id="notepad" class="notepad">
