@@ -4,15 +4,15 @@ views = Blueprint('views', __name__)
 
 @views.route('/login')
 def login():
-    return "<p>login</p>"
+    return render_template("log_in.html")
 
 @views.route('/logout')
 def logout():
-    return "<p>logout</p>"
+    return render_template("log_out.html")
 
 @views.route('/sign-up')
 def sign_up():
-    return "<p>Sign Up</p>"
+    return render_template("sign_up.html")
 
 @views.route('/notes')
 def notes():
