@@ -107,3 +107,49 @@ body {
     /* background-color: plum; */
     position: relative;
 }
+
+/*form*/
+.signup_form {
+    /* background-color: orange; */
+    font-size: 20px;
+    padding: 20px;
+    box-shadow: 0px 0px 5px #888;
+    border-radius: 10px;
+    position: absolute;
+}
+
+.signup_form_email_header {
+    font-size: 23px;
+    position: relative;
+}
+
+.signup_form_email_title {
+    /* background-color: red; */
+    font-size: 22px;
+    padding: 5px;
+    position: relative;
+}
+
+.signup_form_email_input {
+    /* background-color: blue; */
+    position: relative;
+}
+
+.signup_form_password_title {
+    /* background-color: green; */
+    font-size: 22px;
+    padding: 5px;
+    position: relative;
+}
+
+.signup_form_password_input {
+    /* background-color: pink; */
+    position: relative;
+}
+
+.signup_form_submit_button {
+    /* background-color: purple; */
+    padding: 5px;
+    font-size: 20px;
+    position: relative;
+}
