@@ -107,3 +107,31 @@ body {
     /* background-color: plum; */
     position: relative;
 }
+
+/* log out window */
+.logged_out_window {
+    /* background-color: orange; */
+    font-size: 18px;
+    padding: 20px;
+    box-shadow: 0px 0px 5px #888;
+    border-radius: 10px;
+    position: absolute;
+}
+
+.logged_out_window_header {
+    /* background-color: red; */
+    font-size: 23px;
+    position: relative;
+}
+
+.logged_out_window_login_option {
+    /* background-color: yellow; */
+    padding: 5px;
+    position: relative;
+}
+
+.logged_out_window_signup_option {
+    /* background-color: green; */
+    padding: 5px;
+    position: relative;
+}
