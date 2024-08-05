@@ -42,6 +42,11 @@ body {
     position: relative;
 }
 
+.about_text {
+    /* background-color: green; */
+    position: relative;
+}
+
 .login_text {
     /* background-color: purple; */
     position: relative;
