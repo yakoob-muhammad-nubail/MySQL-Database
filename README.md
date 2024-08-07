@@ -24,6 +24,16 @@ sed -i 's/\r$//' Scripts/activate
 
 source Scripts/activate
 
+# initializing database
+in terminal run main.py using shell
+
+linux
+python3 
+>>> from main import app, db
+>>> with app.app_context():
+...     db.create_all()
+...
+
 # currently two setups are here which will be migrated 
 # to two seperate repositories including this one
 

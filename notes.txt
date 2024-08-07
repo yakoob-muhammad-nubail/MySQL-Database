@@ -49,6 +49,32 @@ immediate
     - responsive web design (3) - tbd - final
         - large screen, min screen and mobile
 
+form handling
+    - in terminal
+        - pip install requests
+        - pip install requests bs4 (beautiful soup 4)
+    - difference between get and post methods
+        - In HTML forms, the POST and GET methods are two ways to send data to a server. They have distinct characteristics and use cases:
+        - GET Method
+            Data Sent in URL: Data is appended to the URL as query parameters. For example: http://example.com/form?name=John&age=30.
+            Visibility: The data is visible in the URL, making it less secure for sensitive information.
+            Length: Limited by the maximum URL length (generally around 2000 characters).
+            Caching: Requests can be cached by browsers and stored in browser history.
+            Use Case: Typically used for retrieving data from the server without side effects. Suitable for form submissions where data retrieval is required, like search forms.
+        - POST Method
+            Data Sent in Body: Data is sent in the body of the HTTP request, not visible in the URL.
+            Security: More secure for transmitting sensitive information, like passwords, though it still requires HTTPS for complete security.
+            Length: No restrictions on the amount of data sent.
+            Caching: Requests are not cached by browsers.
+            Use Case: Used for sending data to the server to create or update resources. Suitable for form submissions involving sensitive data or large amounts of data.
+    - when creating db in shell
+        >>> from main import app, db
+        >>> with app.app_context():
+        ...     db.create_all()
+        ...
+    - to view the database check db broswer application
+
+
 side note
     - currently working on the notes page
     - add what buttons do not work or are under construction
