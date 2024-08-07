@@ -28,10 +28,15 @@ source Scripts/activate
 in terminal run main.py using shell
 
 linux
+
 python3 
->>> from main import app, db
->>> with app.app_context():
+
+from main import app, db
+
+with app.app_context():
+
 ...     db.create_all()
+
 ...
 
 # currently two setups are here which will be migrated 
