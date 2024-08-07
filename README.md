@@ -32,12 +32,11 @@ linux
 python3 
 
 from main import app, db
-
-with app.app_context():
-
-...     db.create_all()
-
-...
+<pre>
+>>>with app.app_context():
+>>>...     db.create_all()
+>>>...
+<pre>
 
 # currently two setups are here which will be migrated 
 # to two seperate repositories including this one
