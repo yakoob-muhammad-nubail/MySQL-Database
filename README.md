@@ -30,8 +30,8 @@ in terminal run main.py using shell
 
 python3 
 
-from main import app, db
 <pre>
+>>>from main import app, db
 >>>with app.app_context():
 >>>...     db.create_all()
 >>>...
