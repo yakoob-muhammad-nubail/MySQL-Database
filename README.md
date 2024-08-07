@@ -4,7 +4,9 @@
 # flask installs - linux
 
 pip install flask
+
 pip install flask-login
+
 pip install flask-sqlalchemy
 
 # install virtualization - linux
@@ -16,8 +18,11 @@ python3 -m venv venv (or python depends on os)
 go to same folder in terminal
 
 sudo apt-get install dos2unix
+
 dos2unix Scripts/activate
+
 sed -i 's/\r$//' Scripts/activate
+
 source Scripts/activate
 
 # initializing database - linux
@@ -37,4 +42,5 @@ from main import app, db
 python app.py to run (similar to all python files, python3 in ubuntu)
 
 app.py (standalone script using flask and no venv)
+
 main.py (uses init, auth, models, views)
