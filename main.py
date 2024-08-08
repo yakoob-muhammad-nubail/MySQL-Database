@@ -1,5 +1,5 @@
 from website import create_app
-from flask import render_template, request
+from flask import render_template, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
@@ -18,8 +18,18 @@ class Accounts(db.Model):
     def __repr__(self):
         return '<Id %r Email %r Password %r Date %r>' % (self.id, self.email, self.password, self.date_added)
     
-@app.route('/', methods=['POST'])
-def signinPage():
+class Notes(db.Model):
+    accountId = db.Column(db.Integer, primary_key=True)
+    noteId = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100), nullable=False, unique=True)
+    text = db.Column(db.String(100), nullable=False)
+    deleted = db.Column(db.Boolean, default=False)
+
+    def __repr__(self):
+        return '<Id %r Email %r Password %r Date %r>' % (self.accountId, self.noteId, self.title, self.text, self.deleted)
+    
+@app.route('/sign-in', methods=['POST'])
+def signupPage():
     email = request.form['email']
     password = request.form['password']
 
@@ -27,7 +37,30 @@ def signinPage():
 
     db.session.add(new_account)
     db.session.commit()
-    return render_template('log_in.html', email = email, password = password)
+
+    return render_template('log_in.html')
+
+@app.route('/notes', methods=['POST'])
+def notesPageAdd():
+    accountId = id
+    title = request.form['title']
+    text = request.form['text']
+
+    new_note = Notes(title = title, text = text)
+
+    db.session.add(new_note)
+    db.session.commit()
+
+    return render_template('log_in.html',title = title, text = text)
+
+@app.route('/login', methods=['POST'])
+def getIdByEmail():
+    email = request.form['email']
+    user = Accounts.query.filter_by(email = email).first()
+    if user:
+        return jsonify({'id': user.id})
+    else:
+        return render_template('log_in.html', error="Invalid email or password")
 
 if __name__ == '__main__':
     app.run(debug=True)
