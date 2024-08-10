@@ -150,10 +150,10 @@ mainNavbarHeaderText.addEventListener("mouseout", function hoverOutLogo() {
 });
 
 mainNavbarHeaderMenu.addEventListener("mouseover", function hoverOverLogo() {
-    mainNavbarHeaderMenu.src = menuImageHighlightSrc;
+    mainNavbarHeaderMenu.src = "../static/images/menuImage_highlight.png";
 });
 mainNavbarHeaderMenu.addEventListener("mouseout", function hoverOutLogo() {
-    mainNavbarHeaderMenu.src = menuImageSrc;
+    mainNavbarHeaderMenu.src = "../static/images/menuImage.png";
 });
 
 mainNavbarHeaderNavAboutText.addEventListener("mouseover", function hoverOverLogo() {
@@ -1074,12 +1074,12 @@ function addNewNote(title, entry) {
         return container;
     };
 
-    createDiv.appendChild(createButtonContainer(bellImage, "-75px", "70px"));
-    createDiv.appendChild(createButtonContainer(person, "-40px", "70px"));
-    createDiv.appendChild(createButtonContainer(paint, "-15px", "55px"));
-    createDiv.appendChild(createButtonContainer(easle, "40px", "72px"));
-    createDiv.appendChild(createButtonContainer(archive, "80px", "72px"));
-    createDiv.appendChild(createButtonContainer(more, "115px", "73px"));
+    createDiv.appendChild(createButtonContainer("../static/images/bell_plus.png", "-75px", "70px"));
+    createDiv.appendChild(createButtonContainer("../static/images/person_plus.png", "-40px", "70px"));
+    createDiv.appendChild(createButtonContainer("../static/images/paint_pallet.png", "-15px", "55px"));
+    createDiv.appendChild(createButtonContainer("../static/images/easle.png", "40px", "72px"));
+    createDiv.appendChild(createButtonContainer("../static/images/archive.png", "80px", "72px"));
+    createDiv.appendChild(createButtonContainer("../static/images/more.png", "115px", "73px"));
 
     const moreTextContainer = document.createElement("div");
     moreTextContainer.innerHTML = `
@@ -1118,7 +1118,7 @@ function addNewNote(title, entry) {
     noteSlipsContainer.appendChild(moreTextContainer);
 
     // More button event listener
-    const moreButton = createDiv.querySelector("img[src='" + more + "']");
+    const moreButton = createDiv.querySelector("img[src='../static/images/more.png']");
     moreButton.addEventListener("click", () => {
         moreTextContainer.style.visibility =
             moreTextContainer.style.visibility === "visible" ? "hidden" : "visible";
