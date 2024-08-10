@@ -1,5 +1,5 @@
 from website import create_app
-from flask import render_template, request, jsonify, current_app
+from flask import render_template, request, jsonify, current_app, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
@@ -38,7 +38,7 @@ def signupPage():
     db.session.add(new_account)
     db.session.commit()
 
-    return render_template('log_in.html')
+    return redirect(url_for('getIdByEmail'))
 
 @app.route('/notes', methods=['POST'])
 def notesPageAdd():
@@ -48,10 +48,13 @@ def notesPageAdd():
 
     new_note = Notes(title = title, text = text)
 
+    title = title
+    text = text
+
     db.session.add(new_note)
     db.session.commit()
 
-    return render_template('log_in.html',title = title, text = text)
+    return redirect(url_for('notesPageAdd'))
 
 @app.route('/login', methods=['POST'])
 def getIdByEmail():
@@ -61,7 +64,9 @@ def getIdByEmail():
     user = Accounts.query.filter_by(email = email).first()
     
     if user and user.password == password:
-        return render_template('notes.html')
+        email = email
+        id = user.id
+        return redirect(url_for('notesPageAdd'))
     else:
         current_app.logger.error(f'Failed login attempt for email: {email}')
         return render_template('log_in.html', error="Invalid email or password")
