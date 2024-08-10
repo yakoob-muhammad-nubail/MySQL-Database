@@ -73,6 +73,15 @@ form handling
         ...     db.create_all()
         ...
     - to view the database check db broswer application
+    - Why you can't return nothing in a flask app route
+        In a Flask application, every route handler function (also known as a view function) is required to return a valid HTTP response. This means that the function should return 
+        a value that can be interpreted as a response by the Flask framework, such as:
+
+        A string representing the response body
+        A Flask Response object
+        A call to a helper function like jsonify or render_template that returns a valid response
+        Returning None from a view function, either explicitly or implicitly, is not considered a valid HTTP response in Flask, hence the TypeError. In your specific case, when the 
+        login is successful, the function is not returning any response, which leads to the error.
 
 
 side note

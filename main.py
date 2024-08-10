@@ -1,5 +1,5 @@
 from website import create_app
-from flask import render_template, request, jsonify
+from flask import render_template, request, jsonify, current_app
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
@@ -56,10 +56,14 @@ def notesPageAdd():
 @app.route('/login', methods=['POST'])
 def getIdByEmail():
     email = request.form['email']
+    password = request.form['password']
+
     user = Accounts.query.filter_by(email = email).first()
-    if user:
-        return jsonify({'id': user.id})
+    
+    if user and user.password == password:
+        return render_template('notes.html')
     else:
+        current_app.logger.error(f'Failed login attempt for email: {email}')
         return render_template('log_in.html', error="Invalid email or password")
 
 if __name__ == '__main__':
