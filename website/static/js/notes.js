@@ -1185,4 +1185,4 @@ function updateNoteSlipStates(id, length, positions) {
 }
 
 // read from mySQL database
-// const notesRead = {{ notes| tojson }};
+// const notesRead = {{ notes| tojson }}; from python mySQL database read when logged in

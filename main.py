@@ -77,7 +77,7 @@ def getIdByEmail():
 @app.route('/notes/check-notes/<int:user_id>', methods=['GET'])
 def check_notes(user_id):
     notes = Notes.query.filter_by(accountId=user_id).all()
-    notes_data = [{'noteId': note.noteId, 'title': note.title, 'text': note.text, 'deleted': note.deleted} for note in notes]
+    notes_data = [{'accountId': note.accountId, 'noteId': note.noteId, 'title': note.title, 'text': note.text, 'deleted': note.deleted} for note in notes]
     
     return render_template('notes.html', notes=notes_data, user_id = user_id)
 
