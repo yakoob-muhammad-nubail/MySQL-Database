@@ -161,6 +161,11 @@
     const notesRead = {{ notes | tojson }};
     console.log(notesRead); // Debugging
 
+    for (const note of notesRead) {
+        console.log(`Note ID: ${note.noteId}, Deleted Status: ${note.deleted}`);
+        // Additional logic can be added here to handle each note
+    }
+
     // // Use the user_id from the Flask context
     // const redirectUrl = "/notes/check-notes/" + {{ user_id }};
     // // window.location.href = redirectUrl; // uncomment to change url
