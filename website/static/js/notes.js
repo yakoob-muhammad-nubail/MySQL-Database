@@ -1186,3 +1186,20 @@ function updateNoteSlipStates(id, length, positions) {
 
 // read from mySQL database
 // const notesRead = {{ notes| tojson }}; from python mySQL database read when logged in
+function drawNotesOnLoad() {
+    // Check if notesRead is defined and is an array
+    if (Array.isArray(notesRead) && notesRead.length > 0) {
+        for (const note of notesRead) {
+            const title = note.title || ''; // Default to an empty string if title is not defined
+            const text = note.text || ''; // Default to an empty string if text is not defined
+            addNewNote(title, text);
+        }
+    } else {
+        console.log("No notes to display.");
+    }
+}
+
+// Attach the function to the window's onload event
+window.onload = function () {
+    drawNotesOnLoad();
+};
