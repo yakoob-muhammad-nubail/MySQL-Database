@@ -91,6 +91,14 @@ def check_notes(user_id):
 
     # db.session.commit() 
 
+    # Initialize a counter for the notes
+    # note_count = 0
+    
+    # Loop through the notes to count them
+    # for note in notes:
+    #     note_count += 1
+    #     current_app.logger.error(f'Notes counter: {note_count}')
+
     notes_data = [{'accountId': note.accountId, 'noteId': note.noteId, 'title': note.title, 'text': note.text, 'deleted': note.deleted} for note in notes]
     
     return render_template('notes.html', notes=notes_data, user_id = user_id)

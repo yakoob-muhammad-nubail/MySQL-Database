@@ -988,7 +988,8 @@ const noteSlips = {
     discrepencyy: 0,
     discrepencyxtext: 0,
     iscrepencyytext: 0,
-    notes: []
+    notes: [],
+    firstload: true
 };
 
 noteSlipsContainer.style.left = noteSlips.noteSlipsContainerLeft + "px";
@@ -1150,6 +1151,21 @@ function addNewNote(title, entry) {
     createDiv.id = "note_slip_" + noteSlips.counter;
     noteSlips.notes.push("note_slip_" + noteSlips.counter);
     noteSlipsContainer.appendChild(createDiv);
+
+    if (noteSlips.firstload == false) {
+        const newNote = {
+            accountId: notes[0].accountId,
+            deleted: false,
+            noteId: (totalNotes += 1),
+            title: title,
+            text: entry
+        };
+
+        notes.push(newNote);
+
+        console.log("");
+        console.log(notes);
+    }
 }
 
 function updateNoteSlipStates(id, length, positions) {
@@ -1190,16 +1206,21 @@ function drawNotesOnLoad() {
     // Check if notesRead is defined and is an array
     if (Array.isArray(notesRead) && notesRead.length > 0) {
         for (const note of notesRead) {
-            const title = note.title || ''; // Default to an empty string if title is not defined
-            const text = note.text || ''; // Default to an empty string if text is not defined
-            addNewNote(title, text);
+            if (note.deleted != true) {
+                const title = note.title || ''; // Default to an empty string if title is not defined
+                const text = note.text || ''; // Default to an empty string if text is not defined
+                addNewNote(title, text);
+            }
         }
     } else {
         console.log("No notes to display.");
     }
+
+    noteSlips.firstload = false;
 }
 
 // Attach the function to the window's onload event
 window.onload = function () {
     drawNotesOnLoad();
+    console.log(noteSlips.notes);
 };

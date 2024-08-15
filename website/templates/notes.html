@@ -159,12 +159,29 @@
 <script type="text/javascript">
     // Assume we get the notes from the Flask context
     const notesRead = JSON.parse('{{ notes|tojson|safe }}');
-    console.log(notesRead); // Debugging
+
+    let totalNotes = 0;
+    let activeNotes = 0;
+
+    let notes = notesRead;
 
     for (const note of notesRead) {
-        console.log(`Note ID: ${note.noteId}, Deleted Status: ${note.deleted}`);
-        // Additional logic can be added here to handle each note
+        //console.log(`Note ID: ${note.noteId}, Deleted Status: ${note.deleted}`);
+        totalNotes++;
+
+        if (note.deleted != true) {
+            activeNotes++;
+        }
     }
+
+    console.log("notesRead", notesRead);
+    console.log("");
+    console.log("totalNotes: ", totalNotes);
+    console.log("activeNotes: ", activeNotes);
+    console.log("notes: ", notes);
+    console.log("notes length: ", notes.length);
+    console.log("current account id: ", notes[0].accountId);
+    console.log("");
 
     // // Use the user_id from the Flask context
     // const redirectUrl = "/notes/check-notes/" + {{ user_id }};
