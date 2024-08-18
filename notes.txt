@@ -5,7 +5,7 @@ immediate
         - after app is done
     - the highlight for the search bar creates an issue
         - when mousedown mouseup is used the hitbox is 100 px below the search bar as well
-        - when fixed using the fix in index.js 
+        - when fixed using the fix in index.js
     - the onclick for the menu causes issues
         - when onclick is done for menu logo the onhover interaction closes the menu
             - unwanted interaction
@@ -34,6 +34,8 @@ immediate
                     - single digits all have similar width however are smaller than the smallest letter 
         - maintain height of text - done
             - add in scroll wheel if lines exceed two - optional
+        - level sidemenu to be halfway between the page - tbd - optional
+
     - refactor js (2) - tbd - immediate
         - `${x}px` put variables in that format for HTML DOM
         - tested it out didnt work needs further testing
@@ -82,7 +84,6 @@ form handling
         A call to a helper function like jsonify or render_template that returns a valid response
         Returning None from a view function, either explicitly or implicitly, is not considered a valid HTTP response in Flask, hence the TypeError. In your specific case, when the 
         login is successful, the function is not returning any response, which leads to the error.
-
 
 side note
     - currently working on the notes page
