@@ -26,7 +26,7 @@ class Notes(db.Model):
     deleted = db.Column(db.Boolean, default=False)
 
     def __repr__(self):
-        return '<Id %r Email %r Password %r Date %r>' % (self.accountId, self.noteId, self.title, self.text, self.deleted)
+        return '<AccountId %r NoteId %r Title %r Text %r Deleted %r>' % (self.accountId, self.noteId, self.title, self.text, self.deleted)
     
 @app.route('/sign-in', methods=['POST'])
 def signupPage():
@@ -44,22 +44,41 @@ def signupPage():
 
     return redirect(url_for('getIdByEmail'))
 
-@app.route('/notes', methods=['POST'])
-def notesPageAdd():
-    title = request.form['title']
-    text = request.form['text']
-    account_id = request.form.get('accountId')
+@app.route('/add_note', methods=['POST'])
+def add_note():
+    try:
+        data = request.json
+        note_id = data.get("noteId")
+        account_id = data.get('accountId')
+        title = data.get('title') or ''
+        text = data.get('text') or ''
 
-    if account_id is None:
-        current_app.logger.error('Account ID not provided')
-        return render_template('notes.html', error="Account ID not provided")
-    else: 
-        new_note = Notes(accountId=account_id, title=title, text=text)
+        # Log the received data
+        current_app.logger.info(f"Received data: {data}")
+        current_app.logger.info(f"Note ID: {note_id}, Account ID: {account_id}, Title: {title}, Text: {text}")
+
+        # Check for existing note
+        existing_note = Notes.query.filter_by(accountId=account_id, noteId=note_id).first()
+        if existing_note:
+            current_app.logger.error(f'Note with ID {note_id} already exists for Account ID: {account_id}')
+            return jsonify({'status': 'error', 'message': 'Note with this title already exists'}), 400
+
+        # Create and add the new note
+        new_note = Notes(accountId=account_id, noteId=note_id, title=title, text=text, deleted = False)
+        
+        # Log the new note creation
+        current_app.logger.info(f"Creating new note: {new_note}")
 
         db.session.add(new_note)
         db.session.commit()
 
-        return render_template('notes.html', message="Note added successfully")
+        current_app.logger.info(f"Note added successfully with ID: {new_note.noteId}")
+
+        return jsonify({'status': 'success', 'note_id': new_note.noteId}), 201
+
+    except Exception as e:
+        current_app.logger.error(f"Error occurred while adding note: {e}")
+        return jsonify({'status': 'error', 'message': 'Internal Server Error'}), 500
 
 @app.route('/login', methods=['POST'])
 def getIdByEmail():
@@ -102,6 +121,22 @@ def check_notes(user_id):
     notes_data = [{'accountId': note.accountId, 'noteId': note.noteId, 'title': note.title, 'text': note.text, 'deleted': note.deleted} for note in notes]
     
     return render_template('notes.html', notes=notes_data, user_id = user_id)
+
+@app.route('/delete_note', methods=['POST'])
+def delete_note():
+    data = request.json
+    note_id = data.get('note_id')
+    account_id = data.get('account_id')
+
+    # Perform the deletion from the database
+    note = Notes.query.filter_by(noteId=note_id, accountId=account_id).first()
+
+    if note:
+        note.deleted = True
+        db.session.commit()
+        return jsonify({"status": "success", "message": "Note deleted successfully"}), 200
+    else:
+        return jsonify({"status": "error", "message": "Note not found"}), 404
 
 if __name__ == '__main__':
     app.run(debug=True)

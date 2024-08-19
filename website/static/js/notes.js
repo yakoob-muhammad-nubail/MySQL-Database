@@ -117,7 +117,7 @@ mainNavbarHeaderNavAccountLogout.style.width = 60 + "px";
 mainNavbarHeaderNavAccountLogout.style.top = -20 + "px";
 
 function openCloseAccountMenu() {
-    console.log("hit");
+    // console.log("hit");
 
     if (navMenu.clickedAccountState == false) {
         navMenu.clickedAccountState = true;
@@ -906,7 +906,7 @@ function handleMouseDownEventForEntryBox() {
     // Check if either stringEntry or stringTitle is not empty
     if ((stringEntry.trim() !== "") && (stringEntry || stringTitle) || (stringTitle.trim() !== "") && (stringEntry || stringTitle)) {
         updateNotepad();
-        addNewNote(stringTitle, stringEntry);
+        addNewNote(stringTitle, stringEntry, totalNotes + 1);
     }
 
     stringEntry = "";
@@ -988,8 +988,11 @@ const noteSlips = {
     discrepencyy: 0,
     discrepencyxtext: 0,
     iscrepencyytext: 0,
-    notes: [],
-    firstload: true
+    notes: [{}],
+    firstload: true,
+    noteName: "",
+    newNote: {},
+    firstLoadIteration: true
 };
 
 noteSlipsContainer.style.left = noteSlips.noteSlipsContainerLeft + "px";
@@ -997,7 +1000,7 @@ noteSlipsContainer.style.top = noteSlips.noteSlipsContainerTop + "px";
 noteSlipsContainer.style.width = noteSlips.noteSlipsContainerWidth + "px";
 noteSlipsContainer.style.height = noteSlips.noteSlipsContainerHeight + "px";
 
-function addNewNote(title, entry) {
+function addNewNote(title, entry, noteId) {
     if (noteSlips.counter >= 6) {
         console.log("Cannot add more notes. Limit reached.");
         return;
@@ -1049,10 +1052,6 @@ function addNewNote(title, entry) {
     const position = positions[noteSlips.counter - 1] || { x: 0, y: 0 };
     noteSlips.discrepencyx = position.x;
     noteSlips.discrepencyy = position.y;
-
-    // console.log(noteSlips.counter);
-    // console.log(noteSlips.discrepencyx);
-    // console.log(noteSlips.discrepencyy);
 
     const createButtonContainer = (imgSrc, left, top) => {
         const container = document.createElement("div");
@@ -1106,11 +1105,6 @@ function addNewNote(title, entry) {
         backgroundColor: "white"
     });
 
-    // console.log("");
-    // console.log(noteSlips.counter);
-    // console.log(noteSlips.discrepencyx);
-    // console.log(noteSlips.discrepencyy);
-
     moreTextContainer.className = "more_text_container" + noteSlips.counter;
     moreTextContainer.id = "more_text_container" + noteSlips.counter;
     moreTextContainer.style.left = (190 + noteSlips.discrepencyx) + "px";
@@ -1127,11 +1121,41 @@ function addNewNote(title, entry) {
 
     const deleteText = moreTextContainer.querySelector("p:first-child");
     deleteText.addEventListener("click", () => {
-        // console.log("hit");
+        // Remove the note from the DOM
         noteSlipsContainer.removeChild(moreTextContainer);
         noteSlipsContainer.removeChild(createDiv);
         noteSlips.counter--;
         updateNoteSlipStates(createDiv.id, noteSlips.notes.length, positions);
+
+        // Prepare data to send to the server
+        const ID = createDiv.id;
+
+        console.log("");
+        console.log(ID);
+        console.log(createDiv.noteId);
+
+        // Send a POST request to delete the note from the server
+        fetch('/delete_note', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                note_id: noteId,
+                account_id: notes[0].accountId
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    console.log("Note deleted successfully:", data.message);
+                } else {
+                    console.log("Error deleting note:", data.message);
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
     });
 
     Object.assign(createDiv.style, {
@@ -1149,11 +1173,10 @@ function addNewNote(title, entry) {
 
     createDiv.className = "note_slip_" + noteSlips.counter;
     createDiv.id = "note_slip_" + noteSlips.counter;
-    noteSlips.notes.push("note_slip_" + noteSlips.counter);
     noteSlipsContainer.appendChild(createDiv);
 
-    if (noteSlips.firstload == false) {
-        const newNote = {
+    if (!noteSlips.firstload) {
+        noteSlips.newNote = {
             accountId: notes[0].accountId,
             deleted: false,
             noteId: (totalNotes += 1),
@@ -1161,18 +1184,73 @@ function addNewNote(title, entry) {
             text: entry
         };
 
-        notes.push(newNote);
+        notes.push(noteSlips.newNote);
+
+        noteSlips.newNote = {
+            noteName: "note_slip_" + noteSlips.counter,
+            noteId: totalNotes,
+            appId: noteSlips.counter
+        };
+
+        noteSlips.notes.push(noteSlips.newNote);
 
         console.log("");
+        console.log(notes);
+
+        // fetch('/add_note', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //     },
+        //     body: JSON.stringify({
+        //         title: title,
+        //         entry: entry,
+        //         noteId: noteId,
+        //         accountId: notes[0].accountId
+        //     })
+        // })
+        //     .then(response => {
+        //         if (!response.ok) {
+        //             throw new Error(`HTTP error! status: ${response.status}`);
+        //         }
+        //         return response.json();
+        //     })
+        //     .then(data => {
+        //         if (data.status === 'success') {
+        //             console.log("Note added successfully with ID:", data.note_id);
+        //             // Optionally, you can now call addNewNote or any other function to reflect this change in your UI
+        //             addNewNote(title, entry, data.note_id);
+        //         } else {
+        //             console.error("Error adding note:", data.message);
+        //         }
+        //     })
+        //     .catch(error => {
+        //         console.error("Error:", error);
+        //     });
+
+    } else {
+        noteSlips.newNote = {
+            noteName: "note_slip_" + noteSlips.counter,
+            noteId: noteId,
+            appId: noteSlips.counter
+        };
+
+        console.log("hi");
+
+        if (noteSlips.firstLoadIteration) {
+            noteSlips.notes = [noteSlips.newNote];
+            noteSlips.firstLoadIteration = false;
+            console.log("hello");
+        } else {
+            noteSlips.notes.push(noteSlips.newNote);
+            console.log("bye");
+        }
+
         console.log(notes);
     }
 }
 
 function updateNoteSlipStates(id, length, positions) {
-    // console.log("");
-    // console.log(id);
-    // console.log(length);
-
     const updatePosition = (i) => {
         const position = positions[i] || { x: 0, y: 0 };
         noteSlips.discrepencyx = position.x;
@@ -1184,32 +1262,42 @@ function updateNoteSlipStates(id, length, positions) {
     console.log(noteSlips.notes);
 
     for (let i = startIdx; i < length - 1; i++) {
-        const newNoteId = `note_slip_${i + 1}`;
-        document.getElementById(`note_slip_${i + 2}`).className = newNoteId;
-        document.getElementById(`note_slip_${i + 2}`).id = newNoteId;
+        const noteElement = document.getElementById(`note_slip_${i + 2}`);
+        const moreTextElement = document.getElementById(`more_text_container${i + 2}`);
 
-        const newMoreTextId = `more_text_container${i + 1}`;
-        document.getElementById(`more_text_container${i + 2}`).className = newMoreTextId;
-        document.getElementById(`more_text_container${i + 2}`).id = newMoreTextId;
+        if (noteElement) {
+            const newNoteId = `note_slip_${i + 1}`;
+            noteElement.className = newNoteId;
+            noteElement.id = newNoteId;
 
-        updatePosition(i);
-        document.getElementById(newNoteId).style.left = noteSlips.discrepencyx + "px";
-        document.getElementById(newNoteId).style.top = noteSlips.discrepencyy + "px";
-        document.getElementById(newMoreTextId).style.left = 190 + noteSlips.discrepencyx + "px";
-        document.getElementById(newMoreTextId).style.top = 190 + noteSlips.discrepencyy + "px";
+            updatePosition(i);
+            noteElement.style.left = noteSlips.discrepencyx + "px";
+            noteElement.style.top = noteSlips.discrepencyy + "px";
+        } else {
+            console.error(`Element note_slip_${i + 2} not found.`);
+        }
+
+        if (moreTextElement) {
+            const newMoreTextId = `more_text_container${i + 1}`;
+            moreTextElement.className = newMoreTextId;
+            moreTextElement.id = newMoreTextId;
+
+            moreTextElement.style.left = 190 + noteSlips.discrepencyx + "px";
+            moreTextElement.style.top = 190 + noteSlips.discrepencyy + "px";
+        } else {
+            console.error(`Element more_text_container${i + 2} not found.`);
+        }
     }
 }
 
-// read from mySQL database
-// const notesRead = {{ notes| tojson }}; from python mySQL database read when logged in
 function drawNotesOnLoad() {
-    // Check if notesRead is defined and is an array
     if (Array.isArray(notesRead) && notesRead.length > 0) {
         for (const note of notesRead) {
-            if (note.deleted != true) {
-                const title = note.title || ''; // Default to an empty string if title is not defined
-                const text = note.text || ''; // Default to an empty string if text is not defined
-                addNewNote(title, text);
+            if (!note.deleted) {
+                const title = note.title || '';
+                const text = note.text || '';
+                addNewNote(title, text, note.noteId);
+                console.log(note.deleted);
             }
         }
     } else {
@@ -1219,7 +1307,6 @@ function drawNotesOnLoad() {
     noteSlips.firstload = false;
 }
 
-// Attach the function to the window's onload event
 window.onload = function () {
     drawNotesOnLoad();
     console.log(noteSlips.notes);
