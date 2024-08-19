@@ -50,12 +50,12 @@ def add_note():
         data = request.json
         note_id = data.get("noteId")
         account_id = data.get('accountId')
-        title = data.get('title') or ''
-        text = data.get('text') or ''
+        title = data.get('title')
+        text = data.get('entry') 
 
         # Log the received data
         current_app.logger.info(f"Received data: {data}")
-        current_app.logger.info(f"Note ID: {note_id}, Account ID: {account_id}, Title: {title}, Text: {text}")
+        current_app.logger.info(f"Note ID: {note_id}, Account ID: {account_id}, Title: '{title}', Text: '{text}'")
 
         # Check for existing note
         existing_note = Notes.query.filter_by(accountId=account_id, noteId=note_id).first()

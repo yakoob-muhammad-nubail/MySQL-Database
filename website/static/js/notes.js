@@ -1197,36 +1197,36 @@ function addNewNote(title, entry, noteId) {
         console.log("");
         console.log(notes);
 
-        // fetch('/add_note', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify({
-        //         title: title,
-        //         entry: entry,
-        //         noteId: noteId,
-        //         accountId: notes[0].accountId
-        //     })
-        // })
-        //     .then(response => {
-        //         if (!response.ok) {
-        //             throw new Error(`HTTP error! status: ${response.status}`);
-        //         }
-        //         return response.json();
-        //     })
-        //     .then(data => {
-        //         if (data.status === 'success') {
-        //             console.log("Note added successfully with ID:", data.note_id);
-        //             // Optionally, you can now call addNewNote or any other function to reflect this change in your UI
-        //             addNewNote(title, entry, data.note_id);
-        //         } else {
-        //             console.error("Error adding note:", data.message);
-        //         }
-        //     })
-        //     .catch(error => {
-        //         console.error("Error:", error);
-        //     });
+        fetch('/add_note', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                title: title,
+                entry: entry,
+                noteId: noteId,
+                accountId: notes[0].accountId
+            })
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.status === 'success') {
+                    console.log("Note added successfully with ID:", data.note_id);
+                    // Optionally, you can now call addNewNote or any other function to reflect this change in your UI
+                    addNewNote(title, entry, data.note_id);
+                } else {
+                    console.error("Error adding note:", data.message);
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
 
     } else {
         noteSlips.newNote = {
