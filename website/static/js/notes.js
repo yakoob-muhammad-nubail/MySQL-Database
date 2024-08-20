@@ -1001,10 +1001,15 @@ noteSlipsContainer.style.width = noteSlips.noteSlipsContainerWidth + "px";
 noteSlipsContainer.style.height = noteSlips.noteSlipsContainerHeight + "px";
 
 function addNewNote(title, entry, noteId) {
+    console.log(noteId);
+
     if (noteSlips.counter >= 6) {
         console.log("Cannot add more notes. Limit reached.");
         return;
     }
+
+    if (title == " ") { title = ""; }
+    if (entry == " ") { entry = ""; }
 
     const createDiv = document.createElement("div");
     noteSlips.counter++;
@@ -1050,37 +1055,34 @@ function addNewNote(title, entry, noteId) {
     ];
 
     const position = positions[noteSlips.counter - 1] || { x: 0, y: 0 };
-    noteSlips.discrepencyx = position.x;
-    noteSlips.discrepencyy = position.y;
+    createDiv.style.left = position.x + "px";
+    createDiv.style.top = position.y + "px";
 
-    const createButtonContainer = (imgSrc, left, top) => {
+    // Add note buttons
+    const buttonPositions = [
+        { src: bellImage, left: "-75px", top: "70px" },
+        { src: person, left: "-40px", top: "70px" },
+        { src: paint, left: "-15px", top: "55px" },
+        { src: easle, left: "40px", top: "72px" },
+        { src: archive, left: "80px", top: "72px" },
+        { src: more, left: "115px", top: "73px" }
+    ];
+
+    buttonPositions.forEach(pos => {
         const container = document.createElement("div");
         const button = document.createElement("img");
-        button.src = imgSrc;
+        button.src = pos.src;
+        button.style.transform = "scale(0.1)";
+        button.style.position = "absolute";
 
-        Object.assign(button.style, {
-            transform: "scale(0.1)",
-            position: "absolute"
-        });
-
-        Object.assign(container.style, {
-            position: "absolute",
-            left: left,
-            top: top
-        });
-
+        container.style.position = "absolute";
+        container.style.left = pos.left;
+        container.style.top = pos.top;
         container.appendChild(button);
+        createDiv.appendChild(container);
+    });
 
-        return container;
-    };
-
-    createDiv.appendChild(createButtonContainer(bellImage, "-75px", "70px"));
-    createDiv.appendChild(createButtonContainer(person, "-40px", "70px"));
-    createDiv.appendChild(createButtonContainer(paint, "-15px", "55px"));
-    createDiv.appendChild(createButtonContainer(easle, "40px", "72px"));
-    createDiv.appendChild(createButtonContainer(archive, "80px", "72px"));
-    createDiv.appendChild(createButtonContainer(more, "115px", "73px"));
-
+    // "More" button functionality
     const moreTextContainer = document.createElement("div");
     moreTextContainer.innerHTML = `
         <p style="position: absolute; left: 10px; top: 0px;">Delete note</p>
@@ -1098,43 +1100,29 @@ function addNewNote(title, entry, noteId) {
         display: "block",
         width: "155px",
         height: "195px",
-        left: 395 + noteSlips.discrepencyx + "px",
-        top: 355 + noteSlips.discrepencyy + "px",
+        left: 195 + position.x + "px",
+        top: 195 + position.y + "px",
         borderRadius: "15px",
         boxShadow: "0 0 5px #000000",
-        backgroundColor: "white"
+        backgroundColor: "white",
+        visibility: "hidden"
     });
 
-    moreTextContainer.className = "more_text_container" + noteSlips.counter;
-    moreTextContainer.id = "more_text_container" + noteSlips.counter;
-    moreTextContainer.style.left = (190 + noteSlips.discrepencyx) + "px";
-    moreTextContainer.style.top = (190 + noteSlips.discrepencyy) + "px";
-    moreTextContainer.style.visibility = "hidden";
+    moreTextContainer.id = `more_text_container${noteSlips.counter}`;
     noteSlipsContainer.appendChild(moreTextContainer);
 
-    // More button event listener
     const moreButton = createDiv.querySelector("img[src='" + more + "']");
     moreButton.addEventListener("click", () => {
-        moreTextContainer.style.visibility =
-            moreTextContainer.style.visibility === "visible" ? "hidden" : "visible";
+        moreTextContainer.style.visibility = moreTextContainer.style.visibility === "visible" ? "hidden" : "visible";
     });
 
-    const deleteText = moreTextContainer.querySelector("p:first-child");
-    deleteText.addEventListener("click", () => {
-        // Remove the note from the DOM
+    // Delete note functionality
+    moreTextContainer.querySelector("p:first-child").addEventListener("click", () => {
         noteSlipsContainer.removeChild(moreTextContainer);
         noteSlipsContainer.removeChild(createDiv);
         noteSlips.counter--;
         updateNoteSlipStates(createDiv.id, noteSlips.notes.length, positions);
 
-        // Prepare data to send to the server
-        const ID = createDiv.id;
-
-        console.log("");
-        console.log(ID);
-        console.log(createDiv.noteId);
-
-        // Send a POST request to delete the note from the server
         fetch('/delete_note', {
             method: 'POST',
             headers: {
@@ -1142,7 +1130,7 @@ function addNewNote(title, entry, noteId) {
             },
             body: JSON.stringify({
                 note_id: noteId,
-                account_id: notes[0].accountId
+                account_id: userId
             })
         })
             .then(response => response.json())
@@ -1156,47 +1144,30 @@ function addNewNote(title, entry, noteId) {
             .catch(error => {
                 console.error("Error:", error);
             });
+
+        activeNotes--;
     });
 
+
+
+    // Apply styles to the note
     Object.assign(createDiv.style, {
         zIndex: "2",
         position: "absolute",
         display: "block",
         width: "400px",
         height: "200px",
-        left: noteSlips.discrepencyx + "px",
-        top: noteSlips.discrepencyy + "px",
         borderRadius: "15px",
         boxShadow: "0 0 5px #000000",
         backgroundColor: "white"
     });
 
-    createDiv.className = "note_slip_" + noteSlips.counter;
-    createDiv.id = "note_slip_" + noteSlips.counter;
+    createDiv.className = `note_slip_${noteSlips.counter}`;
+    createDiv.id = `note_slip_${noteSlips.counter}`;
     noteSlipsContainer.appendChild(createDiv);
 
+    // If the note is not being loaded for the first time, add it to the notes array
     if (!noteSlips.firstload) {
-        noteSlips.newNote = {
-            accountId: notes[0].accountId,
-            deleted: false,
-            noteId: (totalNotes += 1),
-            title: title,
-            text: entry
-        };
-
-        notes.push(noteSlips.newNote);
-
-        noteSlips.newNote = {
-            noteName: "note_slip_" + noteSlips.counter,
-            noteId: totalNotes,
-            appId: noteSlips.counter
-        };
-
-        noteSlips.notes.push(noteSlips.newNote);
-
-        console.log("");
-        console.log(notes);
-
         fetch('/add_note', {
             method: 'POST',
             headers: {
@@ -1206,20 +1177,13 @@ function addNewNote(title, entry, noteId) {
                 title: title,
                 entry: entry,
                 noteId: noteId,
-                accountId: notes[0].accountId
+                accountId: userId
             })
         })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return response.json();
-            })
+            .then(response => response.json())
             .then(data => {
                 if (data.status === 'success') {
                     console.log("Note added successfully with ID:", data.note_id);
-                    // Optionally, you can now call addNewNote or any other function to reflect this change in your UI
-                    addNewNote(title, entry, data.note_id);
                 } else {
                     console.error("Error adding note:", data.message);
                 }
@@ -1228,25 +1192,28 @@ function addNewNote(title, entry, noteId) {
                 console.error("Error:", error);
             });
 
+        const newNote = {
+            noteName: `note_slip_${noteSlips.counter}`,
+            noteId: noteId,
+            appId: noteSlips.counter
+        };
+        noteSlips.notes.push(newNote);
+
+        activeNotes++;
+        totalNotes++;
     } else {
-        noteSlips.newNote = {
-            noteName: "note_slip_" + noteSlips.counter,
+        const newNote = {
+            noteName: `note_slip_${noteSlips.counter}`,
             noteId: noteId,
             appId: noteSlips.counter
         };
 
-        console.log("hi");
-
         if (noteSlips.firstLoadIteration) {
-            noteSlips.notes = [noteSlips.newNote];
+            noteSlips.notes = [newNote];
             noteSlips.firstLoadIteration = false;
-            console.log("hello");
         } else {
-            noteSlips.notes.push(noteSlips.newNote);
-            console.log("bye");
+            noteSlips.notes.push(newNote);
         }
-
-        console.log(notes);
     }
 }
 
@@ -1262,6 +1229,7 @@ function updateNoteSlipStates(id, length, positions) {
     console.log(noteSlips.notes);
 
     for (let i = startIdx; i < length - 1; i++) {
+
         const noteElement = document.getElementById(`note_slip_${i + 2}`);
         const moreTextElement = document.getElementById(`more_text_container${i + 2}`);
 

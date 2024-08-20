@@ -21,7 +21,7 @@ class Accounts(db.Model):
 class Notes(db.Model):
     accountId = db.Column(db.Integer, primary_key=True)
     noteId = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(100), nullable=False, unique=True)
+    title = db.Column(db.String(100), nullable=False)
     text = db.Column(db.String(100), nullable=False)
     deleted = db.Column(db.Boolean, default=False)
 
@@ -50,10 +50,9 @@ def add_note():
         data = request.json
         note_id = data.get("noteId")
         account_id = data.get('accountId')
-        title = data.get('title')
-        text = data.get('entry') 
+        title = data.get('title') or ' '
+        text = data.get('entry') or ' '
 
-        # Log the received data
         current_app.logger.info(f"Received data: {data}")
         current_app.logger.info(f"Note ID: {note_id}, Account ID: {account_id}, Title: '{title}', Text: '{text}'")
 
@@ -64,9 +63,8 @@ def add_note():
             return jsonify({'status': 'error', 'message': 'Note with this title already exists'}), 400
 
         # Create and add the new note
-        new_note = Notes(accountId=account_id, noteId=note_id, title=title, text=text, deleted = False)
+        new_note = Notes(accountId=account_id, noteId=note_id, title=title, text=text, deleted=False)
         
-        # Log the new note creation
         current_app.logger.info(f"Creating new note: {new_note}")
 
         db.session.add(new_note)
@@ -96,6 +94,7 @@ def getIdByEmail():
 @app.route('/notes/check-notes/<int:user_id>', methods=['GET'])
 def check_notes(user_id):
     notes = Notes.query.filter_by(accountId=user_id).all()
+    user = Accounts.query.filter_by(id=user_id).all()
     
     # # Set the deleted status for the first three notes based on their position to test the db
     # for index, note in enumerate(notes):
@@ -119,8 +118,14 @@ def check_notes(user_id):
     #     current_app.logger.error(f'Notes counter: {note_count}')
 
     notes_data = [{'accountId': note.accountId, 'noteId': note.noteId, 'title': note.title, 'text': note.text, 'deleted': note.deleted} for note in notes]
+
+    user_data = [{'accountId' : user[0].id}]
+
+    current_app.logger.info(f'User data is as follows: {user[0].id}')
+
+    current_app.logger.info(f'User data is as follows: {user_data}')
     
-    return render_template('notes.html', notes=notes_data, user_id = user_id)
+    return render_template('notes.html', notes=notes_data, userData = user_data)
 
 @app.route('/delete_note', methods=['POST'])
 def delete_note():
