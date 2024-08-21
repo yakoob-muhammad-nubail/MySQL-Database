@@ -35,6 +35,11 @@ immediate
         - maintain height of text - done
             - add in scroll wheel if lines exceed two - optional
         - level sidemenu to be halfway between the page - tbd - optional
+    - migrate sidemenu and navbar js to index.js file, migrate html css as well to index - tbd - immediate
+        - use python methods to incorporate the code
+        - index.html
+        - index.css
+        - index.js
 
     - refactor js (2) - tbd - immediate
         - `${x}px` put variables in that format for HTML DOM

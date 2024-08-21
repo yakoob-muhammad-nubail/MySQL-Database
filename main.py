@@ -93,7 +93,7 @@ def getIdByEmail():
 
 @app.route('/notes/check-notes/<int:user_id>', methods=['GET'])
 def check_notes(user_id):
-    notes = Notes.query.filter_by(accountId=user_id).all()
+    notes = Notes.query.filter_by(accountId=user_id).first()
     user = Accounts.query.filter_by(id=user_id).all()
     
     # # Set the deleted status for the first three notes based on their position to test the db
