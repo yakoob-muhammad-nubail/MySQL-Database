@@ -31,7 +31,7 @@ immediate
                     - this could be simplified if the width of the pre tag adjusts to the 
                     length of the text in it but isnt possible in js
                     - most letters are the same width except m and w the two of which have similar sizes
-                    - single digits all have similar width however are smaller than the smallest letter 
+                    - single digits all have similar width however are smaller than the smallest letter
         - maintain height of text - done
             - add in scroll wheel if lines exceed two - optional
         - level sidemenu to be halfway between the page - tbd - optional

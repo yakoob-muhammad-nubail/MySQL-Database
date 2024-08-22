@@ -93,8 +93,8 @@ def getIdByEmail():
 
 @app.route('/notes/check-notes/<int:user_id>', methods=['GET'])
 def check_notes(user_id):
-    notes = Notes.query.filter_by(accountId=user_id).first()
-    user = Accounts.query.filter_by(id=user_id).all()
+    notes = Notes.query.filter_by(accountId=user_id).all()
+    user = Accounts.query.filter_by(id=user_id).first()
     
     # # Set the deleted status for the first three notes based on their position to test the db
     # for index, note in enumerate(notes):
@@ -119,13 +119,13 @@ def check_notes(user_id):
 
     notes_data = [{'accountId': note.accountId, 'noteId': note.noteId, 'title': note.title, 'text': note.text, 'deleted': note.deleted} for note in notes]
 
-    user_data = [{'accountId' : user[0].id}]
+    user_data = [{'accountId' : user.id}]
 
-    current_app.logger.info(f'User data is as follows: {user[0].id}')
+    current_app.logger.info(f'User data is as follows: {user.id}')
 
     current_app.logger.info(f'User data is as follows: {user_data}')
     
-    return render_template('notes.html', notes=notes_data, userData = user_data)
+    return render_template('notes.html', notes = notes_data, userData = user_data)
 
 @app.route('/delete_note', methods=['POST'])
 def delete_note():
