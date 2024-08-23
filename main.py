@@ -1,7 +1,9 @@
 from website import create_app
-from flask import render_template, request, jsonify, current_app, redirect, url_for
+from flask import render_template, request, jsonify, current_app, redirect, url_for, session
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+
+import json
 
 app = create_app()
 
@@ -86,15 +88,22 @@ def getIdByEmail():
     user = Accounts.query.filter_by(email=email).first()
     
     if user and user.password == password:
-        return redirect(url_for('check_notes', user_id=user.id))
+        session['user_id'] = user.id
+        current_app.logger.info(f"User ID retrieved: {user.id}")
+        return redirect(url_for('check_notes'))
     else:
         current_app.logger.error(f'Failed login attempt for email: {email}')
         return render_template('log_in.html', error="Invalid email or password")
 
-@app.route('/notes/check-notes/<int:user_id>', methods=['GET'])
-def check_notes(user_id):
+@app.route('/notes/logged_in', methods=['GET'])
+def check_notes():
+    user_id = session.get('user_id')
+    current_app.logger.info(f"User ID retrieved during notes load: {user_id}")
+
     notes = Notes.query.filter_by(accountId=user_id).all()
     user = Accounts.query.filter_by(id=user_id).first()
+
+    # current_app.logger.info(f"User ID retrieved during notes load: {user.id}")
     
     # # Set the deleted status for the first three notes based on their position to test the db
     # for index, note in enumerate(notes):
@@ -117,9 +126,9 @@ def check_notes(user_id):
     #     note_count += 1
     #     current_app.logger.error(f'Notes counter: {note_count}')
 
-    notes_data = [{'accountId': note.accountId, 'noteId': note.noteId, 'title': note.title, 'text': note.text, 'deleted': note.deleted} for note in notes]
+    notes_data = json.dumps([{'accountId': note.accountId, 'noteId': note.noteId, 'title': note.title, 'text': note.text, 'deleted': note.deleted} for note in notes])
 
-    user_data = [{'accountId' : user.id}]
+    user_data = json.dumps([{'accountId' : user.id}])
 
     current_app.logger.info(f'User data is as follows: {user.id}')
 

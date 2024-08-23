@@ -1260,8 +1260,9 @@ function updateNoteSlipStates(id, length, positions) {
 
 function drawNotesOnLoad() {
     if (Array.isArray(notesRead) && notesRead.length > 0) {
-        for (const note of notesRead) {
-            if (!note.deleted) {
+        for (const note of notes) {
+            if (note.deleted == "false") {
+                console.log("started load");
                 const title = note.title || '';
                 const text = note.text || '';
                 addNewNote(title, text, note.noteId);

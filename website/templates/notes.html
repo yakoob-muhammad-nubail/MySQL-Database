@@ -158,8 +158,46 @@
 
 <script type="text/javascript">
     // Assume we get the notes from the Flask context
-    const notesRead = JSON.parse('{{ notes|tojson|safe }}');
-    const userDataRead = JSON.parse('{{ userData|tojson|safe }}');
+    // const notesRead = JSON.parse('{{ notes|tojson|safe }}');
+    // const userDataRead = JSON.parse('{{ userData|tojson|safe }}');
+
+    // const notesRead = '{{notes|safe}}';
+    // const userDataRead = '{{userData|safe}}';
+    // console.log('Raw Notes Data:', notesRead);
+    // console.log('Raw User Data:', userDataRead);
+
+    const notesReadString = '{{notes|safe}}';
+    const userDataReadString = '{{userData|safe}}';
+
+    // Function to convert the string to an array of objects
+    function convertToArray(str) {
+        // Remove the surrounding square brackets and split by the object boundaries
+        const objects = str.slice(1, -1).split('}, {').map(item => {
+            // Add curly braces back to each string to form valid object-like structures
+            item = item.replace(/^{?/, '{').replace(/}?$/, '}');
+
+            // Split the key-value pairs and create an object
+            const obj = {};
+            item.slice(1, -1).split(', ').forEach(pair => {
+                const [key, value] = pair.split(': ');
+                obj[key.replace(/\"/g, '')] = value.replace(/\"/g, '');
+            });
+            return obj;
+        });
+        return objects;
+    }
+
+    // Convert the strings
+    const notesRead = convertToArray(notesReadString);
+    const userDataRead = convertToArray(userDataReadString);
+
+    // console.log('Notes Array:', notesArray);
+    // console.log('User Data Array:', userDataArray);
+
+    // const notesRead = JSON.parse(rawNotesData);
+    // const userDataRead = JSON.parse(rawUserData);
+    // console.log('Raw Notes Data:', notesRead);
+    // console.log('Raw User Data:', userDataRead);
 
     let totalNotes = 0;
     let activeNotes = 0;
