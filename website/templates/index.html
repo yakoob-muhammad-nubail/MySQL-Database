@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <!-- whatever you write inbetween will override the title in the child template -->
+    <title>{% block title %}{% endblock %}</title>
+    <style>
+    </style>
+</head>
+
+<body>
+    <nav id="main_navbar" class="main_navbar">
+        <div id="main_navbar_header" class="main_navbar_header">
+            <div id="main_navbar_header_menu_container" class="main_navbar_header_menu_container">
+                <!-- Link to the menu image using url_for -->
+                <img id="main_navbar_header_menu" class="main_navbar_header_menu"
+                    src="{{ url_for('static', filename='images/menuImage.png') }}" alt="menu symbol image" />
+            </div>
+            <div id="main_navbar_header_logo_container" class="main_navbar_header_logo_container">
+                <!-- Link to the logo image using url_for -->
+                <img id="main_navbar_header_logo" class="main_navbar_header_logo" href="/"
+                    src="{{ url_for('static', filename='images/logo250.png') }}" alt="site logo image" />
+            </div>
+            <div id="main_navbar_header_text_container" class="main_navbar_header_logo_container">
+                <p id="main_navbar_header_text" class="main_navbar_header_text" href="/">Notes App</p>
+            </div>
+            <div id="main_navbar_header_nav_container" class="main_navbar_header_nav_container">
+                <div id="main_navbar_header_nav_search_logo_container"
+                    class="main_navbar_header_nav_search_logo_container">
+                    <!-- Link to the search logo image using url_for -->
+                    <img id="main_navbar_header_nav_search_logo" class="main_navbar_header_nav_search_logo"
+                        src="{{ url_for('static', filename='images/searchLogo.png') }}" alt="search logo image" />
+                    <p id="main_navbar_header_nav_search_text" class="main_navbar_header_nav_search_text">Search</p>
+                </div>
+                <p id="main_navbar_header_nav_about_text" class="main_navbar_header_nav_about_text" href="/account">
+                    About</p>
+                <p id="main_navbar_header_nav_account_text" class="main_navbar_header_nav_account_text" href="/about">
+                    Account</p>
+                <div id="main_navbar_header_nav_account_container" class="main_navbar_header_nav_account_container">
+                    <p id="main_navbar_header_nav_account_login" class="main_navbar_header_nav_account_login"
+                        href="/login">Login</p>
+                    <p id="main_navbar_header_nav_account_signup" class="main_navbar_header_nav_account_signup"
+                        href="/sign-up">Sign-up</p>
+                    <p id="main_navbar_header_nav_account_logout" class="main_navbar_header_nav_account_logout"
+                        href="/logout">Logout</p>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div id="sidemenu" class="sidemenu">
+        <div id="sidemenu_notes_container" class="sidemenu_notes_container">
+            <!-- Link to the notes logo image using url_for -->
+            <img id="sidemenu_notes_logo" class="sidemenu_notes_logo"
+                src="{{ url_for('static', filename='images/lightbulb.png') }}" alt="notes logo image" />
+            <p id="sidemenu_notes_text" class="sidemenu_notes_text">Notes</p>
+        </div>
+        <div id="sidemenu_reminders_container">
+            <!-- Link to the reminders logo image using url_for -->
+            <img id="sidemenu_reminders_logo" class="sidemenu_reminders_logo" href="/reminders"
+                src="{{ url_for('static', filename='images/bell.png') }}" alt="reminder logo image" />
+            <p id="sidemenu_reminders_text" class="sidemenu_reminders_text sidemenu_notes_text" href="/reminders">
+                Reminders</p>
+        </div>
+        <div id="sidemenu_edit_labels_container">
+            <!-- Link to the edit logo image using url_for -->
+            <img id="sidemenu_edit_logo" class="sidemenu_edit_logo" href="/labels"
+                src="{{ url_for('static', filename='images/pencil.png') }}" alt="edit logo image" />
+            <p id="sidemenu_edit_labels_text" class="sidemenu_edit_labels_text sidemenu_notes_text" href="/labels">Edit
+                Labels</p>
+        </div>
+        <div id="sidemenu_archive_container">
+            <!-- Link to the archives logo image using url_for -->
+            <img id="sidemenu_archives_logo" class="sidemenu_archives_logo" href="/archives"
+                src="{{ url_for('static', filename='images/folder.png') }}" alt="archives logo image" />
+            <p id="sidemenu_archives_text" class="sidemenu_archives_text sidemenu_notes_text" href="/archives">Archives
+            </p>
+        </div>
+        <div id="sidemenu_trash_container">
+            <!-- Link to the trash logo image using url_for -->
+            <img id="sidemenu_trash_logo" class="sidemenu_trash_logo" href="/trash"
+                src="{{ url_for('static', filename='images/trash.png') }}" alt="trash logo image" />
+            <p id="sidemenu_trash_text" class="sidemenu_trash_text sidemenu_notes_text" href="/trash">Trash</p>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+</body>

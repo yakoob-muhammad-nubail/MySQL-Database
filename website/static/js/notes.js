@@ -1,6 +1,3 @@
-// could format for thinner header
-// all css setup and eventlisteners
-
 // nav menu
 var mainNavbarHeaderMenu = document.getElementById("main_navbar_header_menu");
 var mainNavbarHeaderMenuContainer = document.getElementById("main_navbar_header_menu_container");

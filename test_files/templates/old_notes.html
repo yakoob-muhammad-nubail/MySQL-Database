@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="../static/css/notes.css"> -->
+    <!-- Link to the CSS file using url_for -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/notes.css') }}">
     <title>Notes App Notes</title>
 </head>
@@ -14,68 +13,73 @@
     <nav id="main_navbar" class="main_navbar">
         <div id="main_navbar_header" class="main_navbar_header">
             <div id="main_navbar_header_menu_container" class="main_navbar_header_menu_container">
-                <img id="main_navbar_header_menu" class="main_navbar_header_menu" src="../static/images/menuImage.png"
-                    alt="menu symbol image" />
+                <!-- Link to the menu image using url_for -->
+                <img id="main_navbar_header_menu" class="main_navbar_header_menu"
+                    src="{{ url_for('static', filename='images/menuImage.png') }}" alt="menu symbol image" />
             </div>
             <div id="main_navbar_header_logo_container" class="main_navbar_header_logo_container">
-                <img id="main_navbar_header_logo" class="main_navbar_header_logo" href="/home"
-                    src="../static/images/logo250.png" alt="site logo image" />
+                <!-- Link to the logo image using url_for -->
+                <img id="main_navbar_header_logo" class="main_navbar_header_logo" href="/"
+                    src="{{ url_for('static', filename='images/logo250.png') }}" alt="site logo image" />
             </div>
             <div id="main_navbar_header_text_container" class="main_navbar_header_logo_container">
-                <p id="main_navbar_header_text" class="main_navbar_header_text" href="/home">Notes App</p>
+                <p id="main_navbar_header_text" class="main_navbar_header_text" href="/">Notes App</p>
             </div>
             <div id="main_navbar_header_nav_container" class="main_navbar_header_nav_container">
                 <div id="main_navbar_header_nav_search_logo_container"
                     class="main_navbar_header_nav_search_logo_container">
+                    <!-- Link to the search logo image using url_for -->
                     <img id="main_navbar_header_nav_search_logo" class="main_navbar_header_nav_search_logo"
-                        src="../static/images/searchLogo.png" alt="search logo image" />
+                        src="{{ url_for('static', filename='images/searchLogo.png') }}" alt="search logo image" />
                     <p id="main_navbar_header_nav_search_text" class="main_navbar_header_nav_search_text">Search</p>
                 </div>
-                <p id="main_navbar_header_nav_about_text" class="main_navbar_header_nav_about_text" href="/about">About
-                </p>
-                <p id="main_navbar_header_nav_account_text" class="main_navbar_header_nav_account_text" href="/account">
+                <p id="main_navbar_header_nav_about_text" class="main_navbar_header_nav_about_text" href="/account">
+                    About</p>
+                <p id="main_navbar_header_nav_account_text" class="main_navbar_header_nav_account_text" href="/about">
                     Account</p>
                 <div id="main_navbar_header_nav_account_container" class="main_navbar_header_nav_account_container">
                     <p id="main_navbar_header_nav_account_login" class="main_navbar_header_nav_account_login"
-                        href="/login">
-                        Login
-                    </p>
+                        href="/login">Login</p>
                     <p id="main_navbar_header_nav_account_signup" class="main_navbar_header_nav_account_signup"
                         href="/sign-up">Sign-up</p>
                     <p id="main_navbar_header_nav_account_logout" class="main_navbar_header_nav_account_logout"
                         href="/logout">Logout</p>
                 </div>
-                <!-- <p id="main_navbar_header_About" class="main_navbar_header_About">Draw</p> -->
             </div>
         </div>
     </nav>
     <div id="sidemenu" class="sidemenu">
         <div id="sidemenu_notes_container" class="sidemenu_notes_container">
-            <img id="sidemenu_notes_logo" class="sidemenu_notes_logo" src="../static/images/lightbulb.png"
-                alt="notes logo image" />
+            <!-- Link to the notes logo image using url_for -->
+            <img id="sidemenu_notes_logo" class="sidemenu_notes_logo"
+                src="{{ url_for('static', filename='images/lightbulb.png') }}" alt="notes logo image" />
             <p id="sidemenu_notes_text" class="sidemenu_notes_text">Notes</p>
         </div>
         <div id="sidemenu_reminders_container">
-            <img id="sidemenu_reminders_logo" class="sidemenu_reminders_logo " src="../static/images/bell.png"
-                alt="reminder logo image" />
+            <!-- Link to the reminders logo image using url_for -->
+            <img id="sidemenu_reminders_logo" class="sidemenu_reminders_logo" href="/reminders"
+                src="{{ url_for('static', filename='images/bell.png') }}" alt="reminder logo image" />
             <p id="sidemenu_reminders_text" class="sidemenu_reminders_text sidemenu_notes_text" href="/reminders">
                 Reminders</p>
         </div>
         <div id="sidemenu_edit_labels_container">
-            <img id="sidemenu_edit_logo" class="sidemenu_edit_logo" src="../static/images/pencil.png"
-                alt="edit logo image" />
+            <!-- Link to the edit logo image using url_for -->
+            <img id="sidemenu_edit_logo" class="sidemenu_edit_logo" href="/labels"
+                src="{{ url_for('static', filename='images/pencil.png') }}" alt="edit logo image" />
             <p id="sidemenu_edit_labels_text" class="sidemenu_edit_labels_text sidemenu_notes_text" href="/labels">Edit
                 Labels</p>
         </div>
         <div id="sidemenu_archive_container">
-            <img id="sidemenu_archives_logo" class="sidemenu_archives_logo" src="../static/images/folder.png"
-                alt="archives logo image" />
+            <!-- Link to the archives logo image using url_for -->
+            <img id="sidemenu_archives_logo" class="sidemenu_archives_logo" href="/archives"
+                src="{{ url_for('static', filename='images/folder.png') }}" alt="archives logo image" />
             <p id="sidemenu_archives_text" class="sidemenu_archives_text sidemenu_notes_text" href="/archives">Archives
             </p>
         </div>
         <div id="sidemenu_trash_container">
-            <img id="sidemenu_trash_logo" class="sidemenu_trash_logo" src="../static/images/trash.png"
-                alt="trash logo image" />
+            <!-- Link to the trash logo image using url_for -->
+            <img id="sidemenu_trash_logo" class="sidemenu_trash_logo" href="/trash"
+                src="{{ url_for('static', filename='images/trash.png') }}" alt="trash logo image" />
             <p id="sidemenu_trash_text" class="sidemenu_trash_text sidemenu_notes_text" href="/trash">Trash</p>
         </div>
     </div>
@@ -83,40 +87,53 @@
         <div id="unclicked_entry_box" class="unclicked_entry_box">
             <div id="unclicked_entry_box_note" class="unclicked_entry_box_note">
                 <p id="unclicked_entry_box_note_text" class="unclicked_entry_box_note_text">Write notes here ...</p>
+                <!-- Link to the new list image using url_for -->
                 <img id="unclicked_entry_box_note_new_list" class="unclicked_entry_box_note_new_list"
-                    src="../static/images/new_list.png" alt="check box image" />
+                    src="{{ url_for('static', filename='images/new_list.png') }}" alt="check box image" />
+                <!-- Link to the note drawing image using url_for -->
                 <img id="unclicked_entry_box_note_new_note_drawing" class="unclicked_entry_box_note_new_note_drawing"
-                    src="../static/images/note_drawing.png" alt="paint brush image" />
+                    src="{{ url_for('static', filename='images/note_drawing.png') }}" alt="paint brush image" />
+                <!-- Link to the new image image using url_for -->
                 <img id="unclicked_entry_box_note_new_note_image" class="unclicked_entry_box_note_new_note_image"
-                    src="../static/images/new_image.png" alt="painting image" />
+                    src="{{ url_for('static', filename='images/new_image.png') }}" alt="painting image" />
             </div>
         </div>
         <div id="clicked_entry_box" class="clicked_entry_box">
             <pre id="clicked_entry_box_title_text" class="clicked_entry_box_title_text">Title</pre>
-            <img id="clicked_entry_box_pin" class="clicked_entry_box_pin" src="../static/images/pin.png" alt="image" />
+            <!-- Link to the pin image using url_for -->
+            <img id="clicked_entry_box_pin" class="clicked_entry_box_pin"
+                src="{{ url_for('static', filename='images/pin.png') }}" alt="image" />
             <pre id="clicked_entry_box_entry_text" class="clicked_entry_box_entry_text">Take a note...</pre>
+            <!-- Link to the bell plus image using url_for -->
             <img id="clicked_entry_box_bell_share" class="clicked_entry_box_bell_share"
-                src="../static/images/bell_plus.png" alt="image" />
-            <img id="clicked_entry_box_share" class="clicked_entry_box_share" src="../static/images/person_plus.png"
-                alt="image" />
+                src="{{ url_for('static', filename='images/bell_plus.png') }}" alt="image" />
+            <!-- Link to the person plus image using url_for -->
+            <img id="clicked_entry_box_share" class="clicked_entry_box_share"
+                src="{{ url_for('static', filename='images/person_plus.png') }}" alt="image" />
+            <!-- Link to the paint pallet image using url_for -->
             <img id="clicked_entry_box_background" class="clicked_entry_box_background"
-                src="../static/images/paint_pallet.png" alt="image" />
-            <img id="clicked_entry_box_image" class="clicked_entry_box_image" src="../static/images/easle.png"
-                alt="image" />
-            <img id="clicked_entry_box_archive" class="clicked_entry_box_archive" src="../static/images/archive.png"
-                alt="image" />
-            <img id="clicked_entry_box_more" class="clicked_entry_box_more" src="../static/images/more.png"
-                alt="image" />
+                src="{{ url_for('static', filename='images/paint_pallet.png') }}" alt="image" />
+            <!-- Link to the easle image using url_for -->
+            <img id="clicked_entry_box_image" class="clicked_entry_box_image"
+                src="{{ url_for('static', filename='images/easle.png') }}" alt="image" />
+            <!-- Link to the archive image using url_for -->
+            <img id="clicked_entry_box_archive" class="clicked_entry_box_archive"
+                src="{{ url_for('static', filename='images/archive.png') }}" alt="image" />
+            <!-- Link to the more image using url_for -->
+            <img id="clicked_entry_box_more" class="clicked_entry_box_more"
+                src="{{ url_for('static', filename='images/more.png') }}" alt="image" />
             <div id="clicked_entry_box_more_items" class="clicked_entry_box_more_items">
                 <p id="clicked_entry_box_more_add_label" class="clicked_entry_box_more_add_label">Add label</p>
                 <p id="clicked_entry_box_more_add_drawing" class="clicked_entry_box_more_add_drawing">Add drawing</p>
                 <p id="clicked_entry_box_more_show_checkboxes" class="clicked_entry_box_more_show_checkboxes">Show
                     checkboxes</p>
             </div>
-            <img id="clicked_entry_box_undo" class="clicked_entry_box_undo" src="../static/images/undo.png"
-                alt="image" />
-            <img id="clicked_entry_box_redo" class="clicked_entry_box_redo" src="../static/images/redo.png"
-                alt="image" />
+            <!-- Link to the undo image using url_for -->
+            <img id="clicked_entry_box_undo" class="clicked_entry_box_undo"
+                src="{{ url_for('static', filename='images/undo.png') }}" alt="image" />
+            <!-- Link to the redo image using url_for -->
+            <img id="clicked_entry_box_redo" class="clicked_entry_box_redo"
+                src="{{ url_for('static', filename='images/redo.png') }}" alt="image" />
             <p id="clicked_entry_box_close" class="clicked_entry_box_close">Close</p>
         </div>
         <!-- <div id="notepad_open_list" class="notepad_open_list">
@@ -137,6 +154,106 @@
 </body>
 
 <!-- <script> src = "{{ url_for('static', filename='js/index.js')}}"</script> -->
-<script src="../static/js/notes.js"></script>
+<script src="{{ url_for('static', filename='js/notes.js') }}"></script>
+
+<script type="text/javascript">
+    // Assume we get the notes from the Flask context
+    // const notesRead = JSON.parse('{{ notes|tojson|safe }}');
+    // const userDataRead = JSON.parse('{{ userData|tojson|safe }}');
+
+    // const notesRead = '{{notes|safe}}';
+    // const userDataRead = '{{userData|safe}}';
+    // console.log('Raw Notes Data:', notesRead);
+    // console.log('Raw User Data:', userDataRead);
+
+    const notesReadString = '{{notes|safe}}';
+    const userDataReadString = '{{userData|safe}}';
+
+    // Function to convert the string to an array of objects
+    function convertToArray(str) {
+        // Remove the surrounding square brackets and split by the object boundaries
+        const objects = str.slice(1, -1).split('}, {').map(item => {
+            // Add curly braces back to each string to form valid object-like structures
+            item = item.replace(/^{?/, '{').replace(/}?$/, '}');
+
+            // Split the key-value pairs and create an object
+            const obj = {};
+            item.slice(1, -1).split(', ').forEach(pair => {
+                const [key, value] = pair.split(': ');
+                obj[key.replace(/\"/g, '')] = value.replace(/\"/g, '');
+            });
+            return obj;
+        });
+        return objects;
+    }
+
+    // Convert the strings
+    const notesRead = convertToArray(notesReadString);
+    const userDataRead = convertToArray(userDataReadString);
+
+    // console.log('Notes Array:', notesArray);
+    // console.log('User Data Array:', userDataArray);
+
+    // const notesRead = JSON.parse(rawNotesData);
+    // const userDataRead = JSON.parse(rawUserData);
+    // console.log('Raw Notes Data:', notesRead);
+    // console.log('Raw User Data:', userDataRead);
+
+    let totalNotes = 0;
+    let activeNotes = 0;
+    let userId = 0;
+
+    let notes = notesRead;
+    let userData = userDataRead;
+
+    for (const note of notesRead) {
+        //console.log(`Note ID: ${note.noteId}, Deleted Status: ${note.deleted}`);
+        totalNotes++;
+
+        if (note.deleted != true) {
+            activeNotes++;
+        }
+    }
+
+    console.log("userDataRead", userDataRead);
+    console.log("notesRead", notesRead);
+    console.log("");
+    console.log("totalNotes: ", totalNotes);
+    console.log("activeNotes: ", activeNotes);
+    console.log("notes: ", notes);
+    console.log("notes length: ", notes.length);
+
+    try {
+        if (notes.length === 0) {
+            throw new Error("No notes found in the database.");
+            console.log("Account id:", userData[0].accountId);
+            userId = userData[0].accountId
+        }
+        else {
+            console.log("Current account ID:", notes[0].accountId);
+            userId = notes[0].accountId
+        }
+    } catch (error) {
+        console.error("Error accessing account ID:", error.message);
+    }
+
+
+
+    console.log("");
+
+    // // Use the user_id from the Flask context
+    // const redirectUrl = "/notes/check-notes/" + {{ user_id }};
+    // // window.location.href = redirectUrl; // uncomment to change url
+    // console.log(`Redirect URL: ${redirectUrl}`);
+
+    const menuImageSrc = "{{ url_for('static', filename='images/menuImage.png') }}";
+    const menuImageHighlightSrc = "{{ url_for('static', filename='images/menuImage_highlight.png') }}";
+    const bellImage = "{{ url_for('static', filename='images/bell_plus.png') }}";
+    const person = "{{ url_for('static', filename='images/person_plus.png') }}";
+    const paint = "{{ url_for('static', filename='images/paint_pallet.png') }}";
+    const easle = "{{ url_for('static', filename='images/easle.png') }}";
+    const archive = "{{ url_for('static', filename='images/archive.png') }}";
+    const more = "{{ url_for('static', filename='images/more.png') }}";
+</script>
 
 </html>

@@ -45,3 +45,8 @@ def about():
 @views.route('/account')
 def account():
     return "<p>account</p>"
+
+# test route
+@views.route('/index')
+def index():
+    return render_template("index.html")

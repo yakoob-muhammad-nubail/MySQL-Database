@@ -1,0 +1,356 @@
+/* root {}*/
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: white;
+    position: relative;
+    font-family: "Arial", Helvetica, sans-serif;
+    user-select: none;
+    z-index: 0;
+    overflow: hidden;
+    margin: 0;
+}
+
+/* navigation menu */
+.main_navbar {
+    display: block;
+}
+
+.main_navbar_header {
+    /* background-color: green; */
+    position: absolute;
+    /* box-shadow: 0 0 3px #000000; */
+}
+
+.main_navbar_header_menu_container {
+    /* background-color: blue; */
+    position: relative;
+}
+
+.main_navbar_header_menu {
+    position: relative;
+    transform: scale(0.15);
+}
+
+.main_navbar_header_logo_container {
+    /* background-color: orange; */
+    position: relative;
+}
+
+.main_navbar_header_logo {
+    /* margin: 10px; */
+    position: relative;
+    transform: scale(0.3);
+}
+
+.main_navbar_header_text_container {
+    /* background-color: orange; */
+    position: relative;
+}
+
+.main_navbar_header_text {
+    position: relative;
+    font-size: 50px;
+}
+
+.main_navbar_header_nav_container {
+    /* background-color: aqua; */
+    position: relative;
+    font-size: 18px;
+}
+
+.main_navbar_header_nav_search_logo_container {
+    /* background-color: orange; */
+    box-shadow: 0 0 3px #000000;
+    position: relative;
+}
+
+.main_navbar_header_nav_search_logo {
+    position: relative;
+    transform: scale(0.15);
+}
+
+.main_navbar_header_nav_search_text {
+    /* background-color: darkblue; */
+    color: Grey;
+    position: relative;
+
+}
+
+.main_navbar_header_nav_about_text {
+    /* background-color: fuchsia; */
+    position: relative;
+}
+
+.main_navbar_header_nav_account_text {
+    /* background-color: plum; */
+    position: relative;
+}
+
+.main_navbar_header_nav_account_container {
+    /* background-color: orange; */
+    position: relative;
+}
+
+.main_navbar_header_nav_account_login {
+    /* background-color: red; */
+    position: relative;
+}
+
+.main_navbar_header_nav_account_signup {
+    /* background-color: blue; */
+    position: relative;
+}
+
+.main_navbar_header_nav_account_logout {
+    /* background-color: plum; */
+    position: relative;
+}
+
+/* side menu */
+.sidemenu {
+    /* background-color: red; */
+    position: absolute;
+    width: 200px;
+    font-size: 16px;
+    /*box shadow on one side of the div*/
+    /* box-shadow: 10px 0 5px -2px #888; */
+}
+
+.sidemenu_notes_container {
+    /* background-color: aqua; */
+    position: relative;
+}
+
+.sidemenu_notes_logo {
+    /* background-color: aqua; */
+    position: relative;
+    width: 100px;
+    transform: scale(0.25);
+}
+
+.sidemenu_reminders_container {
+    /* background-color: green; */
+    position: relative;
+}
+
+.sidemenu_reminders_logo {
+    position: relative;
+    transform: scale(0.15);
+}
+
+.sidemenu_edit_labels_container {
+    /* background-color: rgb(187, 255, 0); */
+    position: relative;
+}
+
+.sidemenu_edit_logo {
+    position: relative;
+    transform: scale(0.20);
+}
+
+.sidemenu_archive_container {
+    /* background-color: rgb(255, 51, 0); */
+    position: relative;
+}
+
+.sidemenu_archives_logo {
+    position: relative;
+    transform: scale(0.15);
+}
+
+.sidemenu_trash_container {
+    /* background-color: rgb(255, 0, 140); */
+    position: relative;
+}
+
+.sidemenu_trash_logo {
+    position: relative;
+    transform: scale(0.15);
+}
+
+.sidemenu_notes_text {
+    position: relative;
+    /* display: none; */
+}
+
+.sidemenu_reminders_text {
+    position: relative;
+    /* display: none; */
+}
+
+.sidemenu_edit_labels_text {
+    position: relative;
+    /* display: none; */
+}
+
+.sidemenu_trash_text {
+    position: relative;
+    /* display: none; */
+}
+
+.sidemenu_trash_text {
+    position: relative;
+    /* display: none; */
+}
+
+/* notepad */
+.notepad {
+    /* background-color: orange; */
+    position: absolute;
+    width: 200px;
+    font-size: 16px;
+    color: grey;
+    box-shadow: 0px 0px 5px #888;
+    border-radius: 10px;
+    border: 1px black;
+    z-index: 1;
+}
+
+/* notepad */
+/* unclicked entry box */
+.unclicked_entry_box {
+    /* background-color: aqua; */
+    position: relative;
+    z-index: 1;
+    /* display: none; */
+}
+
+.unclicked_entry_box_note {
+    /* background-color: blue; */
+    position: relative;
+    z-index: 1;
+}
+
+.unclicked_entry_box_note_text {
+    /* background-color: orange; */
+    position: relative;
+    z-index: 1;
+}
+
+.unclicked_entry_box_note_new_list {
+    position: relative;
+    transform: scale(0.1);
+    z-index: 1;
+}
+
+.unclicked_entry_box_note_new_note_drawing {
+    position: relative;
+    transform: scale(0.1);
+    z-index: 1;
+}
+
+.unclicked_entry_box_note_new_note_image {
+    position: relative;
+    transform: scale(0.1);
+    z-index: 1;
+}
+
+/* notepad */
+/* clicked entry box */
+.clicked_entry_box {
+    /* background-color: cyan; */
+    position: absolute;
+    border-radius: 10px;
+    color: grey;
+    z-index: 6;
+    display: none;
+}
+
+.clicked_entry_box_title_text {
+    position: relative;
+    font-family: "Arial", Helvetica, sans-serif;
+    white-space: pre-wrap;
+    display: inline-block;
+}
+
+.clicked_entry_box_pin {
+    position: relative;
+    transform: scale(0.1);
+}
+
+.clicked_entry_box_entry_text {
+    position: relative;
+    font-family: "Arial", Helvetica, sans-serif;
+    white-space: pre-wrap;
+}
+
+.clicked_entry_box_bell_share {
+    position: relative;
+    transform: scale(0.1);
+}
+
+.clicked_entry_box_share {
+    position: relative;
+    transform: scale(0.1);
+}
+
+.clicked_entry_box_background {
+    position: relative;
+    transform: scale(0.1);
+}
+
+.clicked_entry_box_image {
+    position: relative;
+    transform: scale(0.1);
+}
+
+.clicked_entry_box_archive {
+    position: relative;
+    transform: scale(0.1);
+}
+
+.clicked_entry_box_more {
+    position: relative;
+    transform: scale(0.1);
+}
+
+.clicked_entry_box_more_items {
+    /* display: none; */
+    background-color: white;
+    position: relative;
+    box-shadow: 0px 0px 5px #888;
+    border-radius: 10px;
+}
+
+.clicked_entry_box_more_add_label {
+    position: relative;
+    /* display: none; */
+}
+
+.clicked_entry_box_more_add_drawing {
+    position: relative;
+    /* display: none; */
+}
+
+.clicked_entry_box_more_show_checkboxes {
+    position: relative;
+    /* display: none; */
+}
+
+.clicked_entry_box_undo {
+    position: relative;
+    transform: scale(0.1);
+}
+
+.clicked_entry_box_redo {
+    position: relative;
+    transform: scale(0.1);
+}
+
+.clicked_entry_box_close {
+    position: relative;
+}
+
+/* notepad */
+/* open list */
+
+/* notepad */
+/* notes slips */
+
+.note_slips_container {
+    /* background-color: orange; */
+    position: absolute;
+}

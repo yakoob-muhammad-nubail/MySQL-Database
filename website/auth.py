@@ -45,3 +45,8 @@ def about():
 @auth.route('/account')
 def account():
     return "<p>account</p>"
+
+# test route
+@auth.route('/index')
+def index():
+    return "<p>index</p>"

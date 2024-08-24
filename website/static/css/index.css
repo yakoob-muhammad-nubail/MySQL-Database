@@ -1,0 +1,196 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: white;
+    position: relative;
+    font-family: "Arial", Helvetica, sans-serif;
+    user-select: none;
+    z-index: 0;
+    overflow: hidden;
+    margin: 0;
+}
+
+/* navigation menu */
+.main_navbar {
+    display: block;
+}
+
+.main_navbar_header {
+    /* background-color: green; */
+    position: absolute;
+    /* box-shadow: 0 0 3px #000000; */
+}
+
+.main_navbar_header_menu_container {
+    /* background-color: blue; */
+    position: relative;
+}
+
+.main_navbar_header_menu {
+    position: relative;
+    transform: scale(0.15);
+}
+
+.main_navbar_header_logo_container {
+    /* background-color: orange; */
+    position: relative;
+}
+
+.main_navbar_header_logo {
+    /* margin: 10px; */
+    position: relative;
+    transform: scale(0.3);
+}
+
+.main_navbar_header_text_container {
+    /* background-color: orange; */
+    position: relative;
+}
+
+.main_navbar_header_text {
+    position: relative;
+    font-size: 50px;
+}
+
+.main_navbar_header_nav_container {
+    /* background-color: aqua; */
+    position: relative;
+    font-size: 18px;
+}
+
+.main_navbar_header_nav_search_logo_container {
+    /* background-color: orange; */
+    box-shadow: 0 0 3px #000000;
+    position: relative;
+}
+
+.main_navbar_header_nav_search_logo {
+    position: relative;
+    transform: scale(0.15);
+}
+
+.main_navbar_header_nav_search_text {
+    /* background-color: darkblue; */
+    color: Grey;
+    position: relative;
+
+}
+
+.main_navbar_header_nav_about_text {
+    /* background-color: fuchsia; */
+    position: relative;
+}
+
+.main_navbar_header_nav_account_text {
+    /* background-color: plum; */
+    position: relative;
+}
+
+.main_navbar_header_nav_account_container {
+    /* background-color: orange; */
+    position: relative;
+}
+
+.main_navbar_header_nav_account_login {
+    /* background-color: red; */
+    position: relative;
+}
+
+.main_navbar_header_nav_account_signup {
+    /* background-color: blue; */
+    position: relative;
+}
+
+.main_navbar_header_nav_account_logout {
+    /* background-color: plum; */
+    position: relative;
+}
+
+/* side menu */
+.sidemenu {
+    /* background-color: red; */
+    position: absolute;
+    width: 200px;
+    font-size: 16px;
+    /*box shadow on one side of the div*/
+    /* box-shadow: 10px 0 5px -2px #888; */
+}
+
+.sidemenu_notes_container {
+    /* background-color: aqua; */
+    position: relative;
+}
+
+.sidemenu_notes_logo {
+    /* background-color: aqua; */
+    position: relative;
+    width: 100px;
+    transform: scale(0.25);
+}
+
+.sidemenu_reminders_container {
+    /* background-color: green; */
+    position: relative;
+}
+
+.sidemenu_reminders_logo {
+    position: relative;
+    transform: scale(0.15);
+}
+
+.sidemenu_edit_labels_container {
+    /* background-color: rgb(187, 255, 0); */
+    position: relative;
+}
+
+.sidemenu_edit_logo {
+    position: relative;
+    transform: scale(0.20);
+}
+
+.sidemenu_archive_container {
+    /* background-color: rgb(255, 51, 0); */
+    position: relative;
+}
+
+.sidemenu_archives_logo {
+    position: relative;
+    transform: scale(0.15);
+}
+
+.sidemenu_trash_container {
+    /* background-color: rgb(255, 0, 140); */
+    position: relative;
+}
+
+.sidemenu_trash_logo {
+    position: relative;
+    transform: scale(0.15);
+}
+
+.sidemenu_notes_text {
+    position: relative;
+    /* display: none; */
+}
+
+.sidemenu_reminders_text {
+    position: relative;
+    /* display: none; */
+}
+
+.sidemenu_edit_labels_text {
+    position: relative;
+    /* display: none; */
+}
+
+.sidemenu_trash_text {
+    position: relative;
+    /* display: none; */
+}
+
+.sidemenu_trash_text {
+    position: relative;
+    /* display: none; */
+}
