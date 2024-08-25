@@ -399,27 +399,50 @@ sidemenuArchivesLogo.addEventListener("mousedown", openCloseSideMenu);
 
 sidemenuTrashLogo.addEventListener("mousedown", openCloseSideMenu);
 
-sidemenuNotesText.addEventListener('DOMContentLoaded', () => {
-    const links = document.querySelectorAll('.sidemenu_link');
+document.addEventListener('DOMContentLoaded', () => {
+    // Function to handle page loading via AJAX
+    function handleLinkClick(event, url) {
+        event.preventDefault(); // Prevent the default link behavior
 
-    links.forEach(link => {
-        link.addEventListener('click', (event) => {
-            const url = event.currentTarget.getAttribute('data-url');
-            event.preventDefault();  // Prevent the default link behavior
 
-            if (window.location.pathname === url) {
-                // If the URL is the same, do nothing
-                return;
-            }
+        if (window.location.pathname === url) {
+            // If the URL is the same, do nothing
+            return;
+        }
 
-            fetch(url)
-                .then(response => response.text())
-                .then(html => {
-                    document.getElementById('content-container').innerHTML = html;
-                    // Update the URL without reloading the page
-                    window.history.pushState(null, '', url);
-                })
-                .catch(error => console.error('Error loading content:', error));
-        });
-    });
+        fetch(url)
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('parent_container').innerHTML = html;
+                // Update the URL without reloading the page
+                window.history.pushState(null, '', url);
+            })
+            .catch(error => console.error('Error loading content:', error));
+    }
+
+    // Event handler for notes link
+    if (window.location.pathname === "/notes/logged_in") {
+        sidemenuNotesText.addEventListener('click', (event) => handleLinkClick(event, '/notes/logged_in'));
+    }
+
+    // Event handler for reminders link
+    if (window.location.pathname === "/reminders") {
+        sidemenuRemindersText.addEventListener('click', (event) => handleLinkClick(event, '/reminders'));
+    }
+
+    // Event handler for edit labels link
+    if (window.location.pathname === "/labels") {
+        sidemenuEditLabelsText.addEventListener('click', (event) => handleLinkClick(event, '/labels'));
+    }
+
+    // Event handler for archives link
+    if (window.location.pathname === "/archives") {
+        sidemenuArchivesText.addEventListener('click', (event) => handleLinkClick(event, '/archives'));
+    }
+
+    // Event handler for trash link
+    if (window.location.pathname === "/trash") {
+        sidemenuTrashText.addEventListener('click', (event) => handleLinkClick(event, '/trash'));
+    }
 });
+console.log(window.location.pathname);
