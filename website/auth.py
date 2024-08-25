@@ -1,22 +1,22 @@
-from flask import Blueprint
+from flask import Blueprint, render_template
 
 auth = Blueprint('auth', __name__)
 
 @auth.route('/login')
 def login():
-    return "<p>login</p>"
+    return render_template("log_in.html")
 
 @auth.route('/logout')
 def logout():
-    return "<p>logout</p>"
+    return render_template("log_out.html")
 
 @auth.route('/sign-up')
 def sign_up():
-    return "<p>Sign Up</p>"
+    return render_template("sign_up.html")
 
 @auth.route('/notes')
 def notes():
-    return "<p>notes</p>"
+    return render_template("notes.html")
 
 @auth.route('/reminders')
 def reminders():
@@ -26,7 +26,7 @@ def reminders():
 def labels():
     return "<p>labels</p>"
 
-@auth.route('/archive')
+@auth.route('/archives')
 def archive():
     return "<p>archive</p>"
 
@@ -36,7 +36,7 @@ def trash():
 
 @auth.route('/')
 def home():
-    return "<p>home</p>"
+    return render_template("home.html")
 
 @auth.route('/about')
 def about():
@@ -47,6 +47,6 @@ def account():
     return "<p>account</p>"
 
 # test route
-@auth.route('/index')
-def index():
-    return "<p>index</p>"
+# @auth.route('/index')
+# def index():
+#     return render_template("index.html")

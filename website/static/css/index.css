@@ -83,15 +83,16 @@ body {
     position: relative;
 }
 
+.main_navbar_header_nav_account_settings_container {
+    /* background-color: orange; */
+    position: relative;
+}
+
 .main_navbar_header_nav_account_text {
     /* background-color: plum; */
     position: relative;
 }
 
-.main_navbar_header_nav_account_container {
-    /* background-color: orange; */
-    position: relative;
-}
 
 .main_navbar_header_nav_account_login {
     /* background-color: red; */

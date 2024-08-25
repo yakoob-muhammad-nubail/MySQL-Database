@@ -26,7 +26,7 @@ def reminders():
 def labels():
     return "<p>labels</p>"
 
-@views.route('/archive')
+@views.route('/archives')
 def archive():
     return "<p>archive</p>"
 
@@ -47,6 +47,6 @@ def account():
     return "<p>account</p>"
 
 # test route
-@views.route('/index')
-def index():
-    return render_template("index.html")
+# @views.route('/index')
+# def index():
+#     return render_template("index.html")

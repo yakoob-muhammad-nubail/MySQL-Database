@@ -13,7 +13,7 @@ var mainNavbarHeaderNavSearchLogo = document.getElementById("main_navbar_header_
 var mainNavbarHeaderNavSearchText = document.getElementById("main_navbar_header_nav_search_text");
 var mainNavbarHeaderNavAboutText = document.getElementById("main_navbar_header_nav_about_text");
 var mainNavbarHeaderNavAccountText = document.getElementById("main_navbar_header_nav_account_text");
-var mainNavbarHeaderNavAccountContainer = document.getElementById("main_navbar_header_nav_account_container");
+var mainNavbarHeaderNavAccountContainer = document.getElementById("main_navbar_header_nav_account_settings_container");
 var mainNavbarHeaderNavAccountLogin = document.getElementById("main_navbar_header_nav_account_login");
 var mainNavbarHeaderNavAccountSignup = document.getElementById("main_navbar_header_nav_account_signup");
 var mainNavbarHeaderNavAccountLogout = document.getElementById("main_navbar_header_nav_account_logout");
@@ -24,8 +24,7 @@ const navMenu = {
     navContainerHeight: 90,
     mainNavbarHeaderNavTextWidth: 100,
     clickedMenuButtonState: false,
-    clickedMoreItemsState: false,
-    clickedAccountState: false
+    clickedMoreItemsState: false
 };
 
 // var menuClick = false;
@@ -100,19 +99,16 @@ mainNavbarHeaderNavAccountSignup.style.top = -10 + "px";
 mainNavbarHeaderNavAccountLogout.style.width = 60 + "px";
 mainNavbarHeaderNavAccountLogout.style.top = -20 + "px";
 
-function openCloseAccountMenu() {
-    // console.log("hit");
+function openAccountMenu() {
+    navMenu.clickedAccountState = true;
 
-    if (navMenu.clickedAccountState == false) {
-        navMenu.clickedAccountState = true;
+    mainNavbarHeaderNavAccountContainer.style.display = "block";
+}
 
-        mainNavbarHeaderNavAccountContainer.style.display = "block";
-    }
-    else {
-        navMenu.clickedAccountState = false;
+function closeAccountMenu() {
+    navMenu.clickedAccountState = false;
 
-        mainNavbarHeaderNavAccountContainer.style.display = "none";
-    }
+    mainNavbarHeaderNavAccountContainer.style.display = "none"
 }
 
 mainNavbarHeaderLogo.addEventListener("mouseover", function hoverOverLogo() {
@@ -175,7 +171,9 @@ mainNavbarHeaderNavAccountLogout.addEventListener("mouseout", function hoverOutL
     mainNavbarHeaderNavAccountLogout.style.color = "black";
 });
 
-mainNavbarHeaderNavAccountText.addEventListener("mousedown", openCloseAccountMenu);
+mainNavbarHeaderNavAccountText.addEventListener("mouseover", openAccountMenu);
+
+mainNavbarHeaderNavAccountText.addEventListener("mouseout", closeAccountMenu);
 
 // side menu
 var sidemenu = document.getElementById("sidemenu");
@@ -400,3 +398,28 @@ sidemenuEditLabelsLogo.addEventListener("mousedown", openCloseSideMenu);
 sidemenuArchivesLogo.addEventListener("mousedown", openCloseSideMenu);
 
 sidemenuTrashLogo.addEventListener("mousedown", openCloseSideMenu);
+
+sidemenuNotesText.addEventListener('DOMContentLoaded', () => {
+    const links = document.querySelectorAll('.sidemenu_link');
+
+    links.forEach(link => {
+        link.addEventListener('click', (event) => {
+            const url = event.currentTarget.getAttribute('data-url');
+            event.preventDefault();  // Prevent the default link behavior
+
+            if (window.location.pathname === url) {
+                // If the URL is the same, do nothing
+                return;
+            }
+
+            fetch(url)
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementById('content-container').innerHTML = html;
+                    // Update the URL without reloading the page
+                    window.history.pushState(null, '', url);
+                })
+                .catch(error => console.error('Error loading content:', error));
+        });
+    });
+});
