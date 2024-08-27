@@ -12,6 +12,10 @@ body {
     margin: 0;
 }
 
+a {
+    text-decoration: none;
+}
+
 /* navigation menu */
 .main_navbar {
     display: block;
@@ -83,6 +87,11 @@ body {
     position: relative;
 }
 
+.main_navbar_header_nav_account_settings_text {
+    /* background-color: red; */
+    position: relative;
+}
+
 .main_navbar_header_nav_account_settings_container {
     /* background-color: orange; */
     position: relative;
@@ -125,7 +134,6 @@ body {
 }
 
 .sidemenu_notes_logo {
-    /* background-color: aqua; */
     position: relative;
     width: 100px;
     transform: scale(0.25);
@@ -172,26 +180,31 @@ body {
 }
 
 .sidemenu_notes_text {
+    /* background-color: yellow; */
     position: relative;
     /* display: none; */
 }
 
 .sidemenu_reminders_text {
+    /* background-color: yellow; */
     position: relative;
     /* display: none; */
 }
 
 .sidemenu_edit_labels_text {
+    /* background-color: yellow; */
     position: relative;
     /* display: none; */
 }
 
 .sidemenu_trash_text {
+    /* background-color: yellow; */
     position: relative;
     /* display: none; */
 }
 
 .sidemenu_trash_text {
+    /* background-color: yellow; */
     position: relative;
     /* display: none; */
 }

@@ -1,4 +1,4 @@
-{% extends "index.html" %}
+{% extends "index_account.html" %}
 {% block title %}Notes{% endblock %}
 
 {% block content %}
@@ -134,13 +134,13 @@
         }
     }
 
-    console.log("userDataRead", userDataRead);
-    console.log("notesRead", notesRead);
-    console.log("");
-    console.log("totalNotes: ", totalNotes);
-    console.log("activeNotes: ", activeNotes);
-    console.log("notes: ", notes);
-    console.log("notes length: ", notes.length);
+    //console.log("userDataRead", userDataRead);
+    //console.log("notesRead", notesRead);
+    //console.log("");
+    //console.log("totalNotes: ", totalNotes);
+    //console.log("activeNotes: ", activeNotes);
+    //console.log("notes: ", notes);
+    //console.log("notes length: ", notes.length);
 
     try {
         if (notes.length === 0) {
@@ -165,7 +165,7 @@
     const archive = "{{ url_for('static', filename='images/archive.png') }}";
     const more = "{{ url_for('static', filename='images/more.png') }}";
 
-    console.log("");
+    //console.log("");
 
     // // Use the user_id from the Flask context
     // const redirectUrl = "/notes/check-notes/" + {{ user_id }};

@@ -12,8 +12,9 @@ var mainNavbarHeaderNavSearchLogoContainer = document.getElementById("main_navba
 var mainNavbarHeaderNavSearchLogo = document.getElementById("main_navbar_header_nav_search_logo");
 var mainNavbarHeaderNavSearchText = document.getElementById("main_navbar_header_nav_search_text");
 var mainNavbarHeaderNavAboutText = document.getElementById("main_navbar_header_nav_about_text");
+var mainNavbarHeaderNavAccountSettingsText = document.getElementById("main_navbar_header_nav_account_settings_text");
+var mainNavbarHeaderNavAccountSettingsContainer = document.getElementById("main_navbar_header_nav_account_settings_container");
 var mainNavbarHeaderNavAccountText = document.getElementById("main_navbar_header_nav_account_text");
-var mainNavbarHeaderNavAccountContainer = document.getElementById("main_navbar_header_nav_account_settings_container");
 var mainNavbarHeaderNavAccountLogin = document.getElementById("main_navbar_header_nav_account_login");
 var mainNavbarHeaderNavAccountSignup = document.getElementById("main_navbar_header_nav_account_signup");
 var mainNavbarHeaderNavAccountLogout = document.getElementById("main_navbar_header_nav_account_logout");
@@ -21,10 +22,11 @@ var mainNavbarHeaderNavAccountLogout = document.getElementById("main_navbar_head
 var width, height; // throw in preset values and object
 
 const navMenu = {
-    navContainerHeight: 90,
+    navContainerHeight: 100,
     mainNavbarHeaderNavTextWidth: 100,
     clickedMenuButtonState: false,
-    clickedMoreItemsState: false
+    clickedMoreItemsState: false,
+    settingsItemsState: false
 };
 
 // var menuClick = false;
@@ -34,7 +36,6 @@ mainNavbar.style.width = width + "px";
 
 mainNavbarHeader.style.width = width + "px";
 mainNavbarHeader.style.height = navMenu.navContainerHeight + "px";
-
 mainNavbarHeader.style.top = 0 + "px";
 mainNavbarHeader.style.left = 0 + "px";
 
@@ -43,21 +44,19 @@ mainNavbarHeaderMenuContainer.style.width = width + "px";
 mainNavbarHeaderMenuContainer.style.height = navMenu.navContainerHeight + "px";
 
 mainNavbarHeaderMenu.style.left = -50 + "px";
-mainNavbarHeaderMenu.style.top = -50 + "px";
+mainNavbarHeaderMenu.style.top = -40 + "px";
 
-width = 100;
-mainNavbarHeaderLogoContainer.style.width = width + "px";
-mainNavbarHeaderLogoContainer.style.height = navMenu.navContainerHeight + "px";
+mainNavbarHeaderLogoContainer.style.width = 5 + "px";
+mainNavbarHeaderLogoContainer.style.height = 100 + "px";
 
-mainNavbarHeaderLogoContainer.style.left = 100 + "px";
-mainNavbarHeaderLogoContainer.style.top = -90 + "px";
+mainNavbarHeaderLogoContainer.style.left = 105 + "px";
+mainNavbarHeaderLogoContainer.style.top = -230 + "px";
 
-width = -50;
-mainNavbarHeaderLogo.style.left = width + "px";
-mainNavbarHeaderLogo.style.top = -50 + "px";
+mainNavbarHeaderLogo.style.left = -75 + "px";
+mainNavbarHeaderLogo.style.top = 85 + "px";
 
-mainNavbarHeaderTextContainer.style.left = 200 + "px";
-mainNavbarHeaderTextContainer.style.top = -208 + "px";
+mainNavbarHeaderTextContainer.style.left = 160 + "px";
+mainNavbarHeaderTextContainer.style.top = -275 + "px";
 mainNavbarHeaderTextContainer.style.width = 250 + "px";
 
 mainNavbarHeaderNavContainer.style.width = 500 + "px";
@@ -68,7 +67,7 @@ mainNavbarHeaderNavContainer.style.top = -300 + "px";
 mainNavbarHeaderNavSearchLogoContainer.style.width = 500 + "px";
 mainNavbarHeaderNavSearchLogoContainer.style.height = 25 + "px";
 mainNavbarHeaderNavSearchLogoContainer.style.left = 0 + "px";
-mainNavbarHeaderNavSearchLogoContainer.style.top = 0 + "px";
+mainNavbarHeaderNavSearchLogoContainer.style.top = -15 + "px";
 
 mainNavbarHeaderNavSearchLogo.style.left = -40 + "px";
 mainNavbarHeaderNavSearchLogo.style.top = -34 + "px";
@@ -79,36 +78,46 @@ mainNavbarHeaderNavSearchText.style.top = -112 + "px";
 
 mainNavbarHeaderNavAboutText.style.width = navMenu.mainNavbarHeaderNavTextWidth + "px";
 mainNavbarHeaderNavAboutText.style.left = window.innerWidth - 825 + "px";
-mainNavbarHeaderNavAboutText.style.top = -40 + "px";
+mainNavbarHeaderNavAboutText.style.top = -36 + "px";
+
+mainNavbarHeaderNavAccountSettingsText.style.width = 70 + "px";
+mainNavbarHeaderNavAccountSettingsText.style.left = window.innerWidth - 750 + "px"; // 700
+mainNavbarHeaderNavAccountSettingsText.style.top = -75 + "px"; //38
+
+mainNavbarHeaderNavAccountSettingsContainer.style.width = 75 + "px";
+mainNavbarHeaderNavAccountSettingsContainer.style.height = 100 + "px";
+mainNavbarHeaderNavAccountSettingsContainer.style.left = 785 + "px";
+mainNavbarHeaderNavAccountSettingsContainer.style.top = -80 + "px";
+mainNavbarHeaderNavAccountSettingsContainer.style.display = "none";
 
 mainNavbarHeaderNavAccountText.style.width = navMenu.mainNavbarHeaderNavTextWidth + "px";
-mainNavbarHeaderNavAccountText.style.left = window.innerWidth - 700 + "px";
-mainNavbarHeaderNavAccountText.style.top = -78 + "px"; //38
-
-mainNavbarHeaderNavAccountContainer.style.width = 75 + "px";
-mainNavbarHeaderNavAccountContainer.style.height = 75 + "px";
-mainNavbarHeaderNavAccountContainer.style.left = 835 + "px";
-mainNavbarHeaderNavAccountContainer.style.top = -80 + "px";
-mainNavbarHeaderNavAccountContainer.style.display = "none";
+mainNavbarHeaderNavAccountText.style.left = 0 + "px";
+mainNavbarHeaderNavAccountText.style.top = 0 + "px";
 
 mainNavbarHeaderNavAccountLogin.style.width = 50 + "px";
+mainNavbarHeaderNavAccountLogin.style.left = 10 + "px";
+mainNavbarHeaderNavAccountLogin.style.top = 0 + "px";
 
 mainNavbarHeaderNavAccountSignup.style.width = 65 + "px";
-mainNavbarHeaderNavAccountSignup.style.top = -10 + "px";
+mainNavbarHeaderNavAccountSignup.style.top = 0 + "px";
+mainNavbarHeaderNavAccountSignup.style.left = 2 + "px";
+mainNavbarHeaderNavAccountSignup.style.top = 0 + "px";
 
 mainNavbarHeaderNavAccountLogout.style.width = 60 + "px";
-mainNavbarHeaderNavAccountLogout.style.top = -20 + "px";
+mainNavbarHeaderNavAccountLogout.style.top = 0 + "px";
+mainNavbarHeaderNavAccountLogout.style.left = 5 + "px";
+mainNavbarHeaderNavAccountLogout.style.top = 0 + "px";
 
-function openAccountMenu() {
-    navMenu.clickedAccountState = true;
+function openCloseAccountSettingsMenu() {
+    if (navMenu.settingsItemsState == false) {
+        navMenu.settingsItemsState = true;
 
-    mainNavbarHeaderNavAccountContainer.style.display = "block";
-}
+        mainNavbarHeaderNavAccountSettingsContainer.style.display = "block";
+    } else {
+        navMenu.settingsItemsState = false;
 
-function closeAccountMenu() {
-    navMenu.clickedAccountState = false;
-
-    mainNavbarHeaderNavAccountContainer.style.display = "none"
+        mainNavbarHeaderNavAccountSettingsContainer.style.display = "none"
+    }
 }
 
 mainNavbarHeaderLogo.addEventListener("mouseover", function hoverOverLogo() {
@@ -171,9 +180,14 @@ mainNavbarHeaderNavAccountLogout.addEventListener("mouseout", function hoverOutL
     mainNavbarHeaderNavAccountLogout.style.color = "black";
 });
 
-mainNavbarHeaderNavAccountText.addEventListener("mouseover", openAccountMenu);
+mainNavbarHeaderNavAccountSettingsText.addEventListener("mouseover", function hoverOverLogo() {
+    mainNavbarHeaderNavAccountSettingsText.style.color = "blue";
+});
+mainNavbarHeaderNavAccountSettingsText.addEventListener("mouseout", function hoverOutLogo() {
+    mainNavbarHeaderNavAccountSettingsText.style.color = "black";
+});
 
-mainNavbarHeaderNavAccountText.addEventListener("mouseout", closeAccountMenu);
+mainNavbarHeaderNavAccountSettingsText.addEventListener("mousedown", openCloseAccountSettingsMenu);
 
 // side menu
 var sidemenu = document.getElementById("sidemenu");
@@ -198,11 +212,12 @@ const sideMenuOpen = {
     widthSideMenu: 180,
     widthLogoSidemenu: 200, // image is loaded in first then css is applied (scaling down)
     heightSidemenu: window.innerHeight - navMenu.navContainerHeight,
-    topSidemenu: -70,
+    topSideMenu: 90,
+    topSideMenuItem: -70,
     leftSidemenu: -48,
     widthTextSideMenu: 100,
     leftTextSideMenu: 100,
-    topTextSideMenu: -198
+    topTextSideMenu: -180
     // boxShadowSideMenu: "10px 0 5px -2px #888"
 };
 
@@ -213,13 +228,13 @@ const sideMenuClosed = {
 
 sidemenu.style.width = sideMenuClosed.widthSideMenu + "px";
 sidemenu.style.height = sideMenuOpen.heightSidemenu + "px";
-sidemenu.style.top = 90 + "px";
+sidemenu.style.top = sideMenuOpen.topSideMenu + "px";
 // sidemenu.style.boxShadow = "none";
 
 sidemenuNotesContainer.style.width = sideMenuOpen.widthSideMenu + "px";
 sidemenuNotesContainer.style.height = 50 + "px";
 sidemenuNotesLogo.style.width = sideMenuOpen.widthLogoSidemenu + "px";
-sidemenuNotesLogo.style.top = sideMenuOpen.topSidemenu + "px";
+sidemenuNotesLogo.style.top = sideMenuOpen.topSideMenuItem + "px";
 sidemenuNotesLogo.style.left = sideMenuOpen.leftSidemenu + "px";
 //sidemenu_notes_logo.style.height = 100 + "px";
 
@@ -227,28 +242,28 @@ sidemenuRemindersContainer.style.width = sideMenuOpen.widthSideMenu + "px";
 sidemenuRemindersContainer.style.height = 50 + "px";
 sidemenuRemindersContainer.style.left = sideMenuClosed.leftSideMenu + "px";
 sidemenuRemindersLogo.style.width = sideMenuOpen.widthLogoSidemenu + "px";
-sidemenuRemindersLogo.style.top = sideMenuOpen.topSidemenu + "px";
+sidemenuRemindersLogo.style.top = sideMenuOpen.topSideMenuItem + "px";
 sidemenuRemindersLogo.style.left = sideMenuOpen.leftSidemenu + "px";
 
 sidemenuEditLabelsContainer.style.width = sideMenuOpen.widthSideMenu + "px";
 sidemenuEditLabelsContainer.style.height = 50 + "px";
 sidemenuEditLabelsContainer.style.left = sideMenuClosed.leftSideMenu + "px";
 sidemenuEditLabelsLogo.style.width = sideMenuOpen.widthLogoSidemenu + "px";
-sidemenuEditLabelsLogo.style.top = sideMenuOpen.topSidemenu + "px";
+sidemenuEditLabelsLogo.style.top = sideMenuOpen.topSideMenuItem + "px";
 sidemenuEditLabelsLogo.style.left = sideMenuOpen.leftSidemenu + "px";
 
 sidemenuArchivesContainer.style.width = sideMenuOpen.widthSideMenu + "px";
 sidemenuArchivesContainer.style.height = 50 + "px";
 sidemenuArchivesContainer.style.left = sideMenuClosed.leftSideMenu + "px";
 sidemenuArchivesLogo.style.width = sideMenuOpen.widthLogoSidemenu + "px";
-sidemenuArchivesLogo.style.top = sideMenuOpen.topSidemenu + "px";
+sidemenuArchivesLogo.style.top = sideMenuOpen.topSideMenuItem + "px";
 sidemenuArchivesLogo.style.left = sideMenuOpen.leftSidemenu + "px";
 
 sidemenuTrashContainer.style.width = sideMenuOpen.widthSideMenu + "px";
 sidemenuTrashContainer.style.height = 50 + "px";
 sidemenuTrashContainer.style.left = sideMenuClosed.leftSideMenu + "px";
 sidemenuTrashLogo.style.width = sideMenuOpen.widthLogoSidemenu + "px";
-sidemenuTrashLogo.style.top = sideMenuOpen.topSidemenu + "px";
+sidemenuTrashLogo.style.top = sideMenuOpen.topSideMenuItem + "px";
 sidemenuTrashLogo.style.left = sideMenuOpen.leftSidemenu + "px";
 
 sidemenuNotesText.style.width = sideMenuOpen.widthTextSideMenu + "px";
@@ -445,4 +460,4 @@ document.addEventListener('DOMContentLoaded', () => {
         sidemenuTrashText.addEventListener('click', (event) => handleLinkClick(event, '/trash'));
     }
 });
-console.log(window.location.pathname);
+//console.log(window.location.pathname);

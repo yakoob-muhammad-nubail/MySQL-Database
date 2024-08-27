@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index_account.css') }}">
     <!-- whatever you write inbetween will override the title in the child template -->
     <title>{% block title %}Parent Template{% endblock %}</title>
     <style>
@@ -104,5 +104,5 @@
         {% endblock %}
     </div>
 
-    <script type="text/javascript" src="{{ url_for('static', filename='js/index.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/index_account.js') }}"></script>
 </body>

@@ -189,7 +189,7 @@ loggedOutWindow.style.top = window.innerHeight / 2 - 105 + "px";
 
 loggedOutWindowHeader.style.width = 120 + "px";
 loggedOutWindowHeader.style.height = 25 + "px";
-loggedOutWindowHeader.style.left = 0 + "px";
+loggedOutWindowHeader.style.left = 70 + "px";
 loggedOutWindowHeader.style.top = 0 + "px";
 
 loggedOutWindowLoginOption.style.width = 61 + "px";
@@ -199,7 +199,7 @@ loggedOutWindowLoginOption.style.top = 50 + "px";
 
 loggedOutWindowSignupOption.style.width = 75 + "px";
 loggedOutWindowSignupOption.style.height = 25 + "px";
-loggedOutWindowSignupOption.style.left = 180 + "px";
+loggedOutWindowSignupOption.style.left = 185 + "px";
 loggedOutWindowSignupOption.style.top = 7 + "px";
 
 loggedOutWindowLoginOption.addEventListener("mouseover", function hoverOverLogo() {

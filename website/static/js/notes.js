@@ -24,7 +24,7 @@ var unclickedEntryBoxNoteNewNoteImage = document.getElementById("unclicked_entry
 
 const notepadClose = {
     notepadLeft: window.innerWidth / 2 - 250,
-    notepadTop: 90,
+    notepadTop: 100,
     notepadWidth: 500,
     notepadHeight: 50,
     entryBoxWidth: 480,
@@ -597,7 +597,7 @@ noteSlipsContainer.style.width = noteSlips.noteSlipsContainerWidth + "px";
 noteSlipsContainer.style.height = noteSlips.noteSlipsContainerHeight + "px";
 
 function addNewNote(title, entry, noteId) {
-    console.log(noteId);
+    //console.log(noteId);
 
     if (noteSlips.counter >= 6) {
         console.log("Cannot add more notes. Limit reached.");
@@ -822,7 +822,7 @@ function updateNoteSlipStates(id, length, positions) {
 
     let startIdx = parseInt(id.split("_")[2]) - 1;
     noteSlips.notes.splice(startIdx, 1);
-    console.log(noteSlips.notes);
+    //console.log(noteSlips.notes);
 
     for (let i = startIdx; i < length - 1; i++) {
 
@@ -858,11 +858,11 @@ function drawNotesOnLoad() {
     if (Array.isArray(notesRead) && notesRead.length > 0) {
         for (const note of notes) {
             if (note.deleted == "false") {
-                console.log("started load");
+                //console.log("started load");
                 const title = note.title || '';
                 const text = note.text || '';
                 addNewNote(title, text, note.noteId);
-                console.log(note.deleted);
+                //console.log(note.deleted);
             }
         }
     } else {
@@ -874,5 +874,5 @@ function drawNotesOnLoad() {
 
 window.onload = function () {
     drawNotesOnLoad();
-    console.log(noteSlips.notes);
+    //console.log(noteSlips.notes);
 };
