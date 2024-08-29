@@ -1,56 +1,10 @@
-<!DOCTYPE html>
+{% extends "index_user.html" %}
+{% block title %}Log In{% endblock %}
 
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/log_in.css">
-    <title>Notes App Log In</title>
-    <style>
-    </style>
-    <!-- <title>{% block title %}Home{% endblock %}</title> -->
-</head>
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/log_in.css') }}">
 
 <body>
-    <nav id="main_navbar" class="main_navbar">
-        <div id="main_navbar_header" class="main_navbar_header">
-            <div id="main_navbar_header_menu_container" class="main_navbar_header_menu_container">
-                <!-- <img id="main_navbar_header_menu" class="main_navbar_header_menu" src="../static/images/menuImage.png"
-                    alt="menu symbol image" /> -->
-            </div>
-            <div id="main_navbar_header_logo_container" class="main_navbar_header_logo_container">
-                <img id="main_navbar_header_logo" class="main_navbar_header_logo" href="/home"
-                    src="../static/images/logo250.png" alt="site logo image" />
-            </div>
-            <div id="main_navbar_header_text_container" class="main_navbar_header_logo_container">
-                <p id="main_navbar_header_text" class="main_navbar_header_text" href="/home">Notes App</p>
-            </div>
-            <div id="main_navbar_header_nav_container" class="main_navbar_header_nav_container">
-                <div id="main_navbar_header_nav_search_logo_container"
-                    class="main_navbar_header_nav_search_logo_container">
-                    <img id="main_navbar_header_nav_search_logo" class="main_navbar_header_nav_search_logo"
-                        src="../static/images/searchLogo.png" alt="search logo image" />
-                    <p id="main_navbar_header_nav_search_text" class="main_navbar_header_nav_search_text">Search</p>
-                </div>
-                <p id="main_navbar_header_nav_about_text" class="main_navbar_header_nav_about_text" href="/about">About
-                </p>
-                <p id="main_navbar_header_nav_account_text" class="main_navbar_header_nav_account_text" href="/account">
-                    Account</p>
-                <div id="main_navbar_header_nav_account_container" class="main_navbar_header_nav_account_container">
-                    <p id="main_navbar_header_nav_account_login" class="main_navbar_header_nav_account_login"
-                        href="/login">
-                        Login
-                    </p>
-                    <p id="main_navbar_header_nav_account_signup" class="main_navbar_header_nav_account_signup"
-                        href="/sign-up">Sign-up</p>
-                    <p id="main_navbar_header_nav_account_logout" class="main_navbar_header_nav_account_logout"
-                        href="/logout">Logout</p>
-                </div>
-                <!-- <p id="main_navbar_header_About" class="main_navbar_header_About">Draw</p> -->
-            </div>
-        </div>
-    </nav>
     <form id="login_form" class="login_form" action="/login" method="POST">
         <label id="login_form_email_title" class="login_form_email_title" for="email">Email</label><br>
         <input id="login_form_email_input" class="login_form_email_input" type="text" name="email"><br>
@@ -68,4 +22,4 @@
 
 <script src="../static/js/log_in.js"></script>
 
-</html>
+{% endblock %}

@@ -40,6 +40,15 @@ immediate
         - index.html
         - index.css
         - index.js
+    - remove main_navbar_header and replace with main_navbar - tbd - immediate
+    - finish flask app - tbd - immediate
+    - responsive notes - tbd - immediate
+        - for nav and sidemenu use containers to be a percent of the width
+        - child tags will be placed based off of the parent tags
+        - if the width of the device is different use a different size function
+    - navigation changes - tbd - immediate
+        - when page is navigated to different page change the value of the settings menu boolean
+        - if the page is refreshed or if the page revisited with backspace the menu is hidden as a default
 
     - refactor js (2) - tbd - immediate
         - `${x}px` put variables in that format for HTML DOM
@@ -55,6 +64,7 @@ immediate
         - login/sign up
     - responsive web design (3) - tbd - final
         - large screen, min screen and mobile
+
 
 form handling
     - in terminal

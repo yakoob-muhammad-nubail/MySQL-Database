@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index_user.css') }}">
+    <title>{% block title %}Parent Template{% endblock %}</title>
+    <style>
+    </style>
+</head>
+
+<body>
+    <nav id="main_navbar" class="main_navbar">
+        <div id="main_navbar_header" class="main_navbar_header">
+            <a id="main_navbar_header_logo_container" class="main_navbar_header_logo_container"
+                href="{{ url_for ('views.home') }}">
+                <!-- Link to the logo image using url_for -->
+                <img id="main_navbar_header_logo" class="main_navbar_header_logo"
+                    src="{{ url_for('static', filename='images/logo250.png') }}" alt="site logo image" />
+            </a>
+            <div id="main_navbar_header_text_container" class="main_navbar_header_logo_container">
+                <a id="main_navbar_header_text" class="main_navbar_header_text"
+                    href="{{ url_for ('views.home') }}">Notes
+                    App</a>
+            </div>
+            <div id="main_navbar_header_nav_container" class="main_navbar_header_nav_container">
+                <a id="main_navbar_header_nav_about_text" class="main_navbar_header_nav_about_text" href="/about">
+                    About</a>
+                <p id="main_navbar_header_nav_account_settings_text"
+                    class="main_navbar_header_nav_account_settings_text">
+                    Settings</p>
+                <div id="main_navbar_header_nav_account_settings_container"
+                    class="main_navbar_header_nav_account_settings_container">
+                    <a id="main_navbar_header_nav_account_text" class="main_navbar_header_nav_account_text"
+                        href="/account">
+                        Account</a>
+                    <a id="main_navbar_header_nav_account_login" class="main_navbar_header_nav_account_login"
+                        href="/login">Login</a>
+                    <a id="main_navbar_header_nav_account_signup" class="main_navbar_header_nav_account_signup"
+                        href="/sign-up">Sign-up</a>
+                    <a id="main_navbar_header_nav_account_logout" class="main_navbar_header_nav_account_logout"
+                        href="/logout">Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="parent_container">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+</body>
+
+<script src="{{ url_for('static', filename='js/index_user.js') }}"></script>
+
+</html>
