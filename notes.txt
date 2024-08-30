@@ -49,6 +49,8 @@ immediate
     - navigation changes - tbd - immediate
         - when page is navigated to different page change the value of the settings menu boolean
         - if the page is refreshed or if the page revisited with backspace the menu is hidden as a default
+    - remove unessecary comments (how do you spell unessecary) - tbd - immediate
+    - organize notes text file - tbd - immediate
 
     - refactor js (2) - tbd - immediate
         - `${x}px` put variables in that format for HTML DOM

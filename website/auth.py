@@ -52,6 +52,6 @@ def account():
 #     return render_template("index_account.html")
 
 # test route
-@auth.route('/index_user')
-def index():
-    return render_template("index_user.html")
+# @auth.route('/index_user')
+# def index():
+#     return render_template("index_user.html")

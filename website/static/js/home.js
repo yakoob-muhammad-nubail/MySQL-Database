@@ -15,28 +15,28 @@ logoText.style.top = window.innerHeight / 2 - 225 + "px";
 
 accountText.style.width = 95 + "px";
 accountText.style.height = 25 + "px";
-accountText.style.left = window.innerWidth / 2 - 47.5 + "px";
-accountText.style.top = 170 + "px";
+accountText.style.left = window.innerWidth / 2 - 45.5 + "px"; //window.innerWidth / 2 - 47.5
+accountText.style.top = 120 + "px";
 
 aboutText.style.width = 65 + "px";
 aboutText.style.height = 25 + "px";
-aboutText.style.left = window.innerWidth / 2 - 32.5 + "px";
-aboutText.style.top = 160 + "px";
+aboutText.style.left = window.innerWidth / 2 - 127.5 + "px";
+aboutText.style.top = 155 + "px";
 
 loginText.style.width = 60 + "px";
 loginText.style.height = 25 + "px";
-loginText.style.left = window.innerWidth / 2 - 30 + "px";
-loginText.style.top = 150 + "px";
+loginText.style.left = window.innerWidth / 2 - 195 + "px";
+loginText.style.top = 190 + "px";
 
 signupText.style.width = 175 + "px";
 signupText.style.height = 25 + "px";
-signupText.style.left = window.innerWidth / 2 - 87.5 + "px";
-signupText.style.top = 140 + "px";
+signupText.style.left = window.innerWidth / 2 - 312.5 + "px";
+signupText.style.top = 225 + "px";
 
 logoutText.style.width = 80 + "px";
 logoutText.style.height = 25 + "px";
-logoutText.style.left = window.innerWidth / 2 - 40 + "px";
-logoutText.style.top = 130 + "px";
+logoutText.style.left = window.innerWidth / 2 - 442.5 + "px";
+logoutText.style.top = 260 + "px";
 
 logoImage.addEventListener("mouseover", function hoverOverLogo() {
     // mainNavbarHeaderLogo.src = "../static/images/logo250_highlight.png";

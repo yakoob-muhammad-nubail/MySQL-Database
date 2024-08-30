@@ -1,5 +1,15 @@
-{% block content %}
-<link rel="stylesheet" href="../static/css/home.css">
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+    <title>{% block title %}Home{% endblock %}</title>
+    <style>
+    </style>
+</head>
 
 <body>
     <div id="logo_container" class="logo_container">
@@ -7,13 +17,13 @@
     </div>
 
     <p id="logo_text" class="logo_text ">Notes App</p>
-    <p id="account_text" class="account_text account_options_text" href="/account">Account</p>
-    <p id="about_text" class="about_text account_options_text" href="/about">About</p>
-    <p id="login_text" class="login_text account_options_text" href="/login">Login</p>
-    <p id="signup_text" class="signup_text account_options_text" href="/sign-up">Create Account</p>
-    <p id="logout_text" class="logout_text account_options_text" href="/logout">Logout</p>
+    <a id="account_text" class="account_text account_options_text" href="{{ url_for ('views.account') }}">Account
+    </a>
+    <a id="about_text" class="about_text account_options_text" href="{{ url_for ('views.about') }}">About</a>
+    <a id="login_text" class="login_text account_options_text" href="{{ url_for ('views.login') }}">Login</a>
+    <a id="signup_text" class="signup_text account_options_text" href="{{ url_for ('views.sign_up') }}">Create
+        Account</a>
+    <a id="logout_text" class="logout_text account_options_text" href="{{ url_for ('views.logout') }}">Logout</a>
 </body>
 
-<script src="../static/js/home.js"></script>
-
-{% endblock%}
+<script src="{{ url_for('static', filename='js/home.js') }}"></script>

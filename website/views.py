@@ -52,6 +52,6 @@ def account():
 #     return render_template("index_account.html")
 
 # test route
-@views.route('/index_user')
-def index():
-    return render_template("index_user.html")
+# @views.route('/index_user')
+# def index():
+#     return render_template("index_user.html")
