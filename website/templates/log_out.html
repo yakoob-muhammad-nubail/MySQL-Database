@@ -1,64 +1,19 @@
-<!DOCTYPE html>
+{% extends "index_user.html" %}
+{% block title %}Log Out{% endblock %}
 
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/log_out.css">
-    <title>Notes App</title>
-    <style>
-    </style>
-    <!-- <title>{% block title %}Home{% endblock %}</title> -->
-</head>
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/log_out.css') }}">
 
 <body>
-    <nav id="main_navbar" class="main_navbar">
-        <div id="main_navbar_header" class="main_navbar_header">
-            <div id="main_navbar_header_menu_container" class="main_navbar_header_menu_container">
-                <!-- <img id="main_navbar_header_menu" class="main_navbar_header_menu" src="../static/images/menuImage.png"
-                alt="menu symbol image" /> -->
-            </div>
-            <div id="main_navbar_header_logo_container" class="main_navbar_header_logo_container">
-                <img id="main_navbar_header_logo" class="main_navbar_header_logo" href="/home"
-                    src="../static/images/logo250.png" alt="site logo image" />
-            </div>
-            <div id="main_navbar_header_text_container" class="main_navbar_header_logo_container">
-                <p id="main_navbar_header_text" class="main_navbar_header_text" href="/home">Notes App</p>
-            </div>
-            <div id="main_navbar_header_nav_container" class="main_navbar_header_nav_container">
-                <div id="main_navbar_header_nav_search_logo_container"
-                    class="main_navbar_header_nav_search_logo_container">
-                    <img id="main_navbar_header_nav_search_logo" class="main_navbar_header_nav_search_logo"
-                        src="../static/images/searchLogo.png" alt="search logo image" />
-                    <p id="main_navbar_header_nav_search_text" class="main_navbar_header_nav_search_text">Search</p>
-                </div>
-                <p id="main_navbar_header_nav_about_text" class="main_navbar_header_nav_about_text" href="/about">About
-                </p>
-                <p id="main_navbar_header_nav_account_text" class="main_navbar_header_nav_account_text" href="/account">
-                    Account</p>
-                <div id="main_navbar_header_nav_account_container" class="main_navbar_header_nav_account_container">
-                    <p id="main_navbar_header_nav_account_login" class="main_navbar_header_nav_account_login"
-                        href="/login">
-                        Login
-                    </p>
-                    <p id="main_navbar_header_nav_account_signup" class="main_navbar_header_nav_account_signup"
-                        href="/sign-up">Sign-up</p>
-                    <p id="main_navbar_header_nav_account_logout" class="main_navbar_header_nav_account_logout"
-                        href="/logout">Logout</p>
-                </div>
-                <!-- <p id="main_navbar_header_About" class="main_navbar_header_About">Draw</p> -->
-            </div>
-        </div>
-    </nav>
-
     <div id="logged_out_window" class="logged_out_window">
         <p id="logged_out_window_header" class="logged_out_window_header">Logged out</p>
-        <p id="logged_out_window_login_option" class="logged_out_window_login_option" href="/login">Log In</p>
-        <p id="logged_out_window_signup_option" class="logged_out_window_signup_option" href="/sign-up">Sign Up</p>
+        <p id="logged_out_window_login_option" class="logged_out_window_login_option"
+            href="{{ url_for ('views.login') }}">Log In</p>
+        <p id="logged_out_window_signup_option" class="logged_out_window_signup_option"
+            href="{{ url_for ('views.sign_up') }}">Sign Up</p>
     </div>
 </body>
 
-<script src="../static/js/log_out.js"></script>
+<script src="{{ url_for('static', filename='js/log_out.js') }}"></script>
 
-</html>
+{% endblock %}

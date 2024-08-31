@@ -51,6 +51,10 @@ immediate
         - if the page is refreshed or if the page revisited with backspace the menu is hidden as a default
     - remove unessecary comments (how do you spell unessecary) - tbd - immediate
     - organize notes text file - tbd - immediate
+    - highlight more options on note page - tbd - optional
+        - add eventlisteners for more options p tags
+    - auto close sidemenu - tbd - optional
+        - when you click outside the side menu 
 
     - refactor js (2) - tbd - immediate
         - `${x}px` put variables in that format for HTML DOM
@@ -59,10 +63,10 @@ immediate
     - labels page - tbd - optional
     - archive page - tbd - optional
     - trash page - tbd - optional
-    - sign in page (4) - tbd - immediate
-    - sign out page (5) - tbd - immediate
-    - log in page (6) - tbd - immediate
-    - home page (7) - tbd - immediate
+    - sign in page - done
+    - sign out page - done
+    - log in page - done
+    - home page - done
         - login/sign up
     - responsive web design (3) - tbd - final
         - large screen, min screen and mobile
@@ -108,9 +112,11 @@ side note
     - for keycodes other than entering values there needs to be a function for said action
         - start with what is in commments
     - throw comments in code before functions, variable sections etc (section based)
-    - for spacebar function when there is no text no space is added
+    - for spacebar function when there is no text no space is added - done
         - basic functionality of strings in js (treated like null or zero)
         - easy fix
+    - keylogger eventlistener
+        - spacebar sets next character as caps
     - edit backspace to delete enters
-    - issue with keyloggers is that parsing the functions changes with entry and title
+    - issue with keyloggers is that parsing the functions changes with entry and title - done
         - easy refactor into one function

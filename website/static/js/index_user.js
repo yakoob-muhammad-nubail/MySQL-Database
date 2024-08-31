@@ -53,6 +53,7 @@ mainNavbarHeaderLogo.style.top = 85 + "px";
 mainNavbarHeaderTextContainer.style.left = 65 + "px";
 mainNavbarHeaderTextContainer.style.top = -185 + "px";
 mainNavbarHeaderTextContainer.style.width = 250 + "px";
+mainNavbarHeaderTextContainer.style.color = "black";
 
 mainNavbarHeaderNavContainer.style.width = 142 + "px";
 mainNavbarHeaderNavContainer.style.height = 25 + "px";
