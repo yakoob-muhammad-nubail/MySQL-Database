@@ -168,3 +168,50 @@ mainNavbarHeaderNavAccountSettingsText.addEventListener("mouseout", function hov
 });
 
 mainNavbarHeaderNavAccountSettingsText.addEventListener("mousedown", openCloseAccountMenu);
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Function to handle page loading via AJAX
+    function handleLinkClick(event, url) {
+        event.preventDefault(); // Prevent the default link behavior
+
+
+        if (window.location.pathname === url) {
+            // If the URL is the same, do nothing
+            return;
+        }
+
+        fetch(url)
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('parent_container').innerHTML = html;
+                // Update the URL without reloading the page
+                window.history.pushState(null, '', url);
+            })
+            .catch(error => console.error('Error loading content:', error));
+    }
+
+    // Event handler for notes link
+    if (window.location.pathname === "/about") {
+        mainNavbarHeaderNavAboutText.addEventListener('click', (event) => handleLinkClick(event, '/notes/logged_in'));
+    }
+
+    // Event handler for reminders link
+    if (window.location.pathname === "/account") {
+        mainNavbarHeaderNavAccountText.addEventListener('click', (event) => handleLinkClick(event, '/reminders'));
+    }
+
+    // Event handler for edit labels link
+    if (window.location.pathname === "/login") {
+        mainNavbarHeaderNavAccountLogin.addEventListener('click', (event) => handleLinkClick(event, '/labels'));
+    }
+
+    // Event handler for archives link
+    if (window.location.pathname === "/sign_up") {
+        mainNavbarHeaderNavAccountSignup.addEventListener('click', (event) => handleLinkClick(event, '/archives'));
+    }
+
+    // Event handler for trash link
+    if (window.location.pathname === "/logout") {
+        mainNavbarHeaderNavAccountLogout.addEventListener('click', (event) => handleLinkClick(event, '/trash'));
+    }
+});

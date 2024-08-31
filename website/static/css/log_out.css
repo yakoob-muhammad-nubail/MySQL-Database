@@ -12,6 +12,22 @@ body {
     margin: 0;
 }
 
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:visited {
+    color: black;
+    /* Set this to the same color as your normal link color */
+}
+
+/* Active link style (when the link is clicked) */
+a:active {
+    color: black;
+    /* Set this to your desired color when the link is active */
+}
+
 /* log out window */
 .logged_out_window {
     /* background-color: orange; */

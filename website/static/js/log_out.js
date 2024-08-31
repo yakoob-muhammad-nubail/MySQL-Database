@@ -17,12 +17,12 @@ loggedOutWindowHeader.style.top = 0 + "px";
 loggedOutWindowLoginOption.style.width = 61 + "px";
 loggedOutWindowLoginOption.style.height = 25 + "px";
 loggedOutWindowLoginOption.style.left = 0 + "px";
-loggedOutWindowLoginOption.style.top = 50 + "px";
+loggedOutWindowLoginOption.style.top = 55 + "px";
 
 loggedOutWindowSignupOption.style.width = 75 + "px";
 loggedOutWindowSignupOption.style.height = 25 + "px";
-loggedOutWindowSignupOption.style.left = 185 + "px";
-loggedOutWindowSignupOption.style.top = 7 + "px";
+loggedOutWindowSignupOption.style.left = 120 + "px";
+loggedOutWindowSignupOption.style.top = 55 + "px";
 
 loggedOutWindowLoginOption.addEventListener("mouseover", function hoverOverLogo() {
     loggedOutWindowLoginOption.style.color = "blue";

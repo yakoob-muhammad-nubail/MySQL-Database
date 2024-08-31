@@ -77,16 +77,16 @@ mainNavbarHeaderNavSearchText.style.left = 25 + "px";
 mainNavbarHeaderNavSearchText.style.top = -112 + "px";
 
 mainNavbarHeaderNavAboutText.style.width = navMenu.mainNavbarHeaderNavTextWidth + "px";
-mainNavbarHeaderNavAboutText.style.left = window.innerWidth - 775 + "px";
+mainNavbarHeaderNavAboutText.style.left = window.innerWidth - 750 + "px";
 mainNavbarHeaderNavAboutText.style.top = -36 + "px";
 
 mainNavbarHeaderNavAccountSettingsText.style.width = 70 + "px";
-mainNavbarHeaderNavAccountSettingsText.style.left = window.innerWidth - 700 + "px"; // 700
+mainNavbarHeaderNavAccountSettingsText.style.left = window.innerWidth - 675 + "px"; // 700
 mainNavbarHeaderNavAccountSettingsText.style.top = -75 + "px"; //38
 
 mainNavbarHeaderNavAccountSettingsContainer.style.width = 75 + "px";
 mainNavbarHeaderNavAccountSettingsContainer.style.height = 100 + "px";
-mainNavbarHeaderNavAccountSettingsContainer.style.left = 836 + "px";
+mainNavbarHeaderNavAccountSettingsContainer.style.left = 861 + "px";
 mainNavbarHeaderNavAccountSettingsContainer.style.top = -80 + "px";
 mainNavbarHeaderNavAccountSettingsContainer.style.display = "none";
 

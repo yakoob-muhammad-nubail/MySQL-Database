@@ -10,7 +10,7 @@ def login():
 def logout():
     return render_template("log_out.html")
 
-@views.route('/sign-up')
+@views.route('/sign_up')
 def sign_up():
     return render_template("sign_up.html")
 

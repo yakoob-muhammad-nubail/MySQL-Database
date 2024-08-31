@@ -54,7 +54,13 @@ immediate
     - highlight more options on note page - tbd - optional
         - add eventlisteners for more options p tags
     - auto close sidemenu - tbd - optional
-        - when you click outside the side menu 
+        - when you click outside the side menu
+    - prevent page reload - done
+        - prevent page reload when sidemenu item is already loaded
+        - prevent page reload when settings menu item or about item is already loaded
+    - log out of account - tbd - immediate
+        - if user logs out or clicks on signup/login automatically remove the login credentials
+        - store log in credentials in python and pass to js/html 
 
     - refactor js (2) - tbd - immediate
         - `${x}px` put variables in that format for HTML DOM
