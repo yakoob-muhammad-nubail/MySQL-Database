@@ -40,11 +40,11 @@ def home():
 
 @auth.route('/about')
 def about():
-    return "<p>about</p>"
+    return render_template("about.html")
 
 @auth.route('/account')
 def account():
-    return "<p>account</p>"
+    return render_template("account.html")
 
 # test route
 # @auth.route('/index_account')

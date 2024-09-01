@@ -40,11 +40,11 @@ def home():
 
 @views.route('/about')
 def about():
-    return "<p>about</p>"
+    return render_template("about.html")
 
 @views.route('/account')
 def account():
-    return "<p>account</p>"
+    return render_template("account.html")
 
 # test route
 # @views.route('/index_account')
