@@ -192,26 +192,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Event handler for notes link
     if (window.location.pathname === "/about") {
-        mainNavbarHeaderNavAboutText.addEventListener('click', (event) => handleLinkClick(event, '/notes/logged_in'));
+        mainNavbarHeaderNavAboutText.addEventListener('click', (event) => handleLinkClick(event, '/about'));
     }
 
     // Event handler for reminders link
     if (window.location.pathname === "/account") {
-        mainNavbarHeaderNavAccountText.addEventListener('click', (event) => handleLinkClick(event, '/reminders'));
+        mainNavbarHeaderNavAccountText.addEventListener('click', (event) => handleLinkClick(event, '/account'));
     }
 
     // Event handler for edit labels link
     if (window.location.pathname === "/login") {
-        mainNavbarHeaderNavAccountLogin.addEventListener('click', (event) => handleLinkClick(event, '/labels'));
+        mainNavbarHeaderNavAccountLogin.addEventListener('click', (event) => handleLinkClick(event, '/login'));
     }
 
     // Event handler for archives link
     if (window.location.pathname === "/sign_up") {
-        mainNavbarHeaderNavAccountSignup.addEventListener('click', (event) => handleLinkClick(event, '/archives'));
+        mainNavbarHeaderNavAccountSignup.addEventListener('click', (event) => handleLinkClick(event, '/sign_up'));
     }
 
     // Event handler for trash link
     if (window.location.pathname === "/logout") {
-        mainNavbarHeaderNavAccountLogout.addEventListener('click', (event) => handleLinkClick(event, '/trash'));
+        mainNavbarHeaderNavAccountLogout.addEventListener('click', (event) => handleLinkClick(event, '/logout'));
     }
 });

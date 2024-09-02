@@ -1,5 +1,5 @@
 from website import create_app
-from flask import render_template, request, jsonify, current_app, redirect, url_for, session
+from flask import render_template, jsonify, redirect, url_for, current_app, request, session
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
