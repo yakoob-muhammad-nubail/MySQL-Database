@@ -82,11 +82,11 @@
 
     // const notesRead = '{{notes|safe}}';
     // const userDataRead = '{{userData|safe}}';
-    // console.log('Raw Notes Data:', notesRead);
-    // console.log('Raw User Data:', userDataRead);
 
     const notesReadString = '{{notes|safe}}';
     const userDataReadString = '{{userData|safe}}';
+    console.log('Raw Notes Data:', notesReadString);
+    console.log('Raw User Data:', userDataReadString);
 
     // Function to convert the string to an array of objects
     function convertToArray(str) {
@@ -107,7 +107,13 @@
     }
 
     // Convert the strings
-    const notesRead = convertToArray(notesReadString);
+    if (notesReadString != "[]") {
+        const notesRead = convertToArray(notesReadString);
+        console.log("hit");
+    } else {
+        const notesRead = [];
+        console.log("no hit");
+    }
     const userDataRead = convertToArray(userDataReadString);
 
     // console.log('Notes Array:', notesArray);
@@ -125,7 +131,7 @@
     let notes = notesRead;
     let userData = userDataRead;
 
-    for (const note of notesRead) {
+    for (const note of notes) {
         //console.log(`Note ID: ${note.noteId}, Deleted Status: ${note.deleted}`);
         totalNotes++;
 
@@ -163,6 +169,7 @@
     const paint = "{{ url_for('static', filename='images/paint_pallet.png') }}";
     const easle = "{{ url_for('static', filename='images/easle.png') }}";
     const archive = "{{ url_for('static', filename='images/archive.png') }}";
+    const pin = "{{ url_for('static', filename='images/pin.png') }}";
     const more = "{{ url_for('static', filename='images/more.png') }}";
 
     //console.log("");

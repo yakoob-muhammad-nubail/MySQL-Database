@@ -661,7 +661,8 @@ function addNewNote(title, entry, noteId) {
         { src: paint, left: "-15px", top: "55px" },
         { src: easle, left: "40px", top: "72px" },
         { src: archive, left: "80px", top: "72px" },
-        { src: more, left: "115px", top: "73px" }
+        { src: pin, left: "115px", top: "73px" },
+        { src: more, left: "140px", top: "73px" }
     ];
 
     buttonPositions.forEach(pos => {
@@ -696,7 +697,7 @@ function addNewNote(title, entry, noteId) {
         display: "block",
         width: "155px",
         height: "195px",
-        left: 195 + position.x + "px",
+        left: 215 + position.x + "px",
         top: 195 + position.y + "px",
         borderRadius: "15px",
         boxShadow: "0 0 5px #000000",
@@ -743,8 +744,6 @@ function addNewNote(title, entry, noteId) {
 
         activeNotes--;
     });
-
-
 
     // Apply styles to the note
     Object.assign(createDiv.style, {
@@ -846,8 +845,8 @@ function updateNoteSlipStates(id, length, positions) {
             moreTextElement.className = newMoreTextId;
             moreTextElement.id = newMoreTextId;
 
-            moreTextElement.style.left = 190 + noteSlips.discrepencyx + "px";
-            moreTextElement.style.top = 190 + noteSlips.discrepencyy + "px";
+            moreTextElement.style.left = 215 + noteSlips.discrepencyx + "px";
+            moreTextElement.style.top = 195 + noteSlips.discrepencyy + "px";
         } else {
             console.error(`Element more_text_container${i + 2} not found.`);
         }

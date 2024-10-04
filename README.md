@@ -9,6 +9,10 @@ pip install flask-login
 
 pip install flask-sqlalchemy
 
+pip install requests
+
+pip install requests bs4
+
 # install virtualization - linux
 
 python3 -m venv venv (or python depends on os)

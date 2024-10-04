@@ -1,96 +1,137 @@
-immediate
-    - Account should be change to google account circle - tbd - optional
-        - after login page is done
-    - responsive for smaller computer screen and phone screen (basic responsive design) - tbd - optional
-        - after app is done
-    - the highlight for the search bar creates an issue
-        - when mousedown mouseup is used the hitbox is 100 px below the search bar as well
-        - when fixed using the fix in index.js
-    - the onclick for the menu causes issues
-        - when onclick is done for menu logo the onhover interaction closes the menu
-            - unwanted interaction
-    - the onclick target for the unclicked notepad is smaller than needed 
-        - throw in a div and change other css accordingly to get a clickable that encompasses the area
-    - rename functions in eventlisteners
-    - eventlisteners to add in later
-        - highlight on click (search)
-        - hover over side menu show which does not remove side menu click action from header image
-    - setup localhost- done
-        - login, logout, sign-up, notes, reminders, labels, archive, trash
-    - notes page - tbd - immediate
-        - delete function - optional
-            - location of cursor function - optional
-        - maintain length of text - tbd - immediate
-            - the counters need to be global values because js handles memory addressing on its own with 
-            out allowing for the developer to change the value stored at a certain address passing changing 
-            values from different local scopes is an issue and will not change the value itself
-            - counter used instead
-                - this counter limit needs to account for different width of characters - tbd - optional
-                - a char map needs to be created of each char st each char wont exceed the max
-                length of the text. note that standard was set for a row of a's in lowercase
-                    - this could be simplified if the width of the pre tag adjusts to the 
-                    length of the text in it but isnt possible in js
-                    - most letters are the same width except m and w the two of which have similar sizes
-                    - single digits all have similar width however are smaller than the smallest letter
-        - maintain height of text - done
-            - add in scroll wheel if lines exceed two - optional
-        - level sidemenu to be halfway between the page - tbd - optional
-    - migrate sidemenu and navbar js to index.js file, migrate html css as well to index - tbd - immediate
-        - use python methods to incorporate the code
-        - index.html
-        - index.css
-        - index.js
-    - remove main_navbar_header and replace with main_navbar - tbd - immediate
-    - finish flask app - tbd - immediate
-    - responsive notes - tbd - immediate
-        - for nav and sidemenu use containers to be a percent of the width
-        - child tags will be placed based off of the parent tags
-        - if the width of the device is different use a different size function
-    - navigation changes - tbd - immediate
-        - when page is navigated to different page change the value of the settings menu boolean
-        - if the page is refreshed or if the page revisited with backspace the menu is hidden as a default
-    - remove unessecary comments (how do you spell unessecary) - tbd - immediate
-    - organize notes text file - tbd - immediate
-    - highlight more options on note page - tbd - optional
-        - add eventlisteners for more options p tags
-    - auto close sidemenu - tbd - optional
-        - when you click outside the side menu
-    - prevent page reload - done
-        - prevent page reload when sidemenu item is already loaded
-        - prevent page reload when settings menu item or about item is already loaded
-    - log out of account - tbd - immediate
-        - if user logs out or clicks on signup/login automatically remove the login credentials
-        - store log in credentials in python and pass to js/html 
-
-    - refactor js (2) - tbd - immediate
+daily housekeeping
+    - organize notes text file
+    - refactor code
         - `${x}px` put variables in that format for HTML DOM
-        - tested it out didnt work needs further testing
-    - reminders page - tbd - optional
-    - labels page - tbd - optional
-    - archive page - tbd - optional
-    - trash page - tbd - optional
-    - about page - optional
-    - account page - optional
+            - tested it out didnt work needs further testing
+
+finished
+    - setup basic localhost - done
+        - login, logout, sign-up, notes, reminders, labels, archive, trash
+    - add in pin image - done
+        - forgot to add in pin image for pin note functionality
+    - update note slips fix - done
+        - notes get shifted to the right after deleted note update
+    - migrate sidemenu and navbar js to index.js file, migrate html css as well to index - done
+        - use python methods to incorporate the code - done
+        - account - done
+            - index_account.html - done
+            - index_account.css - done
+            - index_account.js - done
+        - user - done
+            - index_user.html - done
+            - index_user.css - done
+            - index_user.js - done
     - sign in page - done
     - sign out page - done
     - log in page - done
     - home page - done
         - login/sign up
-    - responsive web design (3) - tbd - final
+    - prevent page reload - done
+        - prevent page reload when sidemenu item is already loaded - done
+        - prevent page reload when settings/about menu item or about item is already loaded - done
+
+optional
+    - Account should be change to google account circle - tbd - optional
+        - after login page is done
+    - search bar eventlistener - tbd - optional
+        - the highlight for the search bar creates an issue
+        - when mousedown mouseup is used the hitbox is 100 px below the search bar as well
+            - could be using the wrong ID
+        - when fixed using the fix in index.js
+    - side menu eventlistener - tbd - optional
+        - the onclick for the menu causes issues
+        - when onclick is done for menu logo the onhover interaction closes the menu
+            - unwanted interaction
+        - when you click on anythin outside the sidemenu close the sidemenu
+    - open notepad eventlistener - tbd - optional
+        - the onclick target for the unclicked notepad is smaller than needed
+        - throw in a div and change other css accordingly to get a clickable that encompasses the area
+    - highlight more options on note page - tbd - optional
+        - add eventlisteners for more options p tags
+    - under construction sign - tbd - optional
+        - labels page - tbd - optional
+        - archive page - tbd - optional
+        - trash page - tbd - optional
+        - about page - optional
+        - account page - optional
+
+immediate
+    - notes page - tbd - immediate
+        - delete function - done
+        - maintain length of text - done
+        - counter char map - tbd - immediate
+            - this counter limit needs to account for different width of characters 
+            - a char map needs to be created of each char st each char wont exceed the max
+            length of the text. note that standard was set for a row of a's in lowercase
+                - this could be simplified if the width of the pre tag adjusts to the 
+                length of the text in it but isnt possible in js
+                - most letters are the same width except m and w the two of which have similar sizes
+                - single digits all have similar width however are smaller than the smallest letter
+        - maintain height of text - done
+        - add in scroll wheel if lines exceed two - tbd - optional
+            - notepad and notes
+            - custom scroll bar for notes
+                - max 200 notes
+                - height of notepad viewport
+                - after the text exceeds the character limit of the textbox show scroll wheel for note
+                - ignore new line characters and connect the string together in notes
+        - parse function - tbd - immediate
+            - bug test keylogger
+            - keylogger deosnt refresh string on occasion
+            - keylogger permanently keeps shift/capslock case on occasion
+    - remove main_navbar_header and replace with main_navbar - tbd - immediate
+    - finish flask app - tbd - immediate
+    - responsive - tbd - immediate
+        - wait till app functionality is finished
         - large screen, min screen and mobile
-    - finish python (1) - tbd - immediate
+        - for nav and sidemenu use containers to be a percent of the width
+        - child tags will be placed based off of the parent tags
+        - if the width of the device is different use a different size function
+    - navigation changes - tbd - immediate
+        - when page is navigated to different page change the value of the settings menu boolean
+        - if the page is refreshed the menu is hidden as a default
+    - remove unnecessary comments - tbd - immediate
+    - auto close sidemenu - tbd - optional
+        - when you click outside the side menu
+    - log out of account - tbd - immediate
+        - if user logs out or clicks on signup/login automatically remove the login credentials
+        - store log in credentials in python and pass to js/html 
+    - reminders page - tbd - optional
+    - finish python - tbd - immediate
         - init file
         - logout message if login, logout or signup page is opened
         - if logged out have a global python variable that is true
             - once logged in the python variable is false
-            - if variable if true then the notes, reminders, labels, archive or trash page will typed into urls
+            - if variable if true then the notes, reminders, labels, archive or trash page when typed into urls
             will lead to the home page with home page url
+        - account handling - tbd - immediate
+            - if there are two accounts
+                - logging in with a new account loads no notes properly with errors
+                - errors on load
+                    - logged_in:201 Uncaught 
+                        TypeError: Cannot read properties of undefined (reading 'replace')
+                        at logged_in:201:53
+                        at Array.forEach (<anonymous>)
+                        at logged_in:199:43
+                        at Array.map (<anonymous>)
+                        at convertToArray (logged_in:193:56)
+                        at logged_in:209:23
+                    - notes.js:857 Uncaught 
+                        ReferenceError: notesRead is not defined
+                        at drawNotesOnLoad (notes.js:857:23)
+                        at window.onload (notes.js:875:5)
+                - errors with adding a note
+                    - notes.js:505 Uncaught 
+                        ReferenceError: totalNotes is not defined
+                        at HTMLParagraphElement.handleMouseDownEventForEntryBox (notes.js:505:46)
+    - rename functions in eventlisteners - tbd - immediate
 
-
-form handling
+form handling notes
+    - python (flask app), HTML/CSS/JavaScript
     - in terminal
-        - pip install requests
-        - pip install requests bs4 (beautiful soup 4)
+        - >>> pip install requests
+        - >>> pip install requests bs4 
+            - (beautiful soup 4)
     - difference between get and post methods
         - In HTML forms, the POST and GET methods are two ways to send data to a server. They have distinct characteristics and use cases:
         - GET Method
