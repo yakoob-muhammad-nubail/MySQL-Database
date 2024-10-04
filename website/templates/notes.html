@@ -105,13 +105,14 @@
         });
         return objects;
     }
+    let notes = [];
 
     // Convert the strings
-    if (notesReadString != "[]") {
-        const notesRead = convertToArray(notesReadString);
+    if (notesReadString != "") {
+        notes = convertToArray(notesReadString);
+        console.log(typeof notesReadString);
         console.log("hit");
     } else {
-        const notesRead = [];
         console.log("no hit");
     }
     const userDataRead = convertToArray(userDataReadString);
@@ -122,17 +123,22 @@
     // const notesRead = JSON.parse(rawNotesData);
     // const userDataRead = JSON.parse(rawUserData);
     // console.log('Raw Notes Data:', notesRead);
-    // console.log('Raw User Data:', userDataRead);
+    console.log('Raw User Data:', userDataRead);
 
     let totalNotes = 0;
     let activeNotes = 0;
     let userId = 0;
 
-    let notes = notesRead;
     let userData = userDataRead;
 
+    userId = userData[0].accountId;
+
+    console.log("notes: ", notes);
+    console.log("userData: ", userData);
+    console.log("user id: ", userId);
+
     for (const note of notes) {
-        //console.log(`Note ID: ${note.noteId}, Deleted Status: ${note.deleted}`);
+        console.log(`Note ID: ${note.noteId}, Deleted Status: ${note.deleted}`);
         totalNotes++;
 
         if (note.deleted != true) {
@@ -179,4 +185,5 @@
     // // window.location.href = redirectUrl; // uncomment to change url
     // console.log(`Redirect URL: ${redirectUrl}`);
 </script>
+
 {% endblock %}
