@@ -178,3 +178,23 @@ side note
     - edit backspace to delete enters
     - issue with keyloggers is that parsing the functions changes with entry and title - done
         - easy refactor into one function
+
+old convert to array function
+    function convertToArray(str) {
+        // Remove the surrounding square brackets and split by the object boundaries
+        const objects = str.slice(1, -1).split('}, {').map(item => {
+            // Add curly braces back to each string to form valid object-like structures
+            item = item.replace(/^{?/, '{').replace(/}?$/, '}');
+            console.log(item);
+            // Split the key-value pairs and create an object
+            const obj = {};
+            item.slice(1, -1).split(', ').forEach(pair => {
+                const [key, value] = pair.split(': ');
+                obj[key.replace(/\"/g, '')] = value.replace(/\"/g, '');
+            });
+            console.log(obj);
+            return obj;
+            console.log(obj);
+        });
+        return objects;
+    }

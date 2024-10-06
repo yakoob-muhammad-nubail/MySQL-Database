@@ -90,30 +90,32 @@
 
     // Function to convert the string to an array of objects
     function convertToArray(str) {
-        // Remove the surrounding square brackets and split by the object boundaries
-        const objects = str.slice(1, -1).split('}, {').map(item => {
-            // Add curly braces back to each string to form valid object-like structures
-            item = item.replace(/^{?/, '{').replace(/}?$/, '}');
-
-            // Split the key-value pairs and create an object
-            const obj = {};
-            item.slice(1, -1).split(', ').forEach(pair => {
-                const [key, value] = pair.split(': ');
-                obj[key.replace(/\"/g, '')] = value.replace(/\"/g, '');
-            });
-            return obj;
-        });
-        return objects;
+        // Check if the string is not empty and is a valid JSON format
+        if (str && str !== "[]") {
+            try {
+                // Parse the string into a JavaScript array of objects
+                const objects = JSON.parse(str);
+                console.log(objects); // Logs the resulting array of objects
+                return objects;
+            } catch (error) {
+                console.error("Error parsing JSON string:", error);
+                return []; // Return an empty array in case of a parsing error
+            }
+        } else {
+            return []; // If the string is empty or just "[]", return an empty array
+        }
     }
+
     let notes = [];
 
     // Convert the strings
-    if (notesReadString != "") {
+    if (notesReadString != "" || notesReadString != "[]") {
         notes = convertToArray(notesReadString);
         console.log(typeof notesReadString);
         console.log("hit");
     } else {
         console.log("no hit");
+        notes = [];
     }
     const userDataRead = convertToArray(userDataReadString);
 
