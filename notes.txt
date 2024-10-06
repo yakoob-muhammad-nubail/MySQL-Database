@@ -29,6 +29,27 @@ finished
     - prevent page reload - done
         - prevent page reload when sidemenu item is already loaded - done
         - prevent page reload when settings/about menu item or about item is already loaded - done
+            - account handling - done
+            - if there are two accounts
+                - logging in with a new account loads no notes properly with errors
+                - errors on load
+                    - logged_in:201 Uncaught 
+                        TypeError: Cannot read properties of undefined (reading 'replace')
+                        at logged_in:201:53
+                        at Array.forEach (<anonymous>)
+                        at logged_in:199:43
+                        at Array.map (<anonymous>)
+                        at convertToArray (logged_in:193:56)
+                        at logged_in:209:23
+                    - notes.js:857 Uncaught 
+                        ReferenceError: notesRead is not defined
+                        at drawNotesOnLoad (notes.js:857:23)
+                        at window.onload (notes.js:875:5)
+                - errors with adding a note
+                    - notes.js:505 Uncaught 
+                        ReferenceError: totalNotes is not defined
+                        at HTMLParagraphElement.handleMouseDownEventForEntryBox (notes.js:505:46)
+        - application can now handle multiple accounts and new accounts with no notes
 
 optional
     - Account should be change to google account circle - tbd - optional
@@ -104,26 +125,6 @@ immediate
             - once logged in the python variable is false
             - if variable if true then the notes, reminders, labels, archive or trash page when typed into urls
             will lead to the home page with home page url
-        - account handling - tbd - immediate
-            - if there are two accounts
-                - logging in with a new account loads no notes properly with errors
-                - errors on load
-                    - logged_in:201 Uncaught 
-                        TypeError: Cannot read properties of undefined (reading 'replace')
-                        at logged_in:201:53
-                        at Array.forEach (<anonymous>)
-                        at logged_in:199:43
-                        at Array.map (<anonymous>)
-                        at convertToArray (logged_in:193:56)
-                        at logged_in:209:23
-                    - notes.js:857 Uncaught 
-                        ReferenceError: notesRead is not defined
-                        at drawNotesOnLoad (notes.js:857:23)
-                        at window.onload (notes.js:875:5)
-                - errors with adding a note
-                    - notes.js:505 Uncaught 
-                        ReferenceError: totalNotes is not defined
-                        at HTMLParagraphElement.handleMouseDownEventForEntryBox (notes.js:505:46)
     - rename functions in eventlisteners - tbd - immediate
 
 form handling notes
