@@ -100,6 +100,9 @@ immediate
             - bug test keylogger
             - keylogger deosnt refresh string on occasion
             - keylogger permanently keeps shift/capslock case on occasion
+        - removal of error messages in notes.js updateNoteSlipStates function - done
+            - the issue with these two error messages is that the function doesn't specify when the html dom is null so the 
+            function was changed to include that
     - remove main_navbar_header and replace with main_navbar - tbd - immediate
     - finish flask app - tbd - immediate
     - responsive - tbd - immediate
