@@ -819,43 +819,32 @@ function updateNoteSlipStates(id, length, positions) {
         noteSlips.discrepencyy = position.y;
     };
 
-    let startIdx = parseInt(id.split("_")[2]) - 1;
+    const startIdx = parseInt(id.split("_")[2]) - 1;
     noteSlips.notes.splice(startIdx, 1);
 
-    //console.log(noteSlips.notes);
-    //console.log(length);
-    //console.log(noteSlips);
-
-    //if (length === 2) { return; }
-
     for (let i = startIdx; i < length - 2; i++) {
-
         const noteElement = document.getElementById(`note_slip_${i + 2}`);
-        // console.log(noteElement);
         const moreTextElement = document.getElementById(`more_text_container${i + 2}`);
-        // console.log(moreTextElement);
 
-        if (noteElement !== null) {
-            const newNoteId = `note_slip_${i + 1}`;
-            noteElement.className = newNoteId;
-            noteElement.id = newNoteId;
-
-            updatePosition(i);
-            noteElement.style.left = noteSlips.discrepencyx + "px";
-            noteElement.style.top = noteSlips.discrepencyy + "px";
-        } else {
-            console.error(`Element note_slip_${i + 2} and more_text_container${i + 2} are a null elements.`);
+        if (!noteElement || !moreTextElement) {
+            console.error(`Element note_slip_${i + 2} or more_text_container${i + 2} not found.`);
             return;
         }
 
-        if (moreTextElement !== null) {
-            const newMoreTextId = `more_text_container${i + 1}`;
-            moreTextElement.className = newMoreTextId;
-            moreTextElement.id = newMoreTextId;
+        const newNoteId = `note_slip_${i + 1}`;
+        noteElement.className = newNoteId;
+        noteElement.id = newNoteId;
 
-            moreTextElement.style.left = 215 + noteSlips.discrepencyx + "px";
-            moreTextElement.style.top = 195 + noteSlips.discrepencyy + "px";
-        }
+        updatePosition(i);
+        noteElement.style.left = `${noteSlips.discrepencyx}px`;
+        noteElement.style.top = `${noteSlips.discrepencyy}px`;
+
+        const newMoreTextId = `more_text_container${i + 1}`;
+        moreTextElement.className = newMoreTextId;
+        moreTextElement.id = newMoreTextId;
+
+        moreTextElement.style.left = `${215 + noteSlips.discrepencyx}px`;
+        moreTextElement.style.top = `${195 + noteSlips.discrepencyy}px`;
     }
 }
 
