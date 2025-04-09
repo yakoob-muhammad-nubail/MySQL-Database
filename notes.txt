@@ -235,3 +235,5 @@ TBD 2025-04-09
 - color pallete functionality
 - archive functionality
 - pin functionality
+- notes page home 
+    - notes app highlight has a gap

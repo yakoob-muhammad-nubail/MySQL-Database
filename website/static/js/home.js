@@ -1,49 +1,39 @@
-var logoContainer = document.getElementById("logo_container");
+var appLogo = document.getElementById("app_logo");
+var logoImageContainer = document.getElementById("logo_image_container");
 var logoImage = document.getElementById("logo_image");
+var logoTextContainer = document.getElementById("logo_text_container");
 var logoText = document.getElementById("logo_text");
+var optionsContainer = document.getElementById("options_container");
 var accountText = document.getElementById("account_text");
 var aboutText = document.getElementById("about_text");
 var loginText = document.getElementById("login_text");
 var signupText = document.getElementById("signup_text");
 var logoutText = document.getElementById("logout_text");
 
-logoContainer.style.left = window.innerWidth / 2 - 350 + "px";
-logoContainer.style.top = window.innerHeight / 2 - 275 + "px";
 
-logoText.style.left = window.innerWidth / 2 - 150 + "px";
-logoText.style.top = window.innerHeight / 2 - 225 + "px";
 
-accountText.style.width = 95 + "px";
-accountText.style.height = 25 + "px";
-accountText.style.left = window.innerWidth / 2 - 45.5 + "px"; //window.innerWidth / 2 - 47.5
-accountText.style.top = 120 + "px";
+appLogo.style.left = window.innerWidth / 2 - 400 + "px";
+appLogo.style.top = window.innerHeight / 2 - 275 + "px";
 
-aboutText.style.width = 65 + "px";
-aboutText.style.height = 25 + "px";
+optionsContainer.style.left = window.innerWidth / 2 - 400 + "px";
+optionsContainer.style.top = window.innerHeight / 2 - 250 + "px";
+
+accountText.style.left = window.innerWidth / 2 - 45.5 + "px";
+
 aboutText.style.left = window.innerWidth / 2 - 127.5 + "px";
-aboutText.style.top = 155 + "px";
 
-loginText.style.width = 60 + "px";
-loginText.style.height = 25 + "px";
 loginText.style.left = window.innerWidth / 2 - 195 + "px";
-loginText.style.top = 190 + "px";
 
-signupText.style.width = 175 + "px";
-signupText.style.height = 25 + "px";
 signupText.style.left = window.innerWidth / 2 - 312.5 + "px";
-signupText.style.top = 225 + "px";
 
-logoutText.style.width = 80 + "px";
-logoutText.style.height = 25 + "px";
 logoutText.style.left = window.innerWidth / 2 - 442.5 + "px";
-logoutText.style.top = 260 + "px";
 
-logoImage.addEventListener("mouseover", function hoverOverLogo() {
+logoImageContainer.addEventListener("mouseover", function hoverOverLogo() {
     // mainNavbarHeaderLogo.src = "../static/images/logo250_highlight.png";
     logoText.style.color = "blue";
 });
 
-logoImage.addEventListener("mouseout", function hoverOutLogo() {
+logoImageContainer.addEventListener("mouseout", function hoverOutLogo() {
     // mainNavbarHeaderLogo.src = "../static/images/logo250.png";
     logoText.style.color = "black";
 });
@@ -65,7 +55,6 @@ accountText.addEventListener("mouseover", function hoverOverLogo() {
 
 accountText.addEventListener("mouseout", function hoverOutLogo() {
     // mainNavbarHeaderLogo.src = "../static/images/logo250.png";
-    console.log("hit");
     accountText.style.color = "black";
 });
 

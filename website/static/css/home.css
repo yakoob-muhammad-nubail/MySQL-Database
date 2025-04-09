@@ -16,9 +16,19 @@ a {
     text-decoration: none;
 }
 
-.logo_container {
-    /* background-color: blue; */
-    position: absolute;
+.app_logo {
+    background-color: green;
+    position: relative;
+    display: flex;
+    /* display: none; */
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 200px;
+}
+
+.logo_image_container {
+    background-color: blue;
     width: 200px;
     height: 200px;
 
@@ -30,44 +40,59 @@ a {
 }
 
 .logo_text {
-    /* background-color: orange; */
+    background-color: orange;
     position: relative;
     font-size: 100px;
-    width: 500px;
+    width: 470px;
     height: 100px;
 }
 
-.account_options_text {
+a {
     font-size: 25px;
 }
 
-.account_text {
-    /* background-color: green; */
+.options_container {
+    background-color: green;
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 50%;
+    height: 125px;
+}
+
+.account_text {
+    background-color: green;
+    width: 95px;
+    height: 25px;
+    top: 120px;
 }
 
 .about_text {
-    /* background-color: green; */
-    position: relative;
+    background-color: green;
+    width: 65px;
+    height: 25px;
+    top: 155px;
 }
 
 .login_text {
-    /* background-color: purple; */
-    position: relative;
-    top: 250px;
-    /* display: none; */
+    background-color: purple;
+    width: 60px;
+    height: 25px;
+    top: 190px;
 }
 
 .signup_text {
-    /* background-color: pink; */
-    position: relative;
-    top: 250px;
-    /* display: none; */
+    background-color: pink;
+    width: 175px;
+    height: 25px;
+    top: 225px;
 }
 
 .logout_text {
-    /* background-color: violet; */
-    position: relative;
-    top: 250px;
-    /* display: none; */
+    background-color: violet;
+    width: 80px;
+    height: 25px;
+    top: 260px;
 }
