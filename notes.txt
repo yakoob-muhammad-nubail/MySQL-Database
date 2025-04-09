@@ -217,3 +217,21 @@ TBD 2025-04-09
     - fix parse function
         - shift and caps behaviour is off
         - shift auto selects caps lock
+- learn git commands
+    - commit from command line
+- add scroll wheel
+    - large notes
+    - page scroll for more than six notes
+        - js to find if an element is offscreen then overflow value changed accordingly
+- if the menus or entry box is deselected
+    - close entry box
+    - close menu
+        - side menu
+        - settings menu
+- add in search capabilities
+- reminder button functionality
+- share button functionality
+    - shared note functionality
+- color pallete functionality
+- archive functionality
+- pin functionality
