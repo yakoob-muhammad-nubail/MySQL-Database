@@ -75,6 +75,9 @@ optional
         - trash page - tbd - optional
         - about page - optional
         - account page - optional
+    - reminders page - tbd - optional
+    - auto close sidemenu - tbd - optional
+        - when you click outside the side menu
 
 immediate
     - notes page - tbd - immediate
@@ -115,12 +118,10 @@ immediate
         - when page is navigated to different page change the value of the settings menu boolean
         - if the page is refreshed the menu is hidden as a default
     - remove unnecessary comments - tbd - immediate
-    - auto close sidemenu - tbd - optional
-        - when you click outside the side menu
     - log out of account - tbd - immediate
         - if user logs out or clicks on signup/login automatically remove the login credentials
         - store log in credentials in python and pass to js/html 
-    - reminders page - tbd - optional
+
     - finish python - tbd - immediate
         - init file
         - logout message if login, logout or signup page is opened
@@ -129,6 +130,7 @@ immediate
             - if variable if true then the notes, reminders, labels, archive or trash page when typed into urls
             will lead to the home page with home page url
     - rename functions in eventlisteners - tbd - immediate
+    - 
 
 form handling notes
     - python (flask app), HTML/CSS/JavaScript
@@ -182,6 +184,8 @@ side note
     - edit backspace to delete enters
     - issue with keyloggers is that parsing the functions changes with entry and title - done
         - easy refactor into one function
+    - when you delete a note from the database
+        - the notes do not shift over
 
 old convert to array function
     function convertToArray(str) {
@@ -202,3 +206,14 @@ old convert to array function
         });
         return objects;
     }
+
+TBD 2025-04-09
+- Responsive web design
+- Learn Flask
+- Make sure email entry only allows for emails
+- pass login details to next flask page
+    - notes.html to login.html then back to notes.html should return an error
+- fix keylogger
+    - fix parse function
+        - shift and caps behaviour is off
+        - shift auto selects caps lock
