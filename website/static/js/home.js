@@ -12,10 +12,10 @@ var logoutText = document.getElementById("logout_text");
 
 
 
-appLogo.style.left = window.innerWidth / 2 - 400 + "px";
+appLogo.style.left = window.innerWidth / 2 - window.innerWidth / 4 + "px";
 appLogo.style.top = window.innerHeight / 2 - 275 + "px";
 
-optionsContainer.style.left = window.innerWidth / 2 - 400 + "px";
+optionsContainer.style.left = window.innerWidth / 2 - window.innerWidth / 4 + "px";
 optionsContainer.style.top = window.innerHeight / 2 - 250 + "px";
 
 accountText.style.left = window.innerWidth / 2 - 45.5 + "px";
