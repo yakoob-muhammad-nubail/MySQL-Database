@@ -11,11 +11,11 @@ var signupText = document.getElementById("signup_text");
 var logoutText = document.getElementById("logout_text");
 
 
-
-appLogo.style.left = window.innerWidth / 2 - window.innerWidth / 4 + "px";
+console.log(window.innerWidth); // 1536 preset size
+// appLogo.style.left = window.innerWidth / 2 - window.innerWidth / 4 + "px";
 appLogo.style.top = window.innerHeight / 2 - 275 + "px";
 
-optionsContainer.style.left = window.innerWidth / 2 - window.innerWidth / 4 + "px";
+// optionsContainer.style.left = window.innerWidth / 2 - window.innerWidth / 4 + "px";
 optionsContainer.style.top = window.innerHeight / 2 - 250 + "px";
 
 accountText.style.left = window.innerWidth / 2 - 45.5 + "px";
