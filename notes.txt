@@ -49,6 +49,7 @@ finished
                     - notes.js:505 Uncaught 
                         ReferenceError: totalNotes is not defined
                         at HTMLParagraphElement.handleMouseDownEventForEntryBox (notes.js:505:46)
+    - account handling - done
         - application can now handle multiple accounts and new accounts with no notes
 
 optional
@@ -80,6 +81,25 @@ optional
         - when you click outside the side menu
 
 immediate
+    - organize notes.txt
+    - fix keylogger parse function
+        - caps and shift dont work properly
+        - scroll bar for added text
+        - space auto caps function
+        - tab auto selects header section and enter registers a hit
+    - fix email entry on login page
+        - make sure proper email format is used
+        - should be built in html/css for ensuring the email is entered as a proper email
+    - center search bar on notes page with notepad
+    - pass account details onto next page
+        - if about, login, or home page is selected auto load notes page with account id
+        - draw routes 
+        - store in python
+    - mySQL research
+        - data integrity
+        - race conditions
+    - resonsive layout design
+    
     - notes page - tbd - immediate
         - delete function - done
         - maintain length of text - done
