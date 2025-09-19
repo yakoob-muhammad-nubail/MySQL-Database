@@ -5,7 +5,7 @@ from datetime import datetime
 
 import json
 
-app = create_app()
+app = create_app() 
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///accounts.db'
 
